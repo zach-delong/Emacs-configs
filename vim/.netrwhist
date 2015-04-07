@@ -1,9 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/Zachery/Development/vagrant-test/src/wp-content/themes/twentyfifteen'
-let g:netrw_dirhist_2='/Users/Zachery/Development/vagrant-test/src/wp-content/themes/twentyfifteen/css'
-let g:netrw_dirhist_3='/Users/Zachery/Development/vagrant-test/src/wp-content/themes/twentyfifteen'
-let g:netrw_dirhist_4='/Users/Zachery/Development/vagrant-test/src/wp-content/themes/twentyfifteen/css'
-let g:netrw_dirhist_5='/Users/Zachery/Development/vagrant-test/src/wp-content/themes/twentyfifteen'
-let g:netrw_dirhist_6='/Users/Zachery/Development/FileUploaderTest'
-let g:netrw_dirhist_7='/Users/Zachery/Development/clear'
+let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_1='/Users/Zachery/Development'
+let g:netrw_dirhist_2='/Users/Zachery/Development/SiteMockup'

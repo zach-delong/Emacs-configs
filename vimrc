@@ -1,4 +1,9 @@
 """"""""""""""""""""""
+" Hotkeys and remaps
+""""""""""""""""""""""
+inoremap <lt>/ </<C-x><C-o>
+
+""""""""""""""""""""""
 " Line numbers
 """""""""""""""""""""
 set number
@@ -31,3 +36,7 @@ set smarttab
 set ai 		"auto-indent
 set si 		"smart-indent
 set nowrap 	"wrap a line
+
+filetype plugin on
+filetype indent on
+set smartindent
