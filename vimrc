@@ -9,7 +9,7 @@ inoremap <lt>/ </<C-x><C-o>
 set number
 
 """""""""""""""""""""
-" Pathogen inintialization
+" Pathogen inintialization and setting shell
 """""""""""""""""""""
 execute pathogen#infect()
 
@@ -23,8 +23,6 @@ set noswapfile
 """"""""""""""""""""""
 " Colors
 """"""""""""""""""""""
-"colorscheme jellybeans
-"colorscheme atom-dark
 syntax enable
 colorscheme solarized
 set background=dark
@@ -40,3 +38,9 @@ set nowrap 	"wrap a line
 filetype plugin on
 filetype indent on
 set smartindent
+
+""""""""""""""""""""""
+"Custom keybindings for 
+"markdown preview
+"""""""""""""""""""""""
+map <leader>m	:Mm<ENTER>
