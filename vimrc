@@ -27,6 +27,7 @@ syntax enable
 colorscheme solarized
 set background=dark
 
+set guifont=Monaco:h13
 """"""""""""""""""""""
 " Text, tab, and indent
 """"""""""""""""""""""
@@ -41,6 +42,6 @@ set smartindent
 
 """"""""""""""""""""""
 "Custom keybindings for 
-"markdown preview
 """""""""""""""""""""""
 map <leader>m	:Mm<ENTER>
+map <leader>p :CtrlPMixed<ENTER>

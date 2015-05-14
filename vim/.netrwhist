@@ -1,9 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =7
-let g:netrw_dirhist_1='/Users/Zachery/Development/sia-site/public/wp-content/themes/twentyfourteen'
-let g:netrw_dirhist_2='/Users/Zachery/Development/sia-site/public'
-let g:netrw_dirhist_3='/Users/Zachery/Development/sia-site/public/wp-content'
-let g:netrw_dirhist_4='/Users/Zachery/Development/sia-site/public/wp-content/themes'
-let g:netrw_dirhist_5='/Users/Zachery/Development/sia-site/public/wp-content/themes/twentyfourteen'
-let g:netrw_dirhist_6='/Users/Zachery/Development/sia-site/public/wp-content/themes/twentyfourteen/css'
-let g:netrw_dirhist_7='/Users/Zachery/Development/SiteMockup'
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/Zachery/Development/sia-site/public/wp-content/themes/twentyfifteen'
+let g:netrw_dirhist_2='/Users/Zachery/Development/sia-site/public/wp-content/themes/twentyfifteen/genericons'
+let g:netrw_dirhist_3='/Users/Zachery/Development/sia-site/public/wp-content/themes/twentyfifteen'
+let g:netrw_dirhist_4='/Users/Zachery/Development/HipsterDrivenDev/wiki'
