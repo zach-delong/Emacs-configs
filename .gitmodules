@@ -10,3 +10,6 @@
 [submodule "vim/bundle/PHP-Indenting-for-VIm"]
 	path = vim/bundle/PHP-Indenting-for-VIm
 	url = https://github.com/2072/PHP-Indenting-for-VIm
+[submodule "vim/bundle/vim-fugitive"]
+	path = vim/bundle/vim-fugitive
+	url = https://github.com/tpope/vim-fugitive
