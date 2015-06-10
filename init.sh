@@ -2,27 +2,10 @@
 
 TRUE='true'
 USERINPUT=$1
-PATH_TO_VIM="/Users/$USER/.vim/"
-PATH_TO_VIMRC="/Users/$USER/.vimrc"
+PATH_HOME="/Users/$USER/"
 
-if [ "$USERINPUT" = "c" ]; then
-	printf "Moving your config to the repository\n"
-	
-	rm -rf vim/
-	rm vimrc
-	#Copy the current vim config into this directory
-	cp -r "$PATH_TO_VIM" "vim/"
-	cp "$PATH_TO_VIMRC" "vimrc"
-elif [ "$USERINPUT" = "r" ]; then
-	printf "Moving the configs in this repository to your machine!\n"
-	
-	rm -rf "$PATH_TO_VIM"
-	rm "$PATH_TO_VIMRC"
+rm -rf $PATH_HOME.vim/
+rm -rf $PATH_HOME.vimrc
 
-	cp -r "vim/" "$PATH_TO_VIM"
-	cp "vimrc" "$PATH_TO_VIMRC"
-
-else
-	printf "Use option 'c' to copy your config files here!\n"
-	printf "Use option 'r' to move the repo's configs out\n"
-fi
+ln -s "$PWD/.vim" "$PATH_HOME.vim"
+ln -s "$PWD/.vimrc" "$PATH_HOME.vimrc"
