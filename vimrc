@@ -45,3 +45,4 @@ set smartindent
 """""""""""""""""""""""
 map <leader>m	:Mm<ENTER>
 map <leader>p :CtrlPMixed<ENTER>
+inoremap <C-e> <ESC>
