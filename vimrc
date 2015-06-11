@@ -43,6 +43,8 @@ set smartindent
 """"""""""""""""""""""
 "Custom keybindings for 
 """""""""""""""""""""""
+map <Space> <leader>
 map <leader>m	:Mm<ENTER>
 map <leader>p :CtrlPMixed<ENTER>
 inoremap <C-e> <ESC>
+
