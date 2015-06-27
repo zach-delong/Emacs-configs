@@ -9,10 +9,16 @@ inoremap <lt>/ </<C-x><C-o>
 set number
 
 """""""""""""""""""""
-" Pathogen inintialization and setting shell
+" Pathogen inintialization 
+" and setting shell
 """""""""""""""""""""
 execute pathogen#infect()
 
+"""""""""""""""""""""""
+" Changing copy-paste
+" To using system buffer
+"""""""""""""""""""""""
+set clipboard=unnamed
 """""""""""""""""""""""
 " Files, backups, undo
 """""""""""""""""""""""
@@ -43,9 +49,11 @@ set shiftwidth=4
 set expandtab
 
 """"""""""""""""""""""
-"Custom keybindings for 
+"Custom keybindings 
 """""""""""""""""""""""
-map <Space> <leader>
-map <leader>m	:Mm<ENTER>
-map <leader>p :CtrlPMixed<ENTER>
-inoremap <C-e> <ESC>
+map <Space> <leader>                " Remaping leader to space.
+map <leader>m :Mm<ENTER>            " Open markdown with leader+m
+map <leader>p :CtrlPMixed<ENTER>    " Open CtrlP with leader+p
+map <leader>w :w<ENTER>             " Save with leader+w
+map <leader>c 0wi//<ESC>            " Comment a line with leader+c
+inoremap <C-e> <ESC>                " Add a mapping for iPad to leave remap
