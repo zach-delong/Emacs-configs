@@ -2,8 +2,13 @@
 " Hotkeys and remaps
 """"""""""""""""""""""
 inoremap <lt>/ </<C-x><C-o>
+let mapleader="\<Space>"
+map <leader>m :Mm<ENTER>            " Open markdown with leader+m
+map <leader>p :CtrlPMixed<ENTER>    " Open CtrlP with leader+p
+map <leader>w :w<ENTER>             " Save with leader+w
+map <leader>c 0wi//<ESC>            " Comment a line with leader+c
+inoremap <C-e> <ESC>                " Add a mapping for iPad to leave remap""""""""""""""""""""""
 
-""""""""""""""""""""""
 " Line numbers
 """""""""""""""""""""
 set number
@@ -47,13 +52,3 @@ filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
 set expandtab
-
-""""""""""""""""""""""
-"Custom keybindings 
-"""""""""""""""""""""""
-map <Space> <leader>                " Remaping leader to space.
-map <leader>m :Mm<ENTER>            " Open markdown with leader+m
-map <leader>p :CtrlPMixed<ENTER>    " Open CtrlP with leader+p
-map <leader>w :w<ENTER>             " Save with leader+w
-map <leader>c 0wi//<ESC>            " Comment a line with leader+c
-inoremap <C-e> <ESC>                " Add a mapping for iPad to leave remap
