@@ -3,11 +3,11 @@
 """"""""""""""""""""""
 inoremap <lt>/ </<C-x><C-o>
 let mapleader="\<Space>"
-map <leader>m :Mm<ENTER>            
-map <leader>p :CtrlPMixed<ENTER>    
-map <leader>w :w<ENTER>             
+map <leader>m :Mm<ENTER>
+map <leader>p :CtrlPMixed<ENTER>
+map <leader>w :w<ENTER>
 map <leader>c 0wi//<ESC>            
-inoremap <C-e> <ESC>                
+inoremap <C-e> <ESC>
 
 " Line numbers
 """""""""""""""""""""
