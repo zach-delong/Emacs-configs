@@ -3,11 +3,11 @@
 """"""""""""""""""""""
 inoremap <lt>/ </<C-x><C-o>
 let mapleader="\<Space>"
-map <leader>m :Mm<ENTER>            " Open markdown with leader+m
-map <leader>p :CtrlPMixed<ENTER>    " Open CtrlP with leader+p
-map <leader>w :w<ENTER>             " Save with leader+w
-map <leader>c 0wi//<ESC>            " Comment a line with leader+c
-inoremap <C-e> <ESC>                " Add a mapping for iPad to leave remap""""""""""""""""""""""
+map <leader>m :Mm<ENTER>            
+map <leader>p :CtrlPMixed<ENTER>    
+map <leader>w :w<ENTER>             
+map <leader>c 0wi//<ESC>            
+inoremap <C-e> <ESC>                
 
 " Line numbers
 """""""""""""""""""""
