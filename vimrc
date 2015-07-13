@@ -6,7 +6,8 @@ let mapleader="\<Space>"
 map <leader>m :Mm<ENTER>
 map <leader>p :CtrlPMixed<ENTER>
 map <leader>w :w<ENTER>
-map <leader>c 0wi//<ESC>            
+map <leader>c 0wi//<ESC>
+map <leader>f :echo @%<ENTER>
 inoremap <C-e> <ESC>
 
 " Line numbers
