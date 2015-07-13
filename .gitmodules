@@ -16,3 +16,6 @@
 [submodule "vim/bundle/node-vim-debugger"]
 	path = vim/bundle/node-vim-debugger
 	url = https://github.com/sidorares/node-vim-debugger.git
+[submodule "vim/bundle/TaskList.vim"]
+	path = vim/bundle/TaskList.vim
+	url = https://github.com/vim-scripts/TaskList.vim.git
