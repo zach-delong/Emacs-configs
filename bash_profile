@@ -1,6 +1,6 @@
 alias apache='sudo apachectl'
 alias sml='/usr/local/smlnj/bin/sml'
-source ~/.profile
+#source ~/.profile
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
 
 source ~/.git-completion.bash
