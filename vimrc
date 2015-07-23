@@ -10,6 +10,8 @@ map <leader>c 0wi//<ESC>
 map <leader>F :echo @%<ENTER>
 map <leader>f <C-f>
 map <leader>b <C-b>
+map <Tab> gt
+map <S-Tab> gT
 inoremap <C-e> <ESC>
 
 " Line numbers
