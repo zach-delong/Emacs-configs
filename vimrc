@@ -7,7 +7,9 @@ map <leader>m :Mm<ENTER>
 map <leader>p :CtrlPMixed<ENTER>
 map <leader>w :w<ENTER>
 map <leader>c 0wi//<ESC>
-map <leader>f :echo @%<ENTER>
+map <leader>F :echo @%<ENTER>
+map <leader>f <C-f>
+map <leader>b <C-b>
 inoremap <C-e> <ESC>
 
 " Line numbers
