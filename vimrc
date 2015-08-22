@@ -16,7 +16,7 @@ noremap <C-e> <ESC>
 
 " Line numbers
 """""""""""""""""""""
-set number
+set relativenumber
 
 """""""""""""""""""""
 " Pathogen inintialization 
