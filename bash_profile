@@ -32,3 +32,4 @@ alias ll='ls -lah'
 alias gg='git status -s'
 
 #PS1="[\u@\h] \W $ $(__git_ps1 " (%s)") "
+PATH=/local/bin:$PATH

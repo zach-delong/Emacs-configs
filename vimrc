@@ -12,6 +12,7 @@ map <leader>f <C-f>
 map <leader>b <C-b>
 map <Tab> gt
 map <S-Tab> gT
+map <leader>t :!ctags -R .<ENTER>
 noremap <C-e> <ESC>
 
 " Line numbers
