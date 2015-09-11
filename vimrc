@@ -6,7 +6,7 @@ let mapleader="\<Space>"
 map <leader>m :Mm<ENTER>
 map <leader>p :CtrlPMixed<ENTER>
 map <leader>w :w<ENTER>
-map <leader>c 0wi//<ESC>
+map <leader>c ^i//<ESC>
 map <leader>F :echo @%<ENTER>
 map <leader>f <C-f>
 map <leader>b <C-b>
@@ -41,7 +41,7 @@ set noswapfile
 " Colors
 """"""""""""""""""""""
 syntax enable
-colorscheme solarized
+"colorscheme solarized
 set background=dark
 
 set guifont=Monaco:h13
