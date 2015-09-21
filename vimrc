@@ -41,7 +41,7 @@ set noswapfile
 " Colors
 """"""""""""""""""""""
 syntax enable
-colorscheme solarized
+"colorscheme solarized
 set background=dark
 
 set guifont=Monaco:h13
