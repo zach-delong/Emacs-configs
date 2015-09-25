@@ -13,11 +13,13 @@ map <leader>b <C-b>
 map <Tab> gt
 map <S-Tab> gT
 map <leader>C :!ctags -R .<ENTER>
+map <leader>y ggvG$y
 noremap <C-e> <ESC>
 
 " Line numbers
 """""""""""""""""""""
 set relativenumber
+set number
 
 """""""""""""""""""""
 " Pathogen inintialization 
@@ -42,7 +44,7 @@ set noswapfile
 """"""""""""""""""""""
 syntax enable
 "colorscheme solarized
-set background=dark
+set background=light
 
 set guifont=Monaco:h13
 """"""""""""""""""""""
