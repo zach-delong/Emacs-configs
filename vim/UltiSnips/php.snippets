@@ -15,13 +15,29 @@ endsnippet
 snippet for "A basic for loop"
 for(\$i=0; \$i<${1:10}; $i++)
 {
-	
+	${VISUAL}
 }
 endsnippet
 
 snippet while "A basic while loop"
-while(${1:true})
+while(${0:true})
 {
-	
+	${VISUAL}
 }
+endsnippet
+
+snippet route "A basic laravel route"
+Route::get('${0:/}', function()
+{
+	${1:${VISUAL: return 'Hello, world!';}}
+	
+});
+endsnippet
+
+snippet ' "Autocomplete quotes"
+'${VISUAL}'${0}
+endsnippet
+
+snippet " "Autocomplete quotes"
+"${VISUAL}"${0}
 endsnippet
