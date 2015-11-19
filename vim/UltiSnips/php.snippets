@@ -60,3 +60,32 @@ snippet <?p "A snippet for creating a PHP block"
 ${0:${VISUAL}}
 ?>
 endsnippet
+
+snippet classcomment "A snippet for commenting php classes"
+/**
+ * @author ${1:Zachery DeLong https://github.com/ZacheryPD}
+ * @version ${2: 0.0.1}
+ * 
+ * overview:
+ *   ${3:This is a class designed to...}
+ *
+ * Method breakdown
+ * => ${4:MyMethod()}
+*/
+endsnippet
+snippet methodcomment "A snippet form commenting methods"
+/**
+ * @return ${1:void}
+ * @param ${2:none}
+ * overview 
+ *   ${3}
+*/
+endsnippet
+snippet class "A snippet for creating class comments, ends on another snippet which can optionally be expanded"
+classcomment${0}
+class ${1:MyClass} ${2: extends Controller}
+{
+	void __construct() { ${3} }
+	void __destruct() { ${4} }
+}
+endsnippet
