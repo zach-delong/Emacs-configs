@@ -77,3 +77,8 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Tweaking LogiPat config so I can use :E for Explore
 let g:loaded_logipat = 1
+
+"""""""""""""""""""""
+" Vim airline
+"""""""""""""""""""""
+let g:airline#extensions#tabline#enabled = 1
