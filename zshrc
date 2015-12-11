@@ -83,6 +83,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias gc="git commit"
-alias gp="git push"
-alias gp="git pull"
+alias gpu="git push"
+alias gpl="git pull"
 alias gph="git push heroku \$(git subtree split --prefix www master):master --force"
