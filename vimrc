@@ -82,3 +82,4 @@ let g:loaded_logipat = 1
 " Vim airline
 """""""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
+set laststatus=2
