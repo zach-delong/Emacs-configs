@@ -1,7 +1,7 @@
 """"""""""""""""""""""
 " Hotkeys and remaps
 """"""""""""""""""""""
-inoremap <lt>/ </<C-x><C-o>
+"inoremap <lt>/ </<C-x><C-o>
 let mapleader="\<Space>"
 map <leader>m :Mm<ENTER>
 map <leader>p :CtrlPMixed<ENTER>
