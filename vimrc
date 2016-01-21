@@ -68,7 +68,7 @@ set expandtab
 " Plugin 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsExpandTrigger="<c-j>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -83,3 +83,8 @@ let g:loaded_logipat = 1
 """""""""""""""""""""
 let g:airline#extensions#tabline#enabled = 1
 set laststatus=2
+
+"""""""""""""""""""""
+" YouCompleteMe
+"""""""""""""""""""""
+let g:ycm_collect_identifiers_from_tags_files = 1
