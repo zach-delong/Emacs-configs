@@ -31,3 +31,6 @@
 [submodule "vim/bundle/YouCompleteMe"]
 	path = vim/bundle/YouCompleteMe
 	url = git@github.com:Valloric/YouCompleteMe.git
+[submodule "vim/bundle/vim-gutentags"]
+	path = vim/bundle/vim-gutentags
+	url = git@github.com:ludovicchabant/vim-gutentags.git
