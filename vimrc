@@ -62,6 +62,13 @@ set shiftwidth=4
 set expandtab
 
 """"""""""""""""""""""
+" Custom statusline
+""""""""""""""""""""""
+set statusline=File\ Name:\ %4f
+set statusline+=%=
+set statusline+=%{fugitive#statusline()}
+
+""""""""""""""""""""""
 " Ultisnip
 """"""""""""""""""""""
 " Snippets are separated from the engine. Add this if you want them:
