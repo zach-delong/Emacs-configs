@@ -64,9 +64,9 @@ set expandtab
 """"""""""""""""""""""
 " Custom statusline
 """"""""""""""""""""""
-set statusline=File\ Name:\ %4f
+set statusline=File\ Name:\ %20f
 set statusline+=%=
-set statusline+=%{fugitive#statusline()}
+set statusline+=Branch\ Name:\ %20{fugitive#statusline()}
 
 """"""""""""""""""""""
 " Ultisnip
