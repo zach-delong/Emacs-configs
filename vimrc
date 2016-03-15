@@ -67,6 +67,7 @@ set expandtab
 set statusline=File\ Name:\ %20f
 set statusline+=%=
 set statusline+=Branch\ Name:\ %20{fugitive#statusline()}
+set statusline+=\ %m 
 
 """"""""""""""""""""""
 " Ultisnip
