@@ -77,7 +77,7 @@ set statusline+=\ %m
 " Plugin 'honza/vim-snippets'
 
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-j>"
+let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -86,14 +86,3 @@ let g:UltiSnipsEditSplit="vertical"
 
 " Tweaking LogiPat config so I can use :E for Explore
 let g:loaded_logipat = 1
-
-"""""""""""""""""""""
-" Vim airline
-"""""""""""""""""""""
-let g:airline#extensions#tabline#enabled = 1
-set laststatus=2
-
-"""""""""""""""""""""
-" YouCompleteMe
-"""""""""""""""""""""
-let g:ycm_collect_identifiers_from_tags_files = 1
