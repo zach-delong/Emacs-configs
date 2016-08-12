@@ -9,3 +9,30 @@ snippet c "A comment autocomplete"
 ${0:${VISUAL}}
 -->
 endsnippet
+
+snippet horizoncontact "A horizon contant snippet"
+<div class="result">
+	<div class="text contact-details">
+		<p class="department">${1}</p>
+
+		<h4 class="name"><a href="#">${2:Jane Doe}</a></h4>
+
+		<p class="position">${3}</p>
+
+		<div class="contact-links">
+			<p class="phone"><i class="material-icons">phone</i>${4}</p>
+
+			<p class="email"><a href="mailto:${5}"><i class="material-icons">email</i>$5</a></p>
+		</div>
+	</div>
+
+	<div class="text">${6}</div>
+</div>
+endsnippet
+
+snippet horizondirectory "A horizon directory listing"
+<div class="directory-listing">
+	${1:${VISUAL:horizoncontact}}
+	${0}
+</div>
+endsnippet

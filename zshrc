@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.  
-export ZSH=/Users/e030311/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -55,6 +55,7 @@ plugins=(git)
 
 export PATH="/usr/local/bin:/usr/local:/usr/bin:/bin:/usr/sbin:/sbin:/Users/E030311/.composer/vendor/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
+#export ANT_OPTS="-Xmx1024m"
 
 source $ZSH/oh-my-zsh.sh
 
@@ -86,3 +87,5 @@ alias gc="git commit"
 alias gpu="git push"
 alias gpl="git pull"
 alias gph="git push heroku \$(git subtree split --prefix www master):master --force"
+alias ctag="ctags -R --fields=+l"
+alias workLaptop="ssh E030311@zachery-delong.duckdns.org"

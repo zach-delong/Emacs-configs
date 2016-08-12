@@ -59,16 +59,23 @@ set autoindent
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
+set softtabstop=0
 set expandtab
+
+""""""""""""""""""""""
+" Custom statusline
+""""""""""""""""""""""
+"set statusline=File\ Name:\ %20f
+"set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+"set statusline+=%=
+"set statusline+=Branch\ Name:\ %20{fugitive#statusline()}
+"set statusline+=\ %m 
 
 """"""""""""""""""""""
 " Ultisnip
 """"""""""""""""""""""
-" Snippets are separated from the engine. Add this if you want them:
-" Plugin 'honza/vim-snippets'
-
 " Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<Tab>"
+let g:UltiSnipsExpandTrigger="<c-c>"
 let g:UltiSnipsJumpForwardTrigger="<c-b>"
 let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
@@ -78,8 +85,10 @@ let g:UltiSnipsEditSplit="vertical"
 " Tweaking LogiPat config so I can use :E for Explore
 let g:loaded_logipat = 1
 
-"""""""""""""""""""""
-" Vim airline
-"""""""""""""""""""""
-let g:airline#extensions#tabline#enabled = 1
-set laststatus=2
+
+let vim_markdown_preview_hotkey='<C-m>'
+let g:vim_markdown_folding_level = 6
+let g:vim_markdown_folding_disabled = 1
+
+autocmd BufRead,BufNewFile *.md set tw=80
+autocmd BufRead,BufNewFile *.md set fo+=t

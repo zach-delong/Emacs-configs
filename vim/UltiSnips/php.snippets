@@ -85,8 +85,14 @@ snippet class "A snippet for creating class comments, ends on another snippet wh
 classcomment${0}
 class ${1:MyClass} ${2: extends Controller}
 {
-	void __construct() { ${3} }
-	void __destruct() { ${4} }
+	function  __construct() 
+	{ 
+		${3} 
+	}
+	function  __destruct() 
+	{ 
+		${4} 
+	}
 }
 endsnippet
 
@@ -99,4 +105,11 @@ catch(Exception $ex)
 {
 	${1://Problems...}
 }
+endsnippet
+
+snippet function "a basic php function"
+function ${1:MyFunction}(${2})
+{
+	${3:${VISUAL}}
+}${0}
 endsnippet
