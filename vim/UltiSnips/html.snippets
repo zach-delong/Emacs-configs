@@ -1,7 +1,11 @@
 snippet t "A simple HTML tag."
 <${1:div}>
-	${0:${VISUAL}}
-</${1/(\w+).*/$1/}>
+	${2:${VISUAL}}
+</${1/(\w+).*/$1/}>${0}
+endsnippet
+
+snippet it "an inline html tag"
+<${1:script} ${0} />
 endsnippet
 
 snippet c "A comment autocomplete"
