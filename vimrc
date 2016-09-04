@@ -94,3 +94,10 @@ let g:vim_markdown_folding_disabled = 1
 
 autocmd BufRead,BufNewFile *.md set tw=80
 autocmd BufRead,BufNewFile *.md set fo+=t
+
+
+""""""""""""""""""""""
+" Writing
+""""""""""""""""""""""
+set incsearch
+set hlsearch
