@@ -56,6 +56,8 @@ set si 		"smart-indent
 set nowrap 	"wrap a line
 
 set autoindent
+
+" load plugins for each filetype andd indent from filetype info
 filetype plugin indent on
 set tabstop=4
 set shiftwidth=4
@@ -86,9 +88,16 @@ let g:UltiSnipsEditSplit="vertical"
 let g:loaded_logipat = 1
 
 
-let vim_markdown_preview_hotkey='<C-m>'
+let vim_markdown_preview_hotkey = '<C-m>'
 let g:vim_markdown_folding_level = 6
 let g:vim_markdown_folding_disabled = 1
 
 autocmd BufRead,BufNewFile *.md set tw=80
 autocmd BufRead,BufNewFile *.md set fo+=t
+
+
+""""""""""""""""""""""
+" Writing
+""""""""""""""""""""""
+set incsearch
+set hlsearch
