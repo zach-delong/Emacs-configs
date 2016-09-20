@@ -101,3 +101,8 @@ autocmd BufRead,BufNewFile *.md set fo+=t
 """"""""""""""""""""""
 set incsearch
 set hlsearch
+
+""""""""""""""""""""""
+" Backspace stuff
+""""""""""""""""""""""
+set backspace=indent,eol,start
