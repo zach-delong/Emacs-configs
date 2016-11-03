@@ -28,9 +28,6 @@
 [submodule "vim/bundle/vim-markdown-preview"]
 	path = vim/bundle/vim-markdown-preview
 	url = https://github.com/JamshedVesuna/vim-markdown-preview.git
-[submodule "vim/bundle/vim-markdown"]
-	path = vim/bundle/vim-markdown
-	url = git@github.com:plasticboy/vim-markdown.git
 [submodule "vim/bundle/tabular"]
 	path = vim/bundle/tabular
 	url = git@github.com:godlygeek/tabular.git
