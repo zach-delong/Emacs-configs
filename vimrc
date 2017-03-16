@@ -59,8 +59,8 @@ set autoindent
 
 " load plugins for each filetype andd indent from filetype info
 filetype plugin indent on
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 set softtabstop=0
 set expandtab
 
