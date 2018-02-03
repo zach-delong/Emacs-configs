@@ -6,7 +6,6 @@
 (require 'package)
 (package-initialize)
 
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
@@ -42,7 +41,10 @@
     ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
  '(org-agenda-files
    (quote
-    ("/Users/zachery/Dropbox/org/beorg-local.org" "/Users/zachery/Dropbox/org/classes.org" "/Users/zachery/Dropbox/org/flagged.org" "/Users/zachery/Dropbox/org/notes.org" "/Users/zachery/Dropbox/org/refile-beorg.org"))))
+    ("/Users/zachery/Dropbox/org/beorg-local.org" "/Users/zachery/Dropbox/org/classes.org" "/Users/zachery/Dropbox/org/flagged.org" "/Users/zachery/Dropbox/org/notes.org" "/Users/zachery/Dropbox/org/refile-beorg.org")))
+ '(package-selected-packages
+   (quote
+    (typescript-mode use-package helm evil color-theme-sanityinc-solarized))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
