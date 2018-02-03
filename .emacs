@@ -39,7 +39,10 @@
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
    (quote
-    ("4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default))))
+    ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
+ '(org-agenda-files
+   (quote
+    ("/Users/zachery/Dropbox/org/beorg-local.org" "/Users/zachery/Dropbox/org/classes.org" "/Users/zachery/Dropbox/org/flagged.org" "/Users/zachery/Dropbox/org/notes.org" "/Users/zachery/Dropbox/org/refile-beorg.org"))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -47,3 +50,11 @@
  ;; If there is more than one, they won't work right.
  )
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
+(setq-default indent-tabs-mode nil)
+
+(require 'org)
+;; mobileorg settings
+(setq org-directory "~/Dropbox/org")
+(setq org-mobile-inbox-for-pull "~/Dropbox/org/inbox.org")
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+(setq org-mobile-files '("~/Dropbox/org"))
