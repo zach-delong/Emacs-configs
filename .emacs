@@ -11,7 +11,7 @@
 
 (setq package-enable-at-startup nil)
 
-;(color-theme-initialize)
+                                        ;(color-theme-initialize)
 (load-theme 'sanityinc-solarized-dark t)
 
 (setq evil-want-C-u-scroll t)
@@ -28,9 +28,9 @@
 
 (require 'helm-config)
 
-; (linum-mode)
-; (linum-relative-global-mode)
-; (setq linum-relative-current-symbol "")
+                                        ; (linum-mode)
+                                        ; (linum-relative-global-mode)
+                                        ; (setq linum-relative-current-symbol "")
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -41,7 +41,7 @@
     ("4cf3221feff536e2b3385209e9b9dc4c2e0818a69a1cdb4b522756bcdf4e00a4" "4aee8551b53a43a883cb0b7f3255d6859d766b6c5e14bcb01bed572fcbef4328" default)))
  '(org-agenda-files
    (quote
-    ("/Users/zachery/Dropbox/org/beorg-local.org" "/Users/zachery/Dropbox/org/classes.org" "/Users/zachery/Dropbox/org/flagged.org" "/Users/zachery/Dropbox/org/notes.org" "/Users/zachery/Dropbox/org/refile-beorg.org")))
+    ("/Users/zachery/Dropbox/org/classes.org" "/Users/zachery/Dropbox/org/inbox.org" "/Users/zachery/Dropbox/org/notes.org" "/Users/zachery/Dropbox/org/todo.org")))
  '(package-selected-packages
    (quote
     (typescript-mode use-package helm evil color-theme-sanityinc-solarized))))
@@ -57,6 +57,10 @@
 (require 'org)
 ;; mobileorg settings
 (setq org-directory "~/Dropbox/org")
-(setq org-mobile-inbox-for-pull "~/Dropbox/org/inbox.org")
-(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
-(setq org-mobile-files '("~/Dropbox/org"))
+(setq mobile-org-directory "~/Dropbox/Apps/MobileOrg")
+; (setq org-mobile-inbox-for-pull "/org/inbox.org")
+(setq org-mobile-directory (concat org-directory mobile-org-directory))
+(setq org-mobile-files org-directory)
+
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(define-key global-map "\C-cc" 'org-capture)
