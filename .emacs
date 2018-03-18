@@ -44,7 +44,7 @@
     ("/Users/zachery/Dropbox/org/classes.org" "/Users/zachery/Dropbox/org/inbox.org" "/Users/zachery/Dropbox/org/notes.org" "/Users/zachery/Dropbox/org/todo.org")))
  '(package-selected-packages
    (quote
-    (typescript-mode use-package helm evil color-theme-sanityinc-solarized))))
+    (yasnippet-snippets yasnippet typescript-mode use-package helm evil color-theme-sanityinc-solarized))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -56,11 +56,14 @@
 
 (require 'org)
 ;; mobileorg settings
+;; mobileorg settings
 (setq org-directory "~/Dropbox/org")
-(setq mobile-org-directory "~/Dropbox/Apps/MobileOrg")
-; (setq org-mobile-inbox-for-pull "/org/inbox.org")
-(setq org-mobile-directory (concat org-directory mobile-org-directory))
-(setq org-mobile-files org-directory)
+(setq org-mobile-inbox-for-pull "~/Dropbox/org/inbox.org")
+(setq org-mobile-directory "~/Dropbox/Apps/MobileOrg")
+(setq org-mobile-files '("~/Dropbox/org"))
 
 (setq org-default-notes-file (concat org-directory "/notes.org"))
 (define-key global-map "\C-cc" 'org-capture)
+
+(require 'yasnippet)
+(yas-global-mode 1)
