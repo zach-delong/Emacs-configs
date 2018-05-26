@@ -311,17 +311,36 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   )
 
-(setq org-capture-templates
-      '(("t" "Todo" entry (file+headline "~/Dropbox/org/notes.org" "Tasks")
-         "* TODO %?\n  %i\n  %a")
-        ("s" "Add to Shopping list" entry (file "~/Dropbox/org/store_list.org")
-         "* %?\nEntered on %U\n  %i\n  %a")
-        ("n" "Note to self" entry (file+headline "~/Dropbox/org/notes.org" "Note to Self")
-         "* %?\nEntered on %U\n  %i\n  %a")))
+(if (eq system-type 'darwin)
+    ; This config is being loaded on a mac, so lets use my Mac-specific settings
+    (setq org-capture-templates
+          '(("t" "Todo" entry (file+headline "~/Dropbox/org/notes.org" "Tasks")
+             "* TODO %?\n  %i\n  %a")
+            ("s" "Add to Shopping list" entry (file "~/Dropbox/org/store_list.org")
+             "* %?\nEntered on %U\n  %i\n  %a")
+            ("n" "Note to self" entry (file+headline "~/Dropbox/org/notes.org" "Note to Self")
+             "* %?\nEntered on %U\n  %i\n  %a")))
+
+
+    (setq org-agenda-files (list "~/Dropbox/org/todo.org"))
+    )
+
+(if (eq system-type 'windows-nt)
+    ; This config is being loaded on a PC, so lets use my windows-specific settings
+    (setq org-capture-templates
+          '(("t" "Todo" entry (file+headline "~/Dropbox/org/notes.org" "Tasks")
+             "* TODO %?\n  %i\n  %a")
+            ("s" "Add to Shopping list" entry (file "~/Dropbox/org/store_list.org")
+             "* %?\nEntered on %U\n  %i\n  %a")
+            ("n" "Note to self" entry (file+headline "~/Dropbox/org/notes.org" "Note to Self")
+             "* %?\nEntered on %U\n  %i\n  %a")))
+
+
+  (setq org-agenda-files (list "~/Dropbox/org/todo.org"))
+  )
 
 
 (spacemacs/set-leader-keys "oc" 'org-capture)
-(setq org-agenda-files (list "~/Dropbox/org/todo.org"))
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
