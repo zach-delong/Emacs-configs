@@ -326,17 +326,17 @@ you should place your code here."
     )
 
 (if (eq system-type 'windows-nt)
-    ; This config is being loaded on a PC, so lets use my windows-specific settings
+    ; This config is being loaded on a PC, so lets use my Windows-specific settings
     (setq org-capture-templates
-          '(("t" "Todo" entry (file+headline "~/Dropbox/org/notes.org" "Tasks")
+          '(("t" "Todo" entry (file+headline "~/../../Dropbox/org/notes.org" "Tasks")
              "* TODO %?\n  %i\n  %a")
-            ("s" "Add to Shopping list" entry (file "~/Dropbox/org/store_list.org")
+            ("s" "Add to Shopping list" entry (file "~/../../Dropbox/org/store_list.org")
              "* %?\nEntered on %U\n  %i\n  %a")
-            ("n" "Note to self" entry (file+headline "~/Dropbox/org/notes.org" "Note to Self")
+            ("n" "Note to self" entry (file+headline "~/../../Dropbox/org/notes.org" "Note to Self")
              "* %?\nEntered on %U\n  %i\n  %a")))
 
 
-  (setq org-agenda-files (list "~/Dropbox/org/todo.org"))
+    (setq org-agenda-files (list "~/../Dropbox/org/todo.org"))
   )
 
 
