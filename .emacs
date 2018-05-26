@@ -53,6 +53,7 @@
  )
 (global-set-key (kbd "C-x C-f") #'helm-find-files)
 (setq-default indent-tabs-mode nil)
+(setq-default truncate-lines t)
 
 (require 'org)
 ;; mobileorg settings
