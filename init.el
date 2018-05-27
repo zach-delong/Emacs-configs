@@ -339,6 +339,8 @@ you should place your code here."
   (setq org-agenda-files (list "~/Dropbox/org/todo.org"))
   )
 
+(setq org-agenda-span 14)
+
 
 (spacemacs/set-leader-keys "oc" 'org-capture)
 ;; Do not write anything past this comment. This is where Emacs will
