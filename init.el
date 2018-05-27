@@ -336,7 +336,7 @@ you should place your code here."
              "* %?\nEntered on %U\n  %i\n  %a")))
 
 
-    (setq org-agenda-files (list "~/../Dropbox/org/todo.org"))
+    (setq org-agenda-files (list "~/../../Dropbox/org/todo.org"))
   )
 
 
