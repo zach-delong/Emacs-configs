@@ -311,18 +311,31 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   )
 
+(setq org-latex-pdf-process (quote ("texi2dvi --pdf --clean --verbose
+--batch %f" "bibtex %b" "texi2dvi --pdf --clean --verbose --batch %f"
+"texi2dvi --pdf --clean --verbose --batch %f")))
+
+(defun org-mode-reftex-setup ()
+  (load-library "reftex")
+  (and (buffer-file-name)
+       (file-exists-p (buffer-file-name))
+       (reftex-parse-all))
+  (define-key org-mode-map (kbd "C-c )") 'reftex-citation))
+(add-hook 'org-mode-hook 'org-mode-reftex-setup)
+
 (if (eq system-type 'darwin)
                                         ; This config is being loaded on a mac, so lets use my Mac-specific settings
     (progn
       (setq org-capture-templates
-            '(("t" "Todo" entry (file+headline "~/Dropbox/org/notes.org" "Tasks")
+            '(("t" "Todo" entry (file "~/Dropbox/org/inbox.org" )
                "* TODO %?\n  %i\n  %a")
               ("s" "Add to Shopping list" entry (file "~/Dropbox/org/store_list.org")
                "* %?\nEntered on %U\n  %i\n  %a")
               ("n" "Note to self" entry (file+headline "~/Dropbox/org/notes.org" "Note to Self")
                "* %?\nEntered on %U\n  %i\n  %a")))
       (setq org-agenda-files (list "~/Dropbox/org/todo.org"
-                                   "~/Dropbox/org/notes.org"))
+                                   "~/Dropbox/org/notes.org"
+                                   "~/Dropbox/org/inbox.org"))
       )
   )
 
@@ -330,14 +343,15 @@ you should place your code here."
                                         ; This config is being loaded on a PC, so lets use my Windows-specific settings
     (progn
       (setq org-capture-templates
-            '(("t" "Todo" entry (file+headline "~/../../Dropbox/org/notes.org" "Tasks")
+            '(("t" "Todo" entry (file "~/../../Dropbox/org/inbox.org")
                "* TODO %?\n  %i\n  %a")
               ("s" "Add to Shopping list" entry (file "~/../../Dropbox/org/store_list.org")
                "* %?\nEntered on %U\n  %i\n  %a")
               ("n" "Note to self" entry (file+headline "~/../../Dropbox/org/notes.org" "Note to Self")
                "* %?\nEntered on %U\n  %i\n  %a")))
       (setq org-agenda-files (list "~/../../Dropbox/org/todo.org"
-                                   "~/../../Dropbox/org/notes.org"))
+                                   "~/../../Dropbox/org/notes.org"
+                                   "~/../../Dropbox/org/inbox.org"))
       )
   )
 
