@@ -334,6 +334,9 @@ you should place your code here."
               ("n" "Note to self" entry (file+headline "~/Dropbox/org/notes.org" "Note to Self")
                "* %?\nEntered on %U\n  %i\n  %a")))
       (setq org-agenda-files (list "~/Dropbox/org/todo.org"
+                                   "~/Dropbox/org/professional.org"
+                                   "~/Dropbox/org/personal.org"
+                                   "~/Dropbox/org/shcool.org"
                                    "~/Dropbox/org/notes.org"
                                    "~/Dropbox/org/inbox.org"))
       )
@@ -350,6 +353,9 @@ you should place your code here."
               ("n" "Note to self" entry (file+headline "~/../../Dropbox/org/notes.org" "Note to Self")
                "* %?\nEntered on %U\n  %i\n  %a")))
       (setq org-agenda-files (list "~/../../Dropbox/org/todo.org"
+                                   "~/../../Dropbox/org/professional.org"
+                                   "~/../../Dropbox/org/personal.org"
+                                   "~/../../Dropbox/org/shcool.org"
                                    "~/../../Dropbox/org/notes.org"
                                    "~/../../Dropbox/org/inbox.org"))
       )
