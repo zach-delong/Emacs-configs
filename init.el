@@ -336,7 +336,7 @@ you should place your code here."
       (setq org-agenda-files (list "~/Dropbox/org/todo.org"
                                    "~/Dropbox/org/professional.org"
                                    "~/Dropbox/org/personal.org"
-                                   "~/Dropbox/org/shcool.org"
+                                   "~/Dropbox/org/school.org"
                                    "~/Dropbox/org/notes.org"
                                    "~/Dropbox/org/inbox.org"))
       )
@@ -355,7 +355,7 @@ you should place your code here."
       (setq org-agenda-files (list "~/../../Dropbox/org/todo.org"
                                    "~/../../Dropbox/org/professional.org"
                                    "~/../../Dropbox/org/personal.org"
-                                   "~/../../Dropbox/org/shcool.org"
+                                   "~/../../Dropbox/org/school.org"
                                    "~/../../Dropbox/org/notes.org"
                                    "~/../../Dropbox/org/inbox.org"))
       )
