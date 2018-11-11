@@ -329,48 +329,18 @@ you should place your code here."
   (define-key org-mode-map (kbd "C-c )") 'reftex-citation))
 (add-hook 'org-mode-hook 'org-mode-reftex-setup)
 
+(print "*** DEBUGGING ***")
+
 (if (eq system-type 'darwin)
-                                        ; This config is being loaded on a mac, so lets use my Mac-specific settings
-    (progn
-      (setq org-capture-templates
-            '(("t" "Todo" entry (file "~/Dropbox/org/inbox.org" )
-               "* TODO %?\n  %i\n  %a")
-              ("s" "Add to Shopping list" entry (file "~/Dropbox/org/store_list.org")
-               "* %?\nEntered on %U\n  %i\n  %a")
-              ("n" "Note to self" entry (file+headline "~/Dropbox/org/notes.org" "Note to Self")
-               "* %?\nEntered on %U\n  %i\n  %a")))
-      (setq org-agenda-files (list "~/Dropbox/org/todo.org"
-                                   "~/Dropbox/org/professional.org"
-                                   "~/Dropbox/org/personal.org"
-                                   "~/Dropbox/org/school.org"
-                                   "~/Dropbox/org/notes.org"
-                                   "~/Dropbox/org/inbox.org"))
-      (setq org-brain-path "~/Dropbox/org/brain")))
-
+    (load "~/.spacemacs.d/osx"))
 (if (eq system-type 'windows-nt)
-                                        ; This config is being loaded on a PC, so lets use my Windows-specific settings
-    (progn
-      (setq org-capture-templates
-            '(("t" "Todo" entry (file "~/../../Dropbox/org/inbox.org")
-               "* TODO %?\n  %i\n  %a")
-              ("s" "Add to Shopping list" entry (file "~/../../Dropbox/org/store_list.org")
-               "* %?\nEntered on %U\n  %i\n  %a")
-              ("n" "Note to self" entry (file+headline "~/../../Dropbox/org/notes.org" "Note to Self")
-               "* %?\nEntered on %U\n  %i\n  %a")))
-      (setq org-agenda-files (list "~/../../Dropbox/org/todo.org"
-                                   "~/../../Dropbox/org/professional.org"
-                                   "~/../../Dropbox/org/personal.org"
-                                   "~/../../Dropbox/org/school.org"
-                                   "~/../../Dropbox/org/notes.org"
-                                   "~/../../Dropbox/org/inbox.org"))
-      )
-  )
+    (load "~/.spacemacs.d/windows"))
 
-(setq org-agenda-span 14)
-(setq org-refile-targets (quote ((nil :maxlevel . 9)
-                                 (org-agenda-files :maxlevel . 9))))
+(load "~/.spacemacs.d/org-config.el")
+(print (concat org-directory "inbox.org"))
 
-(spacemacs/set-leader-keys "oc" 'org-capture)
+(print "*** DEBUGGING ***")
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
