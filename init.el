@@ -313,23 +313,6 @@ explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
   )
 
-;; Org pdf process intended to allow adding of citations. More info at link
-;; below https://lists.gnu.org/archive/html/emacs-orgmode/2013-05/msg00791.html
-;; To add a bibliography, you'll still need to do #+LATEX: \bibliography{file}
-;; like in a normal file.  Unfortunately, that can't be avoided apparently
-(setq org-latex-pdf-process (quote ("texi2dvi --pdf --clean --verbose
---batch %f" "bibtex %b" "texi2dvi --pdf --clean --verbose --batch %f"
-"texi2dvi --pdf --clean --verbose --batch %f")))
-
-(defun org-mode-reftex-setup ()
-  (load-library "reftex")
-  (and (buffer-file-name)
-       (file-exists-p (buffer-file-name))
-       (reftex-parse-all))
-  (define-key org-mode-map (kbd "C-c )") 'reftex-citation))
-(add-hook 'org-mode-hook 'org-mode-reftex-setup)
-
-(print "*** DEBUGGING ***")
 
 (if (eq system-type 'darwin)
     (load "~/.spacemacs.d/osx"))
@@ -337,9 +320,6 @@ you should place your code here."
     (load "~/.spacemacs.d/windows"))
 
 (load "~/.spacemacs.d/org-config.el")
-(print (concat org-directory "inbox.org"))
-
-(print "*** DEBUGGING ***")
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
