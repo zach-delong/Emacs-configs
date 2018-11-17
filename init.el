@@ -319,7 +319,8 @@ you should place your code here."
 (if (eq system-type 'windows-nt)
     (load "~/.spacemacs.d/windows"))
 
-(load "~/.spacemacs.d/org-config.el")
+(load "~/.spacemacs.d/org/config.el")
+(load "~/.spacemacs.d/org/capture-templates.el")
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
