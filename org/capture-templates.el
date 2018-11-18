@@ -16,4 +16,11 @@
          "Standup"
          entry
          (file+datetree ,(concat org-directory standup-org))
-          "* %?\n%U\n")))
+         "* %?\n%U\n")
+
+        ("j"
+         "Jira ticket"
+         entry
+         (file+headline ,(concat org-directory inbox-org) "Tasks")
+         "* TODO %? %\\1
+[[http://www.jira.com/browse/%^{ticket}][%\\1]]")))
