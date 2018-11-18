@@ -6,6 +6,7 @@
 (setq notes-org "notes.org")
 (setq inbox-org "inbox.org")
 (setq reviews-org "reviews.org")
+(setq standup-org "standup.org")
 
 ;; Agenda files
 (setq org-agenda-files (list (concat org-directory todo-org)
