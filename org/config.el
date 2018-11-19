@@ -1,32 +1,12 @@
-;; Capture templates
-(setq org-capture-templates
-      `(("t"
-         "Todo"
-         entry
-         (file ,(concat org-directory "inbox.org"))
-         "* TODO %?\n  %i\n  %a")
-
-        ("s"
-         "Add to Shopping list"
-         entry
-         (file ,(concat org-directory "store_list.org"))
-         "* %?\nEntered on %U\n  %i\n  %a")
-
-        ("n"
-         "Note to self"
-         entry
-         (file+headline ,(concat org-directory "notes.org") "Note to Self")
-         "* %?\nEntered on %U\n  %i\n  %a")))
-
-
-;; Agenda files
-(setq org-agenda-files (list (concat org-directory "todo.org")
-                             (concat org-directory "professional.org")
-                             (concat org-directory "personal.org")
-                             (concat org-directory "school.org")
-                             (concat org-directory "notes.org")
-                             (concat org-directory "inbox.org")
-                             (concat org-directory "project.org")))
+;; Org files
+(setq todo-org "todo.org")
+(setq professional-org "professional.org")
+(setq personal-org "personal.org")
+(setq school-org "school.org")
+(setq notes-org "notes.org")
+(setq inbox-org "inbox.org")
+(setq reviews-org "reviews.org")
+(setq standup-org "standup.org")
 
 
 ;; Agenda configuration
