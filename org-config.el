@@ -25,7 +25,8 @@
                              (concat org-directory "personal.org")
                              (concat org-directory "school.org")
                              (concat org-directory "notes.org")
-                             (concat org-directory "inbox.org")))
+                             (concat org-directory "inbox.org")
+                             (concat org-directory "project.org")))
 
 
 ;; Agenda configuration
