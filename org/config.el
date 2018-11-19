@@ -5,8 +5,18 @@
 (setq school-org "school.org")
 (setq notes-org "notes.org")
 (setq inbox-org "inbox.org")
+(setq projects-org "projects.org")
 (setq reviews-org "reviews.org")
 (setq standup-org "standup.org")
+
+;; Agenda files
+(setq org-agenda-files (list (concat org-directory todo-org)
+                             (concat org-directory professional-org)
+                             (concat org-directory personal-org)
+                             (concat org-directory school-org)
+                             (concat org-directory notes-org)
+                             (concat org-directory inbox-org)
+                             (concat org-directory projects-org)))
 
 
 ;; Agenda configuration
