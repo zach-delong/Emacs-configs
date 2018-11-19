@@ -21,6 +21,8 @@
         ("j"
          "Jira ticket"
          entry
-         (file+headline ,(concat org-directory inbox-org) "Tasks")
-         "* TODO %? %\\1
-[[http://www.jira.com/browse/%^{ticket}][%\\1]]")))
+         (file ,(concat org-directory inbox-org))
+         ,(concat "* TODO %? %\\1
+[[" jira-link "%^{ticket}][%\\1]]"))))
+
+
