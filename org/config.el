@@ -5,7 +5,7 @@
 (setq school-org "school.org")
 (setq notes-org "notes.org")
 (setq inbox-org "inbox.org")
-(setq projects-org "projects.org")
+(setq project-org "project.org")
 (setq reviews-org "reviews.org")
 (setq standup-org "standup.org")
 
@@ -16,7 +16,7 @@
                              (concat org-directory school-org)
                              (concat org-directory notes-org)
                              (concat org-directory inbox-org)
-                             (concat org-directory projects-org)))
+                             (concat org-directory project-org)))
 
 
 ;; Agenda configuration

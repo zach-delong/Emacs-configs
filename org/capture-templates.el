@@ -22,7 +22,7 @@
          "Jira ticket"
          entry
          (file ,(concat org-directory inbox-org))
-         ,(concat "* TODO %? %\\1
-[[" jira-link "%^{ticket}][%\\1]]"))))
+         ,(concat "* TODO %\\1%?
+  [[" jira-link "%^{ticket}][%\\1]]"))))
 
 
