@@ -30,7 +30,8 @@ values."
    dotspacemacs-configuration-layer-path '()
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(html
+   '(python
+     html
      markdown
      javascript
      ;; ----------------------------------------------------------------
@@ -52,6 +53,7 @@ values."
      syntax-checking
      version-control
      csharp
+     bibtex
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
