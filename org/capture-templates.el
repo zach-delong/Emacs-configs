@@ -17,6 +17,11 @@
          entry
          (file+datetree ,(concat org-directory standup-org))
          "* %?\n%U\n")
+        ("i"
+         "interruption"
+         entry
+         (file+datetree ,(concat org-directory interruption-org))
+         "* Interrupted by %?\n%U\n")
 
         ("j"
          "Jira ticket"

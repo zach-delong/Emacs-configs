@@ -8,6 +8,7 @@
 (setq project-org "project.org")
 (setq reviews-org "reviews.org")
 (setq standup-org "standup.org")
+(setq interruption-org "interruption.org")
 
 ;; Agenda files
 (setq org-agenda-files (list (concat org-directory todo-org)
