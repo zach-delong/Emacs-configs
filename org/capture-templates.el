@@ -12,11 +12,18 @@
          (file+headline ,(concat org-directory notes-org) "Note to Self")
          "* %?\nEntered on %U\n  %i\n  %a")
 
+        ("g"
+         "Git best-practice"
+         entry
+         (file+headline ,(concat org-directory notes-org) "Git best practice")
+         "* %^{ITEM}%?\nNoted by %^{BY} \nEntered on %U\n  %i\n  %a")
+
         ("s"
          "Standup"
          entry
          (file+datetree ,(concat org-directory standup-org))
          "* %?\n%U\n")
+
         ("i"
          "interruption"
          entry
