@@ -8,6 +8,7 @@
 (setq project-org "project.org")
 (setq reviews-org "reviews.org")
 (setq standup-org "standup.org")
+(setq interruption-org "interruption.org")
 
 ;; Agenda files
 (setq org-agenda-files (list (concat org-directory todo-org)
@@ -21,8 +22,8 @@
 
 ;; Agenda configuration
 (setq org-agenda-span 14)
-(setq org-refile-targets (quote ((nil :maxlevel . 9)
-                                 (org-agenda-files :maxlevel . 9))))
+(setq org-refile-targets (quote ((nil :maxlevel . 5)
+                                 (org-agenda-files :maxlevel . 5))))
 
 ;; Hotkeys for org
 (spacemacs/set-leader-keys "oc" 'org-capture)
@@ -45,3 +46,5 @@
        (reftex-parse-all))
   (define-key org-mode-map (kbd "C-c )") 'reftex-citation))
 (add-hook 'org-mode-hook 'org-mode-reftex-setup)
+
+(spacemacs/set-leader-keys "mr" 'org-priority)
