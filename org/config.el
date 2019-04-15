@@ -46,3 +46,5 @@
        (reftex-parse-all))
   (define-key org-mode-map (kbd "C-c )") 'reftex-citation))
 (add-hook 'org-mode-hook 'org-mode-reftex-setup)
+
+(spacemacs/set-leader-keys "mP" 'org-priority)
