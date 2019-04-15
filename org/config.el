@@ -22,8 +22,8 @@
 
 ;; Agenda configuration
 (setq org-agenda-span 14)
-(setq org-refile-targets (quote ((nil :maxlevel . 9)
-                                 (org-agenda-files :maxlevel . 9))))
+(setq org-refile-targets (quote ((nil :maxlevel . 5)
+                                 (org-agenda-files :maxlevel . 5))))
 
 ;; Hotkeys for org
 (spacemacs/set-leader-keys "oc" 'org-capture)
