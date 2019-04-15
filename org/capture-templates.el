@@ -35,6 +35,14 @@
          entry
          (file ,(concat org-directory inbox-org))
          ,(concat "* TODO %\\1%?
-  [[" jira-link "%^{ticket}][%\\1]]"))))
+  [[" jira-link "%^{ticket}][%\\1]]"))
+
+        ("d"
+         "documenation spotlight"
+         entry
+         (file+headline,(concat org-directory notes-org) "Documentation spotlight")
+         "* %?\nEntered on %U\n  %i\n  %a")
+
+        ))
 
 
