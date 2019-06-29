@@ -33,7 +33,6 @@ values."
    '(csv
      python
      html
-     markdown
      javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
