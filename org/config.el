@@ -27,6 +27,7 @@
 
 ;; Hotkeys for org
 (spacemacs/set-leader-keys "oc" 'org-capture)
+(spacemacs/set-leader-keys "mt" 'org-babel-tangle)
 
 
 ;; Org pdf process intended to allow adding of citations. More info at link
