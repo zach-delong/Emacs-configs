@@ -43,6 +43,18 @@
          (file+headline,(concat org-directory notes-org) "Documentation spotlight")
          "* %?\nEntered on %U\n  %i\n  %a")
 
+        ("q"
+         "Datebase Query"
+         entry
+         (file ,(concat org-directory inbox-org))
+         "* %\\2%?
+:PROPERTIES:
+:DATABASE: %^{database}
+:TICKET: %^{ticket}
+:END:
+#+BEGIN_SRC sql
+#+END_SRC
+  ")
         ))
 
 
