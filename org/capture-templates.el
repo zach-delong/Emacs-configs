@@ -48,13 +48,13 @@
          entry
          (file ,(concat org-directory inbox-org))
          "* %\\2%?
-:PROPERTIES:
-:DATABASE: %^{database}
-:TICKET: %^{ticket}
-:END:
-#+BEGIN_SRC sql
-#+END_SRC
-  ")
+  :PROPERTIES:
+  :DATABASE: %^{database}
+  :TICKET:   %^{ticket}
+  :END:
+  #+BEGIN_SRC sql :tangle %\\2-%\\1.txt
+  #+END_SRC
+    ")
         ))
 
 
