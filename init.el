@@ -321,6 +321,9 @@ you should place your code here."
 	(if (eq system-type 'windows-nt)
 			(load "~/.spacemacs.d/windows"))
 
+  ;; fixes a bug in Windows https://github.com/bbatsov/projectile/issues/1302
+  (setq projectile-git-submodule-command nil)
+
 	(load "~/.spacemacs.d/local.el")
 
 	(load "~/.spacemacs.d/org/config.el")
