@@ -315,12 +315,14 @@ layers configuration.
 This is the place where most of your configurations should be done. Unless it is
 explicitly specified that a variable should be set before a package is loaded,
 you should place your code here."
+  ;; Fixes daemon mode
+  ;; https://superuser.com/questions/1435598/spacemacs-is-not-work-with-daemon-mode
+  (server-start)
 
 	(if (eq system-type 'darwin)
 			(load "~/.spacemacs.d/osx"))
 	(if (eq system-type 'windows-nt)
 			(load "~/.spacemacs.d/windows"))
-
 
 	(load "~/.spacemacs.d/local.el")
 
