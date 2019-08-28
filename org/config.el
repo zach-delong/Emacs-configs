@@ -30,15 +30,6 @@
 (spacemacs/set-leader-keys "mt" 'org-babel-tangle)
 
 
-;; Org pdf process intended to allow adding of citations. More info at link
-;; below https://lists.gnu.org/archive/html/emacs-orgmode/2013-05/msg00791.html
-;; To add a bibliography, you'll still need to do #+LATEX: \bibliography{file}
-;; like in a normal file.  Unfortunately, that can't be avoided apparently
-(setq org-latex-pdf-process (quote ("texi2dvi --pdf --clean --verbose
---batch %f" "bibtex %b" "texi2dvi --pdf --clean --verbose --batch %f"
-"texi2dvi --pdf --clean --verbose --batch %f")))
-
-
 ;; References and reftex config.  Not really sure what this does anymore
 (defun org-mode-reftex-setup ()
   (load-library "reftex")
