@@ -43,7 +43,7 @@
          (file+headline,(concat org-directory notes-org) "Documentation spotlight")
          "* %?\nEntered on %U\n  %i\n  %a")
 
-        ("q"
+        ("Q"
          "Datebase Query"
          entry
          (file ,(concat org-directory inbox-org))
