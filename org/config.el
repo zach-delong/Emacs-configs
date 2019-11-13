@@ -9,6 +9,7 @@
 (setq reviews-org "reviews.org")
 (setq standup-org "standup.org")
 (setq interruption-org "interruption.org")
+(setq reading-org "reading.org")
 
 ;; Agenda files
 (setq org-agenda-files (list (concat org-directory todo-org)
@@ -18,7 +19,8 @@
                              (concat org-directory notes-org)
                              (concat org-directory inbox-org)
                              (concat org-directory project-org)
-                             (concat org-directory interruption-org)))
+                             (concat org-directory interruption-org)
+                             (concat org-directory reading-org)))
 
 
 ;; Agenda configuration

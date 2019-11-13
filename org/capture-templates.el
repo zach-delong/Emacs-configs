@@ -12,6 +12,20 @@
          (file+headline ,(concat org-directory notes-org) "Note to Self")
          "* %?\nEntered on %U\n  %i\n  %a")
 
+        ("u"
+         "Unread article"
+         entry
+         (file ,(concat org-directory reading-org))
+         "* UNREAD %^{title}%?
+:PROPERTIES:
+:AUTHOR_NAME: %^{author_name}
+:END:
+
+[[%^{URL}][%\\1]]
+
+\tEntered on %U\n  %i")
+
+
         ("g"
          "Git best-practice"
          entry
