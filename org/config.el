@@ -11,17 +11,21 @@
 (setq interruption-org "interruption.org")
 (setq reading-org "reading.org")
 
-;; Agenda files
-(setq org-agenda-files (list (concat org-directory todo-org)
-                             (concat org-directory professional-org)
-                             (concat org-directory personal-org)
-                             (concat org-directory school-org)
-                             (concat org-directory notes-org)
-                             (concat org-directory inbox-org)
-                             (concat org-directory project-org)
-                             (concat org-directory interruption-org)
-                             (concat org-directory reading-org)))
+(setq org-files-list (list todo-org
+            professional-org
+            personal-org
+            school-org
+            notes-org
+            inbox-org
+            project-org
+            standup-org
+            interruption-org
+            reading-org))
 
+(setq org-agenda-files (mapcar
+                        (lambda (c)
+                          (concat org-directory c))
+                        org-files-list))
 
 ;; Agenda configuration
 (setq org-agenda-span 14)
