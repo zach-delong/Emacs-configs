@@ -32,18 +32,12 @@
 (setq org-refile-targets (quote ((nil :maxlevel . 5)
                                  (org-agenda-files :maxlevel . 5))))
 
+;; org-pdf export
+; should support bibtex
+; (setq org-latex-to-pdf-process (list "latexmk -pdflatex='lualatex -interaction nonstopmode' -pdf %f"))
+(setq org-latex-prefer-user-labels t)
+
 ;; Hotkeys for org
 (spacemacs/set-leader-keys "oc" 'org-capture)
-(spacemacs/set-leader-keys "mt" 'org-babel-tangle)
-
-
-;; References and reftex config.  Not really sure what this does anymore
-(defun org-mode-reftex-setup ()
-  (load-library "reftex")
-  (and (buffer-file-name)
-       (file-exists-p (buffer-file-name))
-       (reftex-parse-all))
-  (define-key org-mode-map (kbd "C-c )") 'reftex-citation))
-(add-hook 'org-mode-hook 'org-mode-reftex-setup)
-
-(spacemacs/set-leader-keys "mr" 'org-priority)
+(spacemacs/set-leader-keys "ot" 'org-babel-tangle)
+(spacemacs/set-leader-keys "or" 'org-priority)
