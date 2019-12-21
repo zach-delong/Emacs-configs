@@ -68,7 +68,6 @@
   :END:
   #+BEGIN_SRC sql :tangle %\\2-%\\1.txt
   #+END_SRC
-    ")
-        ))
+    ")))
 
 
