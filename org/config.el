@@ -10,6 +10,7 @@
 (setq standup-org "standup.org")
 (setq interruption-org "interruption.org")
 (setq reading-org "reading.org")
+(setq contact-log-org "contact-log.org")
 
 (setq org-files-list (list todo-org
             professional-org
@@ -20,7 +21,8 @@
             project-org
             standup-org
             interruption-org
-            reading-org))
+            reading-org
+            contact-log-org))
 
 (setq org-agenda-files (mapcar
                         (lambda (c)

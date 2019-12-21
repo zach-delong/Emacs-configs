@@ -49,7 +49,7 @@
          entry
          (file ,(concat org-directory inbox-org))
          ,(concat "* TODO %\\1%?
-  [[" jira-link "%^{ticket}][%\\1]]"))
+[[" jira-link "%^{ticket}][%\\1]]"))
 
         ("d"
          "documenation spotlight"
@@ -62,12 +62,24 @@
          entry
          (file ,(concat org-directory inbox-org))
          "* %\\2%?
-  :PROPERTIES:
-  :DATABASE: %^{database}
-  :TICKET:   %^{ticket}
-  :END:
-  #+BEGIN_SRC sql :tangle %\\2-%\\1.txt
-  #+END_SRC
-    ")))
+:PROPERTIES:
+:DATABASE: %^{database}
+:TICKET:   %^{ticket}
+:END:
+#+BEGIN_SRC sql :tangle %\\2-%\\1.txt
+#+END_SRC
+")
+
+        ("c"
+        "contact"
+        entry
+        (file+datetree ,(concat org-directory contact-log-org))
+        "* Contacted by: %\\1%?
+:PROPERTIES:
+:NAME:       %^{Name}
+:COMPANY:    %^{Company}
+:HEADHUNTER: %^{Headhunter|Y|N}
+:SOURCE:     %^{Source|LinedIn|Phone|Email}
+:END:")))
 
 
