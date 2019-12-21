@@ -1,4 +1,4 @@
-;; Capture templateg
+;; Capture templates
 (setq org-capture-templates
       `(("t"
          "Todo"
