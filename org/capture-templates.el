@@ -42,7 +42,7 @@
          "interruption"
          entry
          (file+datetree ,(concat org-directory interruption-org))
-         "* Interrupted by %?\n%U\n")
+         "* Interrupted by %?\n")
 
         ("j"
          "Jira ticket"
