@@ -28,7 +28,7 @@ This function should only modify configuration layer settings."
 
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/layers/")
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
@@ -56,7 +56,8 @@ This function should only modify configuration layer settings."
      csharp
      bibtex
      games
-     vue)
+     vue
+     org-zach)
    dotspacemacs-additional-packages '()
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -488,10 +489,7 @@ before packages are loaded."
   (if (eq system-type 'windows-nt)
       (load "~/.spacemacs.d/windows"))
 
-  (load "~/.spacemacs.d/local.el")
-
-  (load "~/.spacemacs.d/org/config.el")
-  (load "~/.spacemacs.d/org/capture-templates.el"))
+  (load "~/.spacemacs.d/local.el"))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
