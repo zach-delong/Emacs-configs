@@ -51,6 +51,8 @@ This function should only modify configuration layer settings."
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      spell-checking
+     sql
+     javascript
      syntax-checking
      version-control
      csharp
