@@ -32,7 +32,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(windows-scripts
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -55,6 +55,7 @@ This function should only modify configuration layer settings."
      javascript
      syntax-checking
      version-control
+     (treemacs :variables treemacs-use-git-mode 'simple)
      csharp
      bibtex
      games
@@ -485,13 +486,16 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-
   (if (eq system-type 'darwin)
       (load "~/.spacemacs.d/osx"))
   (if (eq system-type 'windows-nt)
       (load "~/.spacemacs.d/windows"))
 
   (load "~/.spacemacs.d/local.el"))
+
+(add-to-list 'projectile-globally-ignored-directories "build")
+(add-to-list 'projectile-globally-ignored-directories "packages")
+(add-to-list 'projectile-globally-ignored-file-suffixes "exe")
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
