@@ -493,9 +493,8 @@ before packages are loaded."
 
   (load "~/.spacemacs.d/local.el"))
 
-(add-to-list 'projectile-globally-ignored-directories "build")
-(add-to-list 'projectile-globally-ignored-directories "packages")
-(add-to-list 'projectile-globally-ignored-file-suffixes "exe")
+(setq projectile-globally-ignored-directories '("build" "packages"))
+(setq projectile-globally-ignored-file-suffixes '("exe"))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
