@@ -490,6 +490,11 @@ before packages are loaded."
       (load "~/.spacemacs.d/osx"))
   (if (eq system-type 'windows-nt)
       (load "~/.spacemacs.d/windows"))
+  (if
+      (or
+       (string-equal system-type "gnu")
+       (string-equal system-type "gnu/unix"))
+      (load "~/.spacemacs.d/gnu"))
 
   (load "~/.spacemacs.d/local.el"))
 
