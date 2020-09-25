@@ -34,6 +34,14 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(
      windows-scripts
+     sql
+     javascript
+     (typescript :variables typescript-backend 'tide)
+     csharp
+     bibtex
+     games
+     vue
+     org-zach
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -52,17 +60,9 @@ This function should only modify configuration layer settings."
      ;;        shell-default-height 30
      ;;        shell-default-position 'bottom)
      spell-checking
-     sql
-     javascript
-     (typescript :variables typescript-backend 'tide)
      syntax-checking
      version-control
-     (treemacs :variables treemacs-use-git-mode 'simple)
-     csharp
-     bibtex
-     games
-     vue
-     org-zach)
+     (treemacs :variables treemacs-use-git-mode 'simple))
    dotspacemacs-additional-packages '()
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
