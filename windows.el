@@ -9,3 +9,4 @@
 ;; fixes a bug in Windows https://github.com/bbatsov/projectile/issues/1302
 ;; This will fix the project indexing method on this computer.
 (setq projectile-indexing-method 'alien)
+
