@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: typescript console log (eslint disable)
+# key: consolelog
+# --
+
+// eslint-disable-next-line no-console
+console.log('$0');
