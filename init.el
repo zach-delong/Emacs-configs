@@ -503,5 +503,7 @@ before packages are loaded."
 (setq projectile-globally-ignored-directories '("build" "packages"))
 (setq projectile-globally-ignored-file-suffixes '("exe"))
 
+(spacemacs/set-leader-keys "oCh" 'hs-hide-level)
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
