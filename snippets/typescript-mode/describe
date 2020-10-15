@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: testing expansion for describe
+# key: describe
+# --
+
+describe('$1', () {
+               $0
+});
