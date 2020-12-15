@@ -37,7 +37,7 @@ This function should only modify configuration layer settings."
      sql
      javascript
      (typescript :variables typescript-backend 'tide)
-     csharp
+     (csharp :variables csharp-backend 'lsp)
      bibtex
      games
      vue
@@ -497,7 +497,8 @@ before packages are loaded."
   (if
       (or
        (string-equal system-type "gnu")
-       (string-equal system-type "gnu/unix"))
+       (string-equal system-type "gnu/unix")
+       (string-equal system-type "gnu/linux"))
       (load "~/.spacemacs.d/gnu"))
 
   (load "~/.spacemacs.d/local.el"))
