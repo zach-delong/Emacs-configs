@@ -527,8 +527,6 @@ This function is called at the very end of Spacemacs initialization."
    (quote
     ((projectile-project-test-cmd . "dotnet test")
      (projectile-project-compilation-cmd . "dotnet run --project StaticSiteGenerator")
-     (projectile-project-test-cmd . "dotnet test ./test")
-     (projectile-project-compilation-cmd . "dotnet run --project src")
      (typescript-backend . tide)
      (typescript-backend . lsp)
      (javascript-backend . tide)
