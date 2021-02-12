@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: slq table exists query 
+# key: table_exists
+# --
+
+SELECT *
+FROM Sys.Tables tables
+INNER JOIN Sys.Columns columns on
+  tables.object_id = columns.object_id
+  AND tables.Name like '$0'
