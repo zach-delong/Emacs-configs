@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: slq if statement
+# key: if
+# --
+
+IF (
+   $0
+)
