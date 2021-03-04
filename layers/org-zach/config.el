@@ -8,7 +8,7 @@
   (setq inbox-org "inbox.org")
   (setq project-org "project.org")
   (setq reviews-org "reviews.org")
-  (setq standup-org "standup.org")
+  (setq meetings-org "meetings.org")
   (setq interruption-org "interruption.org")
   (setq reading-org "reading.org")
   (setq contact-log-org "contact-log.org")
@@ -20,7 +20,7 @@
                              notes-org
                              inbox-org
                              project-org
-                             standup-org
+                             meetings-org
                              interruption-org
                              reading-org
                              contact-log-org))

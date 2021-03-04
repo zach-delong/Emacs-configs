@@ -32,10 +32,10 @@
          (file+headline ,(concat org-directory notes-org) "Git best practice")
          "* %^{ITEM}%?\nNoted by %^{BY} \nEntered on %U\n  %i\n  %a")
 
-        ("s"
-         "Standup"
+        ("m"
+         "Meeting notes"
          entry
-         (file+datetree ,(concat org-directory standup-org))
+         (file+datetree ,(concat org-directory meetings-org))
          "* %?\n%U\n")
 
         ("i"
@@ -63,10 +63,11 @@
          (file ,(concat org-directory inbox-org))
          "* %\\2%?
 :PROPERTIES:
-:DATABASE: %^{database}
+:DATABASE: %^{database|STATIC_TABLES|TENANTS}
 :TICKET:   %^{ticket}
+:TYPE:     %^{type|DATA|POST_MIGRATION}
 :END:
-#+BEGIN_SRC sql :tangle %\\2-%\\1.txt
+#+BEGIN_SRC sql :tangle %\\2-%\\1-%\\3.txt
 #+END_SRC
 ")
 
