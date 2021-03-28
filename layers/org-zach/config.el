@@ -42,4 +42,6 @@
 
   (load-file (concat (configuration-layer/get-layer-path 'org-zach) "/capture-templates.el" )))
 
+;; Sets the org-repeat logbook to store its information in the "LOGBOOK" drawer instead of in a bulleted list on the header. this should keep things cleaner
+(setq org-log-into-drawer "LOGBOOK")
 
