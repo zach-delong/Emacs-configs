@@ -3,6 +3,9 @@
 # key: if
 # --
 
-IF (
+IF $1(
    $0
 )
+BEGIN
+$2
+END
