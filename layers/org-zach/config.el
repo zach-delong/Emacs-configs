@@ -47,3 +47,5 @@
 
 (setq org-todo-keywords
       '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
+
+(setq org-log-repeat nil)
