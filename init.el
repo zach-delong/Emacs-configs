@@ -46,6 +46,7 @@ This function should only modify configuration layer settings."
      org-zach
      ergo-zach
      docker
+     better-defaults
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -53,7 +54,6 @@ This function should only modify configuration layer settings."
      ;; ----------------------------------------------------------------
      (auto-completion :variables
                         auto-completion-enable-snippets-in-popup t)
-     better-defaults
      emacs-lisp
      git
      helm
