@@ -29,6 +29,7 @@
                           (lambda (c)
                             (concat org-directory c))
                           org-files-list))
+  (setq org-roam-directory (concat org-directory "org-roam"))
 
   ;; Agenda configuration
   (setq org-agenda-span 14)

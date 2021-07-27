@@ -1,3 +1,2 @@
 (spacemacs/set-leader-keys "ooc" 'org-capture)
-(spacemacs/set-leader-keys "oot" 'org-babel-tangle)
-(spacemacs/set-leader-keys "oor" 'org-priority)
+(spacemacs/set-leader-keys "oor" 'org-roam-capture)
