@@ -567,7 +567,10 @@ before packages are loaded."
        (string-equal system-type "gnu/linux"))
       (load "~/.spacemacs.d/gnu"))
 
-  (load "~/.spacemacs.d/local.el"))
+  (load "~/.spacemacs.d/local.el")
+  (setq org-ref-default-bibliography "~/Dropbox/bibliography/zettelkasten.bib")
+  (setq markdown-hide-markup t))
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
