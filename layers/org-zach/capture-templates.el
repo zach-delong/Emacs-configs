@@ -81,4 +81,11 @@
 :COMPANY:    %^{Company}
 :HEADHUNTER: %^{Headhunter|Y|N}
 :SOURCE:     %^{Source|LinedIn|Phone|Email}
-:END:")))
+:END:")
+
+        ("o"
+         "one on one topics"
+         plain ; also unsure what plain actually means
+         (file+function ,(concat org-directory one_on_one_topics-org) org-week-datetree)
+         "*** %?" ; note the 3 asterisks.  Would be nice to figure out how to do that without but eh.
+         )))

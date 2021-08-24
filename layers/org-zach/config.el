@@ -12,6 +12,7 @@
   (setq interruption-org "interruption.org")
   (setq reading-org "reading.org")
   (setq contact-log-org "contact-log.org")
+  (setq one_on_one_topics-org "one-on-one-topics.org")
 
   (setq org-files-list (list todo-org
                              professional-org
