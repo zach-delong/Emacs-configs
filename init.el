@@ -571,7 +571,7 @@ before packages are loaded."
       (load "~/.spacemacs.d/gnu"))
 
   (load "~/.spacemacs.d/local.el")
-  (setq org-ref-default-graphy "~/Dropbox/bibliography/zettelkasten.bib"))
+  (setq org-ref-default-bibliography "~/Dropbox/bibliography/zettelkasten.bib"))
 
 
 ;; Do not write anything past this comment. This is where Emacs will
