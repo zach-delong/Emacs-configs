@@ -12,64 +12,11 @@
          (file+headline ,(concat org-directory notes-org) "Note to Self")
          "* %?\nEntered on %U\n  %i\n  %a")
 
-        ("u"
-         "Unread article"
-         entry
-         (file ,(concat org-directory reading-org))
-         "* UNREAD %^{title}%?
-:PROPERTIES:
-:AUTHOR_NAME: %^{author_name}
-:END:
-
-[[%^{URL}][%\\1]]
-
-\tEntered on %U\n  %i")
-
-
-        ("g"
-         "Git best-practice"
-         entry
-         (file+headline ,(concat org-directory notes-org) "Git best practice")
-         "* %^{ITEM}%?\nNoted by %^{BY} \nEntered on %U\n  %i\n  %a")
-
-        ("m"
-         "Meeting notes"
-         entry
-         (file+datetree ,(concat org-directory meetings-org))
-         "* %?\n%U\n")
-
         ("i"
          "interruption"
          entry
          (file+datetree ,(concat org-directory interruption-org))
          "* Interrupted by %?\n%t")
-
-        ("j"
-         "Jira ticket"
-         entry
-         (file ,(concat org-directory inbox-org))
-         ,(concat "* TODO %\\1%?
-[[" jira-link "%^{ticket}][%\\1]]"))
-
-        ("d"
-         "documenation spotlight"
-         entry
-         (file+headline,(concat org-directory notes-org) "Documentation spotlight")
-         "* %?\nEntered on %U\n  %i\n  %a")
-
-        ("Q"
-         "Datebase Query"
-         entry
-         (file ,(concat org-directory inbox-org))
-         "* %\\2%?
-:PROPERTIES:
-:DATABASE: %^{database|STATIC_TABLES|TENANTS}
-:TICKET:   %^{ticket}
-:TYPE:     %^{type|DATA|POST_MIGRATION}
-:END:
-#+BEGIN_SRC sql :tangle %\\2-%\\1-%\\3.txt
-#+END_SRC
-")
 
         ("c"
          "contact"
@@ -83,9 +30,37 @@
 :SOURCE:     %^{Source|LinedIn|Phone|Email}
 :END:")
 
-        ("o"
+        ("w" "Templates around office/work stuff")
+
+        ("wo"
          "one on one topics"
          plain ; also unsure what plain actually means
          (file+function ,(concat org-directory one_on_one_topics-org) org-week-datetree)
          "*** %?" ; note the 3 asterisks.  Would be nice to figure out how to do that without but eh.
-         )))
+         )
+        ("wQ"
+         "Datebase Query"
+         entry
+         (file ,(concat org-directory inbox-org))
+         "* %\\2%?
+:PROPERTIES:
+:DATABASE: %^{database|STATIC_TABLES|TENANTS}
+:TICKET:   %^{ticket}
+:TYPE:     %^{type|DATA|POST_MIGRATION}
+:END:
+#+BEGIN_SRC sql :tangle %\\2-%\\1-%\\3.txt
+#+END_SRC
+")
+        ("wj"
+         "Jira ticket"
+         entry
+         (file ,(concat org-directory inbox-org))
+         ,(concat "* TODO %\\1%?
+[[" jira-link "%^{ticket}][%\\1]]"))
+
+        ("wm"
+         "Meeting notes"
+         entry
+         (file+datetree ,(concat org-directory meetings-org))
+         "* %?\n%U\n")
+        ))
