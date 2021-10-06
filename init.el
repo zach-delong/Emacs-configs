@@ -7,7 +7,7 @@
 This function should only modify configuration layer settings."
   (setq-default
    ;; Base distribution to use. This is a layer contained in the directory
-   ;; `+distribution'. For now available distributions are `spacemacs-base'
+   ;; `+distribution'. For now a(( v :variables vue-backend 'lsp :variables vue-backend 'lsp :variables vue-backend 'lspable ) ) ) distributions are `spacemacs-base'
    ;; or `spacemacs'. (default 'spacemacs)
    dotspacemacs-distribution 'spacemacs
 
@@ -42,7 +42,7 @@ This function should only modify configuration layer settings."
      (csharp :variables csharp-backend 'lsp)
      bibtex
      games
-     vue
+     (vue :variables vue-backend 'lsp)
      org-zach
      ergo-zach
      docker
