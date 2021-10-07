@@ -543,6 +543,16 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (setq markdown-hide-markup t)
+
+  ;; For some reason exec-path-from-shell (see user-load) isn't working for me,
+  ;; so this is a temporary hack to get nvm working properly in emacs.
+  (setq nvm-path "~/.nvm/versions/node/")
+  (setq node-version
+        (car (cdr (cdr (directory-files nvm-path)))))
+
+  (setq exec-path
+        (append exec-path
+                (list (concat nvm-path node-version "/bin") )))
   )
 
 
