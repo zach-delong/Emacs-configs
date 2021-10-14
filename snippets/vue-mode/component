@@ -1,0 +1,11 @@
+# -*- mode: snippet -*-
+# name: vue basic component
+# key: component
+# --
+<template>
+  <div>
+  </div>
+</template>
+
+<script>
+</script>

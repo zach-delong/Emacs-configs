@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: language attribute in a script tag
+# key: lang
+# --
+lang="${0:ts}"
