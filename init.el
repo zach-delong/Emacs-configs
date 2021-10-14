@@ -557,7 +557,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-
+  (setq create-lockfiles nil)
   (if (eq system-type 'darwin)
       (load "~/.spacemacs.d/osx"))
   (if (eq system-type 'windows-nt)
