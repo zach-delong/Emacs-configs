@@ -5,7 +5,7 @@
 ;; interactive and provide a string
 (defun zettel-get-file-name ()
   (substring
-   (shell-command-to-string date-command)
+   (shell-command-to-string zettel-date-command)
    0 ; Start from the beginning of the screen
    -1)) ; Go to the character before the end of the string. This discards a final newline
 
@@ -25,6 +25,6 @@
   (setq path (concat
               zettel-path
               "/"
-              (get-file-name)
+              (zettel-get-file-name)
               ".md"))
   (create-buffer-for-file-and-switch path))
