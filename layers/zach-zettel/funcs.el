@@ -1,5 +1,5 @@
 ;; Override this to get a different date file format
-(setq zettel-date-command "date +%Y-%m-%d_%k:%m:%S")
+(setq zettel-date-command "date +%Y-%m-%d_%k-%m-%S")
 
 ;; Override this to get a totally different file name if you'd like. Ex, make it
 ;; interactive and provide a string
