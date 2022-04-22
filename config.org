@@ -114,9 +114,6 @@
 
     #+END_SRC
 
-**** TODO Investigate adding evil-collection
-
-     [[https://github.com/emacs-evil/evil-collection][evil-collection repo]] 
 *** Which key mode
 
     Which key is a pannel at the bottom that should display options
