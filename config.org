@@ -74,7 +74,16 @@
 * Configuration
 
   This is where the meat-and-potatoes of my configuratoin will live.
-  
+** Variables
+
+   In this section, I set global settings that are specific to native
+   emacs, rather than to a particular package.
+
+   #+BEGIN_SRC emacs-lisp
+     (tool-bar-mode -1)
+     (menu-bar-mode -1)
+     (scroll-bar-mode -1)
+   #+END_SRC
 ** Packages
 *** Evil-mode
 
@@ -83,41 +92,41 @@
 
 **** Evil itself
 
-    #+BEGIN_SRC emacs-lisp
-      (use-package evil
-	:ensure t
-	:bind
-	(:map evil-normal-state-map
-	      ("SPC SPC" . 'execute-extended-command)
-	      ("SPC f s" . 'save-buffer)
-	      ("SPC w h" . 'evil-window-left)
-	      ("SPC w j" . 'evil-window-down)
-	      ("SPC w k" . 'evil-window-up)
-	      ("SPC w l" . 'evil-window-right)
-	      ("SPC w s" . 'evil-window-split)
-	      ("SPC w v" . 'evil-window-vsplit)
-	      ("SPC w d" . 'evil-window-delete)
-	      ("SPC b d" . 'kill-buffer)
-	      ("SPC q f" . 'save-buffers-kill-terminal))
-	:init
-	(setq evil-want-keybinding nil)
-	(setq evil-want-C-u-scroll t)
-	:config
-	(evil-mode 1))
-    #+END_SRC
+     #+BEGIN_SRC emacs-lisp
+       (use-package evil
+	 :ensure t
+	 :bind
+	 (:map evil-normal-state-map
+	       ("SPC SPC" . 'execute-extended-command)
+	       ("SPC f s" . 'save-buffer)
+	       ("SPC w h" . 'evil-window-left)
+	       ("SPC w j" . 'evil-window-down)
+	       ("SPC w k" . 'evil-window-up)
+	       ("SPC w l" . 'evil-window-right)
+	       ("SPC w s" . 'evil-window-split)
+	       ("SPC w v" . 'evil-window-vsplit)
+	       ("SPC w d" . 'evil-window-delete)
+	       ("SPC b d" . 'kill-buffer)
+	       ("SPC q f" . 'save-buffers-kill-terminal))
+	 :init
+	 (setq evil-want-keybinding nil)
+	 (setq evil-want-C-u-scroll t)
+	 :config
+	 (evil-mode 1))
+     #+END_SRC
 
 **** Evil-collection
 
-    We also want to use [[https://github.com/emacs-evil/evil-collection][`evil-collection`]] to set up things for
-    "buffers evil mode doesn't think about by default"
+     We also want to use [[https://github.com/emacs-evil/evil-collection][`evil-collection`]] to set up things for
+     "buffers evil mode doesn't think about by default"
 
-    #+BEGIN_SRC emacs-lisp
-      (use-package evil-collection
-	:after evil
-	:ensure t
-	:config
-	(evil-collection-init))
-    #+END_SRC
+     #+BEGIN_SRC emacs-lisp
+       (use-package evil-collection
+	 :after evil
+	 :ensure t
+	 :config
+	 (evil-collection-init))
+     #+END_SRC
 
 **** Evil-surround
 
@@ -157,8 +166,8 @@
 	(ido-mode 1)
 	(setq ido-use-filename-at-point 'guess)
 	:bind
-	 (:map evil-normal-state-map
-	       ("SPC f f" . 'ido-find-file)))
+	(:map evil-normal-state-map
+	      ("SPC f f" . 'ido-find-file)))
     #+END_SRC
 *** Magit
 
