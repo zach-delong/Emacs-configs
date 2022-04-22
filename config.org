@@ -119,6 +119,17 @@
 	(evil-collection-init))
     #+END_SRC
 
+**** Evil-surround
+
+     Want to surround strings or expressions with things? This is how!
+
+     #+BEGIN_SRC emacs-lisp
+       (use-package evil-surround
+	 :after evil
+	 :ensure t
+	 :config (global-evil-surround-mode))
+     #+END_SRC
+
 *** Which key mode
 
     Which key is a pannel at the bottom that should display options
