@@ -112,7 +112,6 @@
 	:ensure t
 	:config
 	(evil-collection-init))
-
     #+END_SRC
 
 *** Which key mode
