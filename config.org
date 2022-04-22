@@ -86,7 +86,6 @@
 	:ensure t
 	:bind
 	(:map evil-normal-state-map
-	      ("SPC f f" . 'ido-find-file)
 	      ("SPC f s" . 'save-buffer)
 	      ("SPC w h" . 'evil-window-left)
 	      ("SPC w j" . 'evil-window-down)
@@ -139,7 +138,10 @@
 	(setq ido-enable-flex-matching t)
 	(setq ido-everywhere t)
 	(ido-mode 1)
-	(setq ido-use-filename-at-point 'guess))
+	(setq ido-use-filename-at-point 'guess)
+	:bind
+	 (:map evil-normal-state-map
+	       ("SPC f f" . 'ido-find-file)))
     #+END_SRC
 *** Magit
 
