@@ -226,6 +226,18 @@
 	 )
      #+END_SRC
 
+**** evil-org
+
+     #+BEGIN_SRC emacs-lisp
+       (use-package evil-org
+	 :ensure t
+	 :after org
+	 :hook (org-mode . (lambda () evil-org-mode))
+	 :config
+	 (require 'evil-org-agenda)
+	 (evil-org-agenda-set-keys))
+     #+END_SRC
+
 **** Require package
 
     #+BEGIN_SRC emacs-lisp
