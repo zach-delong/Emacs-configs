@@ -226,18 +226,6 @@
 	 )
      #+END_SRC
 
-**** evil-org
-
-     #+BEGIN_SRC emacs-lisp
-       (use-package evil-org
-	 :ensure t
-	 :after org
-	 :hook (org-mode . (lambda () evil-org-mode))
-	 :config
-	 (require 'evil-org-agenda)
-	 (evil-org-agenda-set-keys))
-     #+END_SRC
-
 **** Require package
 
     #+BEGIN_SRC emacs-lisp
@@ -250,6 +238,30 @@
 	      ("SPC a o a" . 'org-agenda)
 	      ("SPC a o c" . 'org-capture)))
     #+END_SRC
+
+**** evil-org
+
+     #+BEGIN_SRC emacs-lisp
+       (use-package evil-org
+	 :ensure t
+	 :after org
+	 :hook (org-mode . (lambda () evil-org-mode))
+	 :config
+	 (require 'evil-org-agenda)
+	 (evil-org-agenda-set-keys))
+     #+END_SRC
+
+**** Org bullets
+
+     A really cool plugin that makes pretty bullets
+
+     #+BEGIN_SRC emacs-lisp
+       (use-package org-bullets
+	 :after org
+	 :ensure t
+	 :config
+	 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+     #+END_SRC
 
 * Sources
 
