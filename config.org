@@ -172,7 +172,8 @@
 	(setq ido-use-filename-at-point 'guess)
 	:bind
 	(:map evil-normal-state-map
-	      ("SPC f f" . 'ido-find-file)))
+	      ("SPC f f" . 'ido-find-file)
+	      ("SPC b b" . 'ido-switch-buffer)))
     #+END_SRC
 *** Magit
 
