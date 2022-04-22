@@ -87,6 +87,7 @@
 	:bind
 	(:map evil-normal-state-map
 	      ("SPC f f" . 'ido-find-file)
+	      ("SPC f s" . 'save-buffer)
 	      ("SPC w h" . 'evil-window-left)
 	      ("SPC w j" . 'evil-window-down)
 	      ("SPC w k" . 'evil-window-up)
@@ -96,10 +97,10 @@
 	      ("SPC w d" . 'evil-window-delete)
 	      ("SPC b d" . 'kill-buffer)
 	      ("SPC q f" . 'save-buffers-kill-terminal))
-	:init
-	(setq evil-want-keybinding nil)
-	:config
-	(evil-mode 1))
+	      :init
+	      (setq evil-want-keybinding nil)
+	      :config
+	      (evil-mode 1))
     #+END_SRC
 
     We also want to use [[https://github.com/emacs-evil/evil-collection][`evil-collection`]] to set up things for
