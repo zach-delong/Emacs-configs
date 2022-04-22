@@ -262,6 +262,19 @@
 	 :config
 	 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
      #+END_SRC
+*** Editorconfig
+
+    Editorconfig is a standard for keeping code editing settings in
+    sync across tools and teams.  Someone can check in a .Editorconfig
+    file at the root of a repo, and their editors should respect the
+    settings. This should do that for me!
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package editorconfig
+	:ensure t
+	:config
+	(editorconfig-mode 1))
+    #+END_SRC
 
 * Sources
 
