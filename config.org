@@ -86,6 +86,7 @@
 	:ensure t
 	:bind
 	(:map evil-normal-state-map
+	      ("SPC SPC" . 'execute-extended-command)
 	      ("SPC f s" . 'save-buffer)
 	      ("SPC w h" . 'evil-window-left)
 	      ("SPC w j" . 'evil-window-down)
