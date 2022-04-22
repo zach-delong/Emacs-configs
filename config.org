@@ -97,10 +97,11 @@
 	      ("SPC w d" . 'evil-window-delete)
 	      ("SPC b d" . 'kill-buffer)
 	      ("SPC q f" . 'save-buffers-kill-terminal))
-	      :init
-	      (setq evil-want-keybinding nil)
-	      :config
-	      (evil-mode 1))
+	:init
+	(setq evil-want-keybinding nil)
+	(setq evil-want-C-u-scroll t)
+	:config
+	(evil-mode 1))
     #+END_SRC
 
     We also want to use [[https://github.com/emacs-evil/evil-collection][`evil-collection`]] to set up things for
