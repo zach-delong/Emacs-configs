@@ -84,6 +84,18 @@
     #+BEGIN_SRC emacs-lisp
       (use-package evil
 	:ensure t
+	:bind
+	(:map evil-normal-state-map
+	      ("SPC f f" . 'ido-find-file)
+	      ("SPC w h" . 'evil-window-left)
+	      ("SPC w j" . 'evil-window-down)
+	      ("SPC w k" . 'evil-window-up)
+	      ("SPC w l" . 'evil-window-right)
+	      ("SPC w s" . 'evil-window-split)
+	      ("SPC w v" . 'evil-window-vsplit)
+	      ("SPC w d" . 'evil-window-delete)
+	      ("SPC b d" . 'kill-buffer)
+	      ("SPC q f" . 'save-buffers-kill-terminal))
 	:init
 	(setq evil-want-keybinding nil)
 	:config
@@ -97,18 +109,6 @@
       (use-package evil-collection
 	:after evil
 	:ensure t
-	:bind
-	(:map evil-normal-state-map
-	      ("SPC f f" . 'ido-find-file)
-	      ("SPC w h" . 'evil-window-left)
-	      ("SPC w j" . 'evil-window-down)
-	      ("SPC w k" . 'evil-window-up)
-	      ("SPC w l" . 'evil-window-right)
-	      ("SPC w s" . 'evil-window-split)
-	      ("SPC w v" . 'evil-window-vsplit)
-	      ("SPC w d" . 'evil-window-delete)
-	      ("SPC b d" . 'kill-buffer)
-	      ("SPC q f" . 'save-buffers-kill-terminal))
 	:config
 	(evil-collection-init))
 
