@@ -107,7 +107,12 @@
 	       ("SPC w v" . 'evil-window-vsplit)
 	       ("SPC w d" . 'evil-window-delete)
 	       ("SPC b d" . 'kill-buffer)
-	       ("SPC q f" . 'save-buffers-kill-terminal))
+	       ("SPC q f" . 'save-buffers-kill-terminal)
+	       ("SPC h f" . 'describe-function)
+	       ("SPC h v" . 'describe-variable)
+	       ("SPC h k" . 'describe-key)
+	       ("SPC h n" . 'view-emacs-news)
+	       ("SPC h m" . 'view-order-manuals))
 	 :init
 	 (setq evil-want-keybinding nil)
 	 (setq evil-want-C-u-scroll t)
