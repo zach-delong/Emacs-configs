@@ -5,3 +5,5 @@
 /transient/
 /#config.org#
 *.rej
+/local.el
+/local.org

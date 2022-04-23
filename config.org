@@ -72,7 +72,7 @@
        (require 'use-package))
    #+END_SRC
 * Configuration
-
+  
   This is where the meat-and-potatoes of my configuratoin will live.
 ** Variables
 
@@ -84,6 +84,22 @@
      (menu-bar-mode -1)
      (scroll-bar-mode -1)
    #+END_SRC
+** Local configuration
+
+   This file is set up only so that you can set any local variables
+   you might need.  For example, if you are loading on Windows you
+   might need to set some file paths to your org files that are
+   different from the defaults I have checked in. If this file exists
+   (and it should be ignored in the Git repo) then Emacs will tangle
+   and execute it just like this file. If not, it will ignore and
+   continue. 
+
+   #+BEGIN_SRC emacs-lisp
+     (setq local-file-path "~/.emacs.d/local.org")
+     (if (file-exists-p local-file-path)
+	 (org-babel-load-file local-file-path))
+   #+END_SRC
+
 ** Packages
 *** Evil-mode
 
@@ -192,7 +208,8 @@
 
      #+BEGIN_SRC emacs-lisp
        (defun org-variables-config()
-	 (setq org-directory "~/Dropbox/org/")
+					
+	 (defvar org-directory nil) ; Set this in your local.org file!
 
 	 (setq todo-org "todo.org")
 	 (setq professional-org "professional.org")
@@ -276,7 +293,6 @@
 	:config
 	(editorconfig-mode 1))
     #+END_SRC
-
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
