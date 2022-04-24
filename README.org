@@ -23,3 +23,7 @@
   at the first line, tangles the config code out of the org mode file
   ~config.org~ using [[https://orgmode.org/worg/org-contrib/babel/intro.html][Org-Babel]]. If those words don't make sense, don't
   worry, it all works.  Probably. 
+
+  For an explanation of how all this works, start by reading [[file:config.org::*What is
+ this?][config.org]].  That file, apart from containing the actual code, also
+has an explanation of what/why.
