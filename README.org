@@ -1,0 +1,25 @@
+#+TITLE: Readme first
+* What is this
+
+  I have decided to roll my own [[https://www.gnu.org/software/emacs/][Emacs]] config. Why? Because I enjoy
+  spending an inordinate amount of time on things that don't
+  matter. It is heavily based on [[https://www.spacemacs.org/][Spacemacs.]]
+
+* Setting up
+
+  Just clone this into your emacs config folder!
+
+  #+BEGIN_SRC sh
+    git clone git@github.com:ZacheryPD/Emacs-From-Scratch.git ~/.emacs.d
+  #+END_SRC
+
+* Where is the config?
+
+  When emacs starts, one of the main things it looks for is a folder
+  ~.emacs.d/~. If there is a file called ~init.el~ in that folder,
+  then it will automatically load that.
+
+  If you open that file, you'll find shockingly little. Instead, look
+  at the first line, tangles the config code out of the org mode file
+  ~config.org~ using [[https://orgmode.org/worg/org-contrib/babel/intro.html][Org-Babel]]. If those words don't make sense, don't
+  worry, it all works.  Probably. 
