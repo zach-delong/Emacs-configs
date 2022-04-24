@@ -84,14 +84,6 @@
      (menu-bar-mode -1)
      (scroll-bar-mode -1)
    #+END_SRC
-** Theming
-
-   I am just using a default dark theme that ships with GNU Emacs 27
-   on Fedora for now. I will probably switch this to somehting else later
-
-   #+BEGIN_SRC emacs-lisp
-     (load-theme 'tango-dark)
-   #+END_SRC
 ** Local configuration
 
    This file is set up only so that you can set any local variables
@@ -167,6 +159,16 @@
 	 :ensure t
 	 :config (global-evil-surround-mode))
      #+END_SRC
+*** Solarized-theme
+
+    The solarized theme I am using is from MELPA. 
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package solarized-theme
+	:ensure t
+	:config
+	(load-theme 'solarized-dark t))
+    #+END_SRC
 
 *** Which key mode
 
