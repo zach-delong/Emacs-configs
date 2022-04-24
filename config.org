@@ -84,6 +84,14 @@
      (menu-bar-mode -1)
      (scroll-bar-mode -1)
    #+END_SRC
+** Theming
+
+   I am just using a default dark theme that ships with GNU Emacs 27
+   on Fedora for now. I will probably switch this to somehting else later
+
+   #+BEGIN_SRC emacs-lisp
+     (load-theme 'tango-dark)
+   #+END_SRC
 ** Local configuration
 
    This file is set up only so that you can set any local variables
