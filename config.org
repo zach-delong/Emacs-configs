@@ -159,6 +159,20 @@
 	 :ensure t
 	 :config (global-evil-surround-mode))
      #+END_SRC
+
+**** Evil-cleverparens
+
+     [[https://github.com/luxbock/evil-cleverparens][This package]] is really helpful generally for writing Elisp. It
+     has a bunch of features but it shold auto-close parens, and
+     generally make evil mode actions aware of the syntax of lisp.
+
+     #+BEGIN_SRC emacs-lisp
+       (use-package evil-cleverparens
+	 :after evil
+	 :ensure t
+	 :hook ( emacs-lisp-mode . evil-cleverparens-mode ))
+
+     #+END_SRC
 *** Solarized-theme
 
     The solarized theme I am using is from MELPA. 
@@ -302,6 +316,13 @@
 	:ensure t
 	:config
 	(editorconfig-mode 1))
+    #+END_SRC
+*** Smartparens
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package smartparens
+	:ensure t
+	:hook ( emacs-lisp-mode . smartparens-mode))
     #+END_SRC
 * Sources
 
