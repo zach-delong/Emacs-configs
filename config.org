@@ -350,6 +350,10 @@
 	(evil-define-key 'normal org-mode-map (kbd "SPC m s n") 'org-narrow-to-subtree)
 	(evil-define-key 'normal org-mode-map (kbd "SPC m s w") 'widen)
 	(evil-define-key 'normal org-mode-map (kbd "SPC m p") 'org-priority)
+	(evil-define-key 'normal org-mode-map (kbd "SPC m C i") 'org-clock-in)
+	(evil-define-key 'normal org-mode-map (kbd "SPC m C o") 'org-clock-out)
+	(evil-define-key 'normal org-mode-map (kbd "SPC m i i") 'org-insert-item)
+	(evil-define-key 'edit 'org-mode-map (kbd "<M-return>") 'org-insert-item)
 	:bind
 	(:map evil-normal-state-map
 	      ("SPC a o a" . 'org-agenda)
