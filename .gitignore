@@ -7,3 +7,5 @@
 *.rej
 /local.el
 /local.org
+/network-security.data
+/server/
