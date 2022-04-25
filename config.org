@@ -275,6 +275,7 @@
 	:ensure t
 	:config
 	(org-variables-config)
+	(evil-define-key 'normal org-mode-map (kbd "SPC m i l") 'org-insert-link)
 	:bind
 	(:map evil-normal-state-map
 	      ("SPC a o a" . 'org-agenda)
