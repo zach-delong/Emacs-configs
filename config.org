@@ -406,6 +406,19 @@
 	:ensure t
 	:hook ( emacs-lisp-mode . smartparens-mode))
     #+END_SRC
+*** Web mode
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package web-mode
+	:ensure t
+	:config
+	(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+	(evil-define-key 'normal web-mode-map (kbd "SPC m <tab>") 'web-mode-fold-or-unfold)
+	(evil-define-key 'normal web-mode-map (kbd "SPC m i l") 'web-mode-file-link)
+	(evil-define-key 'normal web-mode-map (kbd "SPC m g t") 'web-mode-navigate)
+	(evil-define-key 'normal web-mode-map (kbd "SPC m g j") 'web-mode-tag-next)
+	(evil-define-key 'normal web-mode-map (kbd "SPC m g k") 'web-mode-tag-previous))
+    #+END_SRC
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
