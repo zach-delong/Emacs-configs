@@ -128,7 +128,8 @@
 	       ("SPC h v" . 'describe-variable)
 	       ("SPC h k" . 'describe-key)
 	       ("SPC h n" . 'view-emacs-news)
-	       ("SPC h m" . 'view-order-manuals))
+	       ("SPC h m" . 'describe-mode)
+	       ("SPC h M" . 'view-order-manuals))
 	 :init
 	 (setq evil-want-keybinding nil)
 	 (setq evil-want-C-u-scroll t)
