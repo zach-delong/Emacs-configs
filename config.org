@@ -497,6 +497,14 @@
       (use-package python-mode
 	:ensure t)
     #+END_SRC
+*** Vue mode
+
+    I need a major mode for Vue files!
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package vue-mode
+	:ensure t)
+    #+END_SRC
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
