@@ -445,6 +445,27 @@
 	(evil-define-key 'normal web-mode-map (kbd "SPC m g j") 'web-mode-tag-next)
 	(evil-define-key 'normal web-mode-map (kbd "SPC m g k") 'web-mode-tag-previous))
     #+END_SRC
+*** Zettelkasten
+
+    This is a plugin that isn't in MELPA for now, and I can't seem to
+    convince it to load by adding it to ~load-path~ so I am instead
+    going to manually require it.
+    #+BEGIN_SRC emacs-lisp
+      (require 'zettelkasten-mode "~/.emacs.d/plugins/zettelkasten/zettelkasten.el")
+    #+END_SRC
+
+    To actually configure it, though, I still want to use
+    ~use-package~, so now that it's loaded, I can use ~use-package~ to
+    activate it and set up the basic keybindings. Yay, some consistency!
+    
+    #+BEGIN_SRC emacs-lisp
+      (use-package zettelkasten-mode
+	:bind
+	(:map evil-normal-state-map
+	      ("SPC a z c" . 'zettel-create-new))
+	:config
+	(zettelkasten-mode 1))
+    #+END_SRC
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
