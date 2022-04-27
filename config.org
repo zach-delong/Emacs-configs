@@ -466,6 +466,15 @@
 	:config
 	(zettelkasten-mode 1))
     #+END_SRC
+*** TODO Markdown-mode
+
+    I use Markdown for quite a lot, so I need a markdown mode. This
+    one could probably be configured more.
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package markdown-mode
+	:ensure t)
+    #+END_SRC
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
