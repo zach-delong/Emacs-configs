@@ -218,6 +218,17 @@
 	      ("SPC f f" . 'ido-find-file)
 	      ("SPC b b" . 'ido-switch-buffer)))
     #+END_SRC
+
+    Also, I dislike that ido mode organizes itself horizontally, and
+    want it to not do that.
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package ido-vertical-mode
+	:ensure t
+	:after ido
+	:config
+	(ido-vertical-mode 1))
+    #+END_SRC
 *** Magit
 
     I love [[https://magit.vc/][Magit]]. Enough said.
