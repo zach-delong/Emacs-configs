@@ -260,42 +260,73 @@
     #+END_SRC
 *** Org mode
     
-**** Setting up variables
+**** TODO Temporary org mode config block
+
+     I stole this from my old config and just threw it in a function
+     so it doesn't junk things up. Now I need to work on refactoring
+     it.
      
-     #+BEGIN_SRC emacs-lisp
+***** Org mode agenda files
+      
+      Note, you will probably want to override these variables in your
+      local config.
+      
+      #+BEGIN_SRC emacs-lisp :tangle no :noweb-ref org-global-vars
+	(defvar org-directory nil) ; Set this in your local.org file!
+	(defvar org-jira-link "") ; Set this in your local.org file!
+      #+END_SRC
+
+      First up, I need to define what my org mode agenda files
+      are. I'm going to wind up using these all over the place, so I
+      am going to define them all together
+
+      #+BEGIN_SRC emacs-lisp :tangle no :noweb-ref org-agenda-file-names
+	(setq todo-org "todo.org")
+	(setq professional-org "professional.org")
+	(setq personal-org "personal.org")
+	(setq school-org "school.org")
+	(setq notes-org "notes.org")
+	(setq inbox-org "inbox.org")
+	(setq project-org "project.org")
+	(setq reviews-org "reviews.org")
+	(setq meetings-org "meetings.org")
+	(setq interruption-org "interruption.org")
+	(setq contact-log-org "contact-log.org")
+	(setq one_on_one_topics-org "one-on-one-topics.org")
+      #+END_SRC
+      
+      Once I have those variables, I am going to want to concatenate
+      the path to my org files to them. To enable that, we should
+      write a handly little method
+      
+      #+BEGIN_SRC emacs-lisp
+	(defun org-concat-org-directory (fileName)
+	  (concat org-directory fileName))
+      #+END_SRC
+      
+      #+BEGIN_SRC emacs-lisp :tangle no :noweb-ref org-agenda-set-up
+	(add-to-list 'org-agenda-files (org-concat-org-directory todo-org))
+	(add-to-list 'org-agenda-files (org-concat-org-directory professional-org))
+	(add-to-list 'org-agenda-files (org-concat-org-directory personal-org))
+	(add-to-list 'org-agenda-files (org-concat-org-directory school-org))
+	(add-to-list 'org-agenda-files (org-concat-org-directory notes-org))
+	(add-to-list 'org-agenda-files (org-concat-org-directory inbox-org))
+	(add-to-list 'org-agenda-files (org-concat-org-directory project-org))
+	(add-to-list 'org-agenda-files (org-concat-org-directory meetings-org))
+	(add-to-list 'org-agenda-files (org-concat-org-directory interruption-org))
+	(add-to-list 'org-agenda-files (org-concat-org-directory contact-log-org))
+      #+END_SRC
+      
+***** The junk
+     
+     #+BEGIN_SRC emacs-lisp :noweb yes
        (defun org-variables-config()
+       
+         <<org-global-vars>>
 
-	 (defvar org-directory nil) ; Set this in your local.org file!
-	 (defvar org-jira-link "") ; Set this in your local.org file!
+	 <<org-agenda-file-names>>
 
-	 (setq todo-org "todo.org")
-	 (setq professional-org "professional.org")
-	 (setq personal-org "personal.org")
-	 (setq school-org "school.org")
-	 (setq notes-org "notes.org")
-	 (setq inbox-org "inbox.org")
-	 (setq project-org "project.org")
-	 (setq reviews-org "reviews.org")
-	 (setq meetings-org "meetings.org")
-	 (setq interruption-org "interruption.org")
-	 (setq contact-log-org "contact-log.org")
-	 (setq one_on_one_topics-org "one-on-one-topics.org")
-
-	 (setq org-files-list (list todo-org
-				    professional-org
-				    personal-org
-				    school-org
-				    notes-org
-				    inbox-org
-				    project-org
-				    meetings-org
-				    interruption-org
-				    contact-log-org))
-
-	 (setq org-agenda-files (mapcar
-				 (lambda (c)
-				   (concat org-directory c))
-				 org-files-list))
+	 <<org-agenda-set-up>>
 
 	 (setq org-capture-templates
 	       `(("t"
