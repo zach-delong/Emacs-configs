@@ -105,7 +105,7 @@
 
     Evil mode is the vim emulation layer.  I am using use-package to
     install and enable it. 
-
+    
 **** Evil itself
 
      #+BEGIN_SRC emacs-lisp
@@ -121,6 +121,10 @@
 	       ("SPC w j" . 'evil-window-down)
 	       ("SPC w k" . 'evil-window-up)
 	       ("SPC w l" . 'evil-window-right)
+	       ("SPC w H" . 'evil-window-move-far-left)
+	       ("SPC w J" . 'evil-window-move-far-down)
+	       ("SPC w K" . 'evil-window-move-far-up)
+	       ("SPC w L" . 'evil-window-move-far-right)
 	       ("SPC w s" . 'evil-window-split)
 	       ("SPC w v" . 'evil-window-vsplit)
 	       ("SPC w d" . 'evil-window-delete)
