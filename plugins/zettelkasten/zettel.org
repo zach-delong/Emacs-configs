@@ -72,6 +72,13 @@
    #+END_SRC
 * Main functions
   
+** Get path to file
+
+   #+BEGIN_SRC emacs-lisp
+     (defun zettel-get-path (file-name)
+       (concat zettel-path "/" file-name))
+   #+END_SRC
+
 ** Create a new note
 
    #+BEGIN_SRC emacs-lisp
@@ -79,9 +86,7 @@
        "Create a new note in your zettelkasten using your name format"
        (interactive) 
        (setq path (concat
-		   zettel-path
-		   "/"
-		   (zettel-get-file-name)
+		   (zettel-get-path (zettel-get-file-name))
 		   ".md"))
        (zettel-create-buffer-for-file-and-switch path))
    #+END_SRC
