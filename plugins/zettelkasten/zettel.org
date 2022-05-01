@@ -11,32 +11,43 @@
   + Markdown-mode
   + Markdown wiki mode (to enable wiki style links)
 
-* Cruft code
+* Variables
+  
+** Markdown
 
-  This is the "original" prototype of the code which was not written
-  in a literate fashion. My intention is to refactor this until it is
-  cleaner. I'd also like to start new features.
-  #+BEGIN_SRC emacs-lisp
-    (setq markdown-enable-wiki-links t)
+   I happen to like using the wiki style links for my zettelkasten
+   because they are nicer to view without fancy formatting. This will
+   probably become a setting external to this plugin at some point in
+   the future.
 
-    ;; Override this to get a different date file format
-    (setq zettel-date-command "date +%Y-%m-%d_%k-%m-%S")
+   #+BEGIN_SRC emacs-lisp
+     (setq markdown-enable-wiki-links t)
+   #+END_SRC
 
-    ;; Override this to get a totally different file name if you'd like. Ex, make it
-    ;; interactive and provide a string
-    (defun zettel-get-file-name ()
-      (substring
-       (shell-command-to-string zettel-date-command)
-       0			      ; Start from the beginning of the screen
-       -1)) ; Go to the character before the end of the string. This discards a final newline
+** Note creation and paths
 
-    ;; The path to your zettelkasten
-    (setq zettel-path "~/Dropbox/zettelkasten")
+   These variables should be overridden by users in their configs.
 
-  #+END_SRC
+*** Path to notes
+
+    #+BEGIN_SRC emacs-lisp
+      (defvar zettel-path "~/Dropbox/zettelkasten")
+    #+END_SRC
+
+*** File names
+
+    There are a bunch of different opinions about how to format a file
+    name. Overload this to customize it to your liking. Any Bash
+    command shold probably work?
+
+    #+BEGIN_SRC emacs-lisp
+      (setq zettel-date-command "date +%Y-%m-%d_%k-%m-%S")
+    #+END_SRC
+
+* Utilities
 
   
-* Utilities
+** Create buffer and switch
 
   #+BEGIN_SRC emacs-lisp
     (defun zettel-create-buffer-for-file-and-switch (new-file-path)
@@ -46,7 +57,20 @@
        (create-file-buffer new-file-path))
       (set-visited-file-name new-file-path))
   #+END_SRC
-  
+
+** Get a new file name
+
+   This function will give you back a file name, formatted properly. 
+
+   #+BEGIN_SRC emacs-lisp
+     (defun zettel-get-file-name ()
+       "Override this to get a totally different file name if you'd
+     like. Ex, make it interactive and provide a string"
+       (substring
+	(shell-command-to-string zettel-date-command)
+	0			      ; Start from the beginning of the screen
+	-1)) ; Go to the character before the end of the string. This discards a final newline
+   #+END_SRC
 * Main functions
   
 ** Create a new note
