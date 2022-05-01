@@ -45,7 +45,6 @@
     #+END_SRC
 
 * Utilities
-
   
 ** Create buffer and switch
 
