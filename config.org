@@ -198,6 +198,15 @@
 	 (evil-set-undo-system 'undo-tree)
 	 (global-undo-tree-mode 1))
      #+END_SRC
+*** Company-mode
+
+    [[http://company-mode.github.io/][Company mode]] is an auto complete plugin (*comp*-lete
+    *any*-thing). I am still exploring how it can be used.
+     #+BEGIN_SRC emacs-lisp
+       (use-package company
+	 :ensure t
+	 :hook (after-init . global-company-mode))
+    #+END_SRC
 *** Solarized-theme
 
     The solarized theme I am using is from MELPA. 
