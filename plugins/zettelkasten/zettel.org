@@ -17,50 +17,71 @@
   in a literate fashion. My intention is to refactor this until it is
   cleaner. I'd also like to start new features.
   #+BEGIN_SRC emacs-lisp
+    (setq markdown-enable-wiki-links t)
+
+    ;; Override this to get a different date file format
+    (setq zettel-date-command "date +%Y-%m-%d_%k-%m-%S")
+
+    ;; Override this to get a totally different file name if you'd like. Ex, make it
+    ;; interactive and provide a string
+    (defun zettel-get-file-name ()
+      (substring
+       (shell-command-to-string zettel-date-command)
+       0			      ; Start from the beginning of the screen
+       -1)) ; Go to the character before the end of the string. This discards a final newline
+
+    ;; The path to your zettelkasten
+    (setq zettel-path "~/Dropbox/zettelkasten")
+
+  #+END_SRC
+
+  
+* Utilities
+
+  #+BEGIN_SRC emacs-lisp
+    (defun zettel-create-buffer-for-file-and-switch (new-file-path)
+      "Creates a new buffer for a particular file, set up the backing
+    file for that buffer to your provided path."
+      (switch-to-buffer
+       (create-file-buffer new-file-path))
+      (set-visited-file-name new-file-path))
+  #+END_SRC
+  
+* Main functions
+  
+** Create a new note
+
+   #+BEGIN_SRC emacs-lisp
+     (defun zettel-create-new ()
+       "Create a new note in your zettelkasten using your name format"
+       (interactive) 
+       (setq path (concat
+		   zettel-path
+		   "/"
+		   (zettel-get-file-name)
+		   ".md"))
+       (zettel-create-buffer-for-file-and-switch path))
+   #+END_SRC
+
+* The minor mode
+
+  #+BEGIN_SRC emacs-lisp
+
     (define-minor-mode zettelkasten-mode
       "Toggle zettelkasten mode. 
     You shold probably bind 'zettel-create-new"
       :lighter " Zettel"
-      :global t
-      (setq markdown-enable-wiki-links t)
+      :global t)
+  #+END_SRC
+* Provide feature
 
-      ;; Override this to get a different date file format
-      (setq zettel-date-command "date +%Y-%m-%d_%k-%m-%S")
-
-      ;; Override this to get a totally different file name if you'd like. Ex, make it
-      ;; interactive and provide a string
-      (defun zettel-get-file-name ()
-	(substring
-	 (shell-command-to-string zettel-date-command)
-	 0 ; Start from the beginning of the screen
-	 -1)) ; Go to the character before the end of the string. This discards a final newline
-
-      ;; The path to your zettelkasten
-      (setq zettel-path "~/Dropbox/zettelkasten")
-
-      ;; Creates a new buffer for a particular file, set up the backing file for that
-      ;; buffer to your provided path.
-      (defun create-buffer-for-file-and-switch (new-file-path)
-	(switch-to-buffer
-	 (create-file-buffer new-file-path))
-	(set-visited-file-name new-file-path))
-
-      ;; Create a new note in your zettelkasten using your name format
-      (defun zettel-create-new ()
-	(interactive) 
-	(setq path (concat
-		    zettel-path
-		    "/"
-		    (zettel-get-file-name)
-		    ".md"))
-	(create-buffer-for-file-and-switch path)))
-
+  #+BEGIN_SRC emacs-lisp
     (provide 'zettelkasten-mode)
   #+END_SRC
+
 * Whishlist
 ** TODO Insert method
 
    The insert mehtod should basically call ~zettel-create-new~ but
    should also insert a link to the new file at wherever the current
    point is.
-
