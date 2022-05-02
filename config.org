@@ -442,6 +442,7 @@
 	(evil-define-key 'normal org-mode-map (kbd "SPC m i i") 'org-insert-item)
 	(evil-define-key 'edit 'org-mode-map (kbd "<M-return>") 'org-insert-item)
 	(evil-define-key 'normal org-mode-map (kbd "SPC m T T") 'org-todo)
+	(evil-define-key 'normal org-mode-map (kbd "SPC m i t") 'org-set-tags-command)
 	:bind
 	(:map evil-normal-state-map
 	      ("SPC a o a" . 'org-agenda)
