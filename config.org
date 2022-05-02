@@ -330,6 +330,28 @@
 	(add-to-list 'org-agenda-files (org-concat-org-directory contact-log-org))
       #+END_SRC
       
+
+      
+***** Org datetree functions
+
+      I have two custom date-tree functions that I wrote to make
+      capture templates easier to work with. These were based on [[https://emacs.stackexchange.com/questions/48414/monthly-date-tree][this]].
+      
+      First up, this tree is a "datetree" only to the month.
+      #+BEGIN_SRC emacs-lisp
+	(defun org-month-datetree()
+	  (org-datetree-find-date-create (calendar-current-date))
+	  ;; Kill the line because this date tree will involve a subheading for the week
+	  (kill-line))
+      #+END_SRC
+      
+      Next up, a date tree th a week
+      #+BEGIN_SRC emacs-lisp
+	(defun org-week-datetree()
+	  (org-datetree-find-iso-week-create (calendar-current-date))
+	  ;; Kill the line because this date tree will involve a subheading for the day
+	  (kill-line))
+      #+END_SRC
 ***** The junk
      
      #+BEGIN_SRC emacs-lisp :noweb yes
