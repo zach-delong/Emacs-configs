@@ -128,6 +128,8 @@
 	       ("SPC w s" . 'evil-window-split)
 	       ("SPC w v" . 'evil-window-vsplit)
 	       ("SPC w d" . 'evil-window-delete)
+	       ("SPC w o" . 'other-window)
+	       ("SPC w m" . 'delete-other-windows)
 	       ("SPC b d" . 'kill-buffer)
 	       ("SPC q f" . 'save-buffers-kill-terminal)
 	       ("SPC h f" . 'describe-function)
