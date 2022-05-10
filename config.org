@@ -84,6 +84,16 @@
      (menu-bar-mode -1)
      (scroll-bar-mode -1)
    #+END_SRC
+** Utilities
+
+   Grabs the current file name from the buffer.  Based on answer [[https://unix.stackexchange.com/questions/45125/how-to-get-current-buffers-filename-in-emacs][here]].
+
+   #+BEGIN_SRC emacs-lisp
+     (defun insert-file-name ()
+       "Insert the file name into the current buffer (at point)."
+       (interactive)
+       (insert (buffer-file-name (window-buffer (minibuffer-selected-window)))))
+   #+END_SRC
 ** Local configuration
 
    This file is set up only so that you can set any local variables
