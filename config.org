@@ -576,7 +576,9 @@
 
     #+BEGIN_SRC emacs-lisp
       (use-package markdown-mode
-	:ensure t)
+	:ensure t
+	:config
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i f") 'markdown-insert-footnote))
     #+END_SRC
 *** Python mode
 
