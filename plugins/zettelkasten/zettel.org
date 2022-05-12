@@ -70,6 +70,7 @@
 	0			      ; Start from the beginning of the screen
 	-1)) ; Go to the character before the end of the string. This discards a final newline
    #+END_SRC
+
 * Main functions
   
 ** Get path to file
