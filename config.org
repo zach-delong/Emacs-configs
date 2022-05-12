@@ -125,8 +125,10 @@
 	 (:map evil-normal-state-map
 	       ("SPC SPC" . 'execute-extended-command)
 	       ("SPC <tab>" . 'previous-buffer)
-	       ("SPC <S-tab>" . 'next-buffer)
+	       ("SPC <S-tab>" . 'next-buffer) ; this works on Windows
+	       ("SPC <backtab>" . 'next-buffer) ; this works on Linux
 	       ("SPC f s" . 'save-buffer)
+	       ("SPC f n" . 'insert-file-name)
 	       ("SPC l l" . 'eval-last-sexp)
 	       ("SPC l b" . 'eval-buffer)
 	       ("SPC l r" . 'eval-region)
