@@ -580,7 +580,8 @@
       (use-package markdown-mode
 	:ensure t
 	:config
-	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i f") 'markdown-insert-footnote))
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i f") 'markdown-insert-footnote)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i w") 'markdown-insert-wiki-link))
     #+END_SRC
 *** Python mode
 
