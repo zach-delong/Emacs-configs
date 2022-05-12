@@ -567,7 +567,8 @@
       (use-package zettelkasten-mode
 	:bind
 	(:map evil-normal-state-map
-	      ("SPC a z c" . 'zettel-create-new))
+	      ("SPC a z c" . 'zettel-create-new)
+	      ("SPC a z i" . 'zettel-insert-and-create-new))
 	:config
 	(zettelkasten-mode 1))
     #+END_SRC
