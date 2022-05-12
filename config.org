@@ -601,6 +601,22 @@
       (use-package vue-mode
 	:ensure t)
     #+END_SRC
+*** Tab bar mode
+
+    This should enable a tab bar. This is built into emacs as of 27, I
+    think. Each tab is a configuration of windows, so the splits and
+    whatnot should be maintained?
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package tab-bar
+	:bind
+	(:map evil-normal-state-map
+	      ("SPC C-t" . 'tab-new)
+	      ("SPC <C-tab>" . 'tab-next)
+	      ("SPC <C-S-tab>" . 'tab-previous)
+	      ("SPC <C-backtab>" . 'tab-previous)
+	      ("SPC C-w" . 'tab-close)))
+    #+END_SRC
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
