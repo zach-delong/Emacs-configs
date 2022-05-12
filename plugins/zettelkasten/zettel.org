@@ -91,6 +91,21 @@
        (zettel-create-buffer-for-file-and-switch path))
    #+END_SRC
 
+   
+** Insert the text to the buffer and create a new note
+
+   #+BEGIN_SRC emacs-lisp
+     (defun zettel-insert-and-create-new ()
+       "Inserts a new note name at point, creates a note, and switches to a buffer with that note pulled up"
+       (interactive)
+       (setq file-name (zettel-get-file-name))
+       (insert
+	(format "[[%s]]" file-name))
+       (setq file-path (format "%s.md" 
+			(zettel-get-path file-name)))
+       (zettel-create-buffer-for-file-and-switch file-path))
+   #+END_SRC
+
 * The minor mode
 
   #+BEGIN_SRC emacs-lisp
