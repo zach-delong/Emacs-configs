@@ -86,14 +86,56 @@
    #+END_SRC
 ** Utilities
 
-   Grabs the current file name from the buffer.  Based on answer [[https://unix.stackexchange.com/questions/45125/how-to-get-current-buffers-filename-in-emacs][here]].
+*** Get current file path separator
 
+    This is dependent on your OS, which makes it a bit of a pain to
+    figure out. Luckily, Elisp comes with a function,
+    ~file-name-as-directory~ which will just return whatever string
+    you give it, but with a path separator on the end. We can use
+    that, then just take whatever is on the end of the result and be
+    sure that's a path separator, correct for the current OS.
+
+    #+BEGIN_SRC emacs-lisp
+      (defun get-path-separator ()
+	(substring (file-name-as-directory "foo") -1))
+    #+END_SRC 
+
+*** Get file path
+    Inserts the current file name from the buffer.  Based on answer [[https://unix.stackexchange.com/questions/45125/how-to-get-current-buffers-filename-in-emacs][here]]
    #+BEGIN_SRC emacs-lisp
-     (defun insert-file-name ()
-       "Insert the file name into the current buffer (at point)."
+     (defun get-current-buffer-file-path()
+       "get current buffer's file name."
        (interactive)
-       (insert (buffer-file-name (window-buffer (minibuffer-selected-window)))))
+       (buffer-file-name (window-buffer (minibuffer-selected-window))))
    #+END_SRC
+   
+*** Get current file name
+
+    #+BEGIN_SRC emacs-lisp
+      (defun get-file-name-from-path (path)
+	(car (reverse (split-string path (get-path-separator)))))
+    #+END_SRC
+
+*** Insert file name
+
+   Inserts the current file name.
+     #+BEGIN_SRC emacs-lisp
+       (defun insert-file-name ()
+	 "Insert the file name into the current buffer (at point)."
+	 (interactive)
+	 (insert (get-file-name-from-path (get-current-buffer-file-path))))
+   #+END_SRC
+
+*** Yank current file name
+
+    Pulls out the current file name
+
+    #+BEGIN_SRC emacs-lisp
+      (defun evil-yank-file-name ()
+	"yank the file name associated with the current buffer."
+	(interactive)
+	(kill-new (get-file-name-from-path (get-current-buffer-file-path))))
+    #+END_SRC
 ** Local configuration
 
    This file is set up only so that you can set any local variables
@@ -128,7 +170,7 @@
 	       ("SPC <S-tab>" . 'next-buffer) ; this works on Windows
 	       ("SPC <backtab>" . 'next-buffer) ; this works on Linux
 	       ("SPC f s" . 'save-buffer)
-	       ("SPC f n" . 'insert-file-name)
+	       ("SPC f y" . 'evil-yank-file-name)
 	       ("SPC l l" . 'eval-last-sexp)
 	       ("SPC l b" . 'eval-buffer)
 	       ("SPC l r" . 'eval-region)
@@ -632,3 +674,4 @@
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
+    
