@@ -671,6 +671,12 @@
       (use-package dockerfile-mode
 	:ensure t)
     #+END_SRC
+*** Typescript mode
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package typescript-mode
+	:ensure t)
+    #+END_SRC
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
