@@ -423,8 +423,8 @@
      
      #+BEGIN_SRC emacs-lisp :noweb yes
        (defun org-variables-config()
-       
-         <<org-global-vars>>
+
+	 <<org-global-vars>>
 
 	 <<org-agenda-file-names>>
 
@@ -501,6 +501,7 @@
        (setq org-agenda-span 14)
        (setq org-refile-targets (quote ((nil :maxlevel . 5)
 					(org-agenda-files :maxlevel . 5))))
+       (setq org-refile-use-outline-path 'file)
 
        ;; Sets the org-repeat logbook to store its information in the "LOGBOOK" drawer instead of in a bulleted list on the header. this should keep things cleaner
        (setq org-log-into-drawer "LOGBOOK")
