@@ -329,6 +329,17 @@
 	:config
 	(ido-vertical-mode 1))
     #+END_SRC
+
+**** Priority
+
+     It annoys me that when I am editing projects that contain files
+     of the same name but with differing extensions, that IDO doesn't
+     know which one I usually want. This should make sure that when I
+     am editing files, IDO prefers ~.org~ files to ~.el~ files.
+
+     #+BEGIN_SRC emacs-lisp
+       (setq ido-file-extensions-order '(".org" ".el"))
+     #+END_SRC
 *** Magit
 
     I love [[https://magit.vc/][Magit]]. Enough said.
