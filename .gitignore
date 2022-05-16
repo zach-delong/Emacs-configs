@@ -11,3 +11,5 @@
 /server/
 /bookmarks
 /.org-id-locations
+session.*
+\#*\#
