@@ -317,6 +317,8 @@
 	      ("SPC b b" . 'ido-switch-buffer)))
     #+END_SRC
 
+**** Vertical display
+
     Also, I dislike that ido mode organizes itself horizontally, and
     want it to not do that.
 
