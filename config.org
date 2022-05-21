@@ -136,6 +136,15 @@
 	(interactive)
 	(kill-new (get-file-name-from-path (get-current-buffer-file-path))))
     #+END_SRC
+
+*** Switch to the scratch buffer
+
+    #+BEGIN_SRC emacs-lisp
+      (defun switch-to-scratch ()
+	"Switches to the scratch buffer"
+	(interactive)
+	(switch-to-buffer "*scratch*"))
+    #+END_SRC
 ** Local configuration
 
    This file is set up only so that you can set any local variables
@@ -188,6 +197,7 @@
 	       ("SPC w o" . 'other-window)
 	       ("SPC w m" . 'delete-other-windows)
 	       ("SPC b d" . 'kill-buffer)
+	       ("SPC b s" . 'switch-to-scratch)
 	       ("SPC q f" . 'save-buffers-kill-terminal)
 	       ("SPC p f" . 'project-find-file)
 	       ("SPC p d" . 'project-dired)
