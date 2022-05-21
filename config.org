@@ -101,12 +101,17 @@
     #+END_SRC 
 
 *** Get file path
-    Inserts the current file name from the buffer.  Based on answer [[https://unix.stackexchange.com/questions/45125/how-to-get-current-buffers-filename-in-emacs][here]]
-   #+BEGIN_SRC emacs-lisp
-     (defun get-current-buffer-file-path()
-       "get current buffer's file name."
-       (interactive)
-       (buffer-file-name (window-buffer (minibuffer-selected-window))))
+    Inserts the current file name from the buffer.  Based on answer
+    [[https://unix.stackexchange.com/questions/45125/how-to-get-current-buffers-filename-in-emacs][here.]] I have some questions about how this is implemented. I'm not
+    really sure what the ~minibuffer-selected-window~ is, or how
+    that's relevant. I think this could just be written as
+    ~(buffer-file-name)~
+
+    #+BEGIN_SRC emacs-lisp
+      (defun get-current-buffer-file-path()
+	"get current buffer's file name."
+	(interactive)
+	(buffer-file-name (window-buffer (minibuffer-selected-window))))
    #+END_SRC
    
 *** Get current file name
