@@ -314,7 +314,8 @@
 	:bind
 	(:map evil-normal-state-map
 	      ("SPC f f" . 'ido-find-file)
-	      ("SPC b b" . 'ido-switch-buffer)))
+	      ("SPC b b" . 'ido-switch-buffer)
+	      ("SPC f d" . 'ido-dired)))
     #+END_SRC
 
 **** Vertical display
