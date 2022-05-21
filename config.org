@@ -186,6 +186,7 @@
 	       ("SPC f s" . 'save-buffer)
 	       ("SPC f y" . 'evil-yank-file-name)
 	       ("SPC l l" . 'eval-last-sexp)
+	       ("SPC l L" . 'eval-print-last-sexp)
 	       ("SPC l b" . 'eval-buffer)
 	       ("SPC l r" . 'eval-region)
 	       ("SPC w h" . 'evil-window-left)
