@@ -25,5 +25,6 @@
   worry, it all works.  Probably. 
 
   For an explanation of how all this works, start by reading [[file:config.org::*What is
- this?][config.org]].  That file, apart from containing the actual code, also
-has an explanation of what/why.
+   this?][config.org]].
+  That file, apart from containing the actual code, also has an
+  explanation of what/why.
