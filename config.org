@@ -708,6 +708,24 @@
       (use-package typescript-mode
 	:ensure t)
     #+END_SRC
+*** LSP-mode
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package lsp-mode
+	:after evil
+	:ensure t
+	:init
+	(evil-define-key 'normal lsp-mode-map (kbd "SPC m") lsp-command-map)  :hook
+	((csharp-mode . lsp)
+	 (lsp-mode . lsp-enable-which-key-integration))
+	:commands lsp)
+    #+END_SRC
+*** Csharp mode
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package csharp-mode
+	:ensure t)
+    #+END_SRC
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
