@@ -14,3 +14,6 @@
 session.*
 \#*\#
 /bookmarks~
+/.lsp-session-v1
+/.cache/
+/%backup%~
