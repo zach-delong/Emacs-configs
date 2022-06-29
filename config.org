@@ -290,15 +290,14 @@
 	 (setq company-selection-wrap-around t)
 	 (company-tng-configure-default))
     #+END_SRC
-*** Solarized-theme
+*** Spacemacs theme
 
-    The solarized theme I am using is from MELPA. 
+    I like the Spacemacs theme quite a lot, so I'll use it.
 
     #+BEGIN_SRC emacs-lisp
-      (use-package solarized-theme
+      (use-package spacemacs-theme
 	:ensure t
-	:config
-	(load-theme 'solarized-dark t))
+	:init (load-theme 'spacemacs-dark t))
     #+END_SRC
 
 *** Which key mode
