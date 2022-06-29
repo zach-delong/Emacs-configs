@@ -380,28 +380,31 @@
       Note, you will probably want to override these variables in your
       local config.
       
-      #+BEGIN_SRC emacs-lisp :tangle no :noweb-ref org-global-vars
-	(defvar org-directory nil) ; Set this in your local.org file!
-	(defvar org-jira-link "") ; Set this in your local.org file!
+      #+BEGIN_SRC emacs-lisp 
+	(defun setup-org-global-vars ()
+	  (defvar org-directory nil) ; Set this in your local.org file!
+	  (defvar org-jira-link "") ; Set this in your local.org file!
+	)
       #+END_SRC
 
       First up, I need to define what my org mode agenda files
       are. I'm going to wind up using these all over the place, so I
       am going to define them all together
 
-      #+BEGIN_SRC emacs-lisp :tangle no :noweb-ref org-agenda-file-names
-	(setq todo-org "todo.org")
-	(setq professional-org "professional.org")
-	(setq personal-org "personal.org")
-	(setq school-org "school.org")
-	(setq notes-org "notes.org")
-	(setq inbox-org "inbox.org")
-	(setq project-org "project.org")
-	(setq reviews-org "reviews.org")
-	(setq meetings-org "meetings.org")
-	(setq interruption-org "interruption.org")
-	(setq contact-log-org "contact-log.org")
-	(setq one_on_one_topics-org "one-on-one-topics.org")
+      #+BEGIN_SRC emacs-lisp
+	(defun setup-org-custom-file-vars ()
+	  (setq todo-org "todo.org")
+	  (setq professional-org "professional.org")
+	  (setq personal-org "personal.org")
+	  (setq school-org "school.org")
+	  (setq notes-org "notes.org")
+	  (setq inbox-org "inbox.org")
+	  (setq project-org "project.org")
+	  (setq reviews-org "reviews.org")
+	  (setq meetings-org "meetings.org")
+	  (setq interruption-org "interruption.org")
+	  (setq contact-log-org "contact-log.org")
+	  (setq one_on_one_topics-org "one-on-one-topics.org"))
       #+END_SRC
       
       Once I have those variables, I am going to want to concatenate
@@ -413,17 +416,18 @@
 	  (concat org-directory fileName))
       #+END_SRC
       
-      #+BEGIN_SRC emacs-lisp :tangle no :noweb-ref org-agenda-set-up
-	(add-to-list 'org-agenda-files (org-concat-org-directory todo-org))
-	(add-to-list 'org-agenda-files (org-concat-org-directory professional-org))
-	(add-to-list 'org-agenda-files (org-concat-org-directory personal-org))
-	(add-to-list 'org-agenda-files (org-concat-org-directory school-org))
-	(add-to-list 'org-agenda-files (org-concat-org-directory notes-org))
-	(add-to-list 'org-agenda-files (org-concat-org-directory inbox-org))
-	(add-to-list 'org-agenda-files (org-concat-org-directory project-org))
-	(add-to-list 'org-agenda-files (org-concat-org-directory meetings-org))
-	(add-to-list 'org-agenda-files (org-concat-org-directory interruption-org))
-	(add-to-list 'org-agenda-files (org-concat-org-directory contact-log-org))
+      #+BEGIN_SRC emacs-lisp 
+	(defun setup-org-agenda-files ()
+	  (add-to-list 'org-agenda-files (org-concat-org-directory todo-org))
+	  (add-to-list 'org-agenda-files (org-concat-org-directory professional-org))
+	  (add-to-list 'org-agenda-files (org-concat-org-directory personal-org))
+	  (add-to-list 'org-agenda-files (org-concat-org-directory school-org))
+	  (add-to-list 'org-agenda-files (org-concat-org-directory notes-org))
+	  (add-to-list 'org-agenda-files (org-concat-org-directory inbox-org))
+	  (add-to-list 'org-agenda-files (org-concat-org-directory project-org))
+	  (add-to-list 'org-agenda-files (org-concat-org-directory meetings-org))
+	  (add-to-list 'org-agenda-files (org-concat-org-directory interruption-org))
+	  (add-to-list 'org-agenda-files (org-concat-org-directory contact-log-org)))
       #+END_SRC
       
 
@@ -452,11 +456,11 @@
      #+BEGIN_SRC emacs-lisp :noweb yes
        (defun org-variables-config()
 
-	 <<org-global-vars>>
+	 (setup-org-global-vars)
 
-	 <<org-agenda-file-names>>
+	 (setup-org-custom-file-vars)
 
-	 <<org-agenda-set-up>>
+	 (setup-org-agenda-files)
 
 	 (setq org-capture-templates
 	       `(("t"
