@@ -428,7 +428,6 @@
       #+END_SRC
       
 
-      
 ***** Org datetree functions
 
       I have two custom date-tree functions that I wrote to make
