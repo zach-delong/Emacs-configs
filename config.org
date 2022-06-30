@@ -381,10 +381,8 @@
       local config.
       
       #+BEGIN_SRC emacs-lisp 
-	(defun setup-org-global-vars ()
-	  (defvar org-directory nil) ; Set this in your local.org file!
-	  (defvar org-jira-link "") ; Set this in your local.org file!
-	)
+	(defvar org-directory nil) ; Set this in your local.org file!
+	(defvar org-jira-link "") ; Set this in your local.org file!
       #+END_SRC
 
       First up, I need to define what my org mode agenda files
@@ -392,19 +390,18 @@
       am going to define them all together
 
       #+BEGIN_SRC emacs-lisp
-	(defun setup-org-custom-file-vars ()
-	  (setq todo-org "todo.org")
-	  (setq professional-org "professional.org")
-	  (setq personal-org "personal.org")
-	  (setq school-org "school.org")
-	  (setq notes-org "notes.org")
-	  (setq inbox-org "inbox.org")
-	  (setq project-org "project.org")
-	  (setq reviews-org "reviews.org")
-	  (setq meetings-org "meetings.org")
-	  (setq interruption-org "interruption.org")
-	  (setq contact-log-org "contact-log.org")
-	  (setq one_on_one_topics-org "one-on-one-topics.org"))
+	(setq todo-org "todo.org")
+	(setq professional-org "professional.org")
+	(setq personal-org "personal.org")
+	(setq school-org "school.org")
+	(setq notes-org "notes.org")
+	(setq inbox-org "inbox.org")
+	(setq project-org "project.org")
+	(setq reviews-org "reviews.org")
+	(setq meetings-org "meetings.org")
+	(setq interruption-org "interruption.org")
+	(setq contact-log-org "contact-log.org")
+	(setq one_on_one_topics-org "one-on-one-topics.org")
       #+END_SRC
       
       Once I have those variables, I am going to want to concatenate
@@ -430,7 +427,6 @@
 	  (add-to-list 'org-agenda-files (org-concat-org-directory contact-log-org)))
       #+END_SRC
       
-
 ***** Org datetree functions
 
       I have two custom date-tree functions that I wrote to make
@@ -451,50 +447,108 @@
 	  ;; Kill the line because this date tree will involve a subheading for the day
 	  (kill-line))
       #+END_SRC
+
+***** Capture templates
+
+      In this section, I define a bunch of lists that represent
+      capture templates. Normally, one would have one large list that
+      gets assigned to ~org-capture-templates~, but I have many
+      templates for many situations, so I'd like to break them apart
+      and document each one individually.  To do that requires some
+      subtletly, though, because a capture template needs to be in a
+      form like this:
+
+      #+BEGIN_SRC emacs-lisp :tangle no
+	`("t" ; A "key" to use as a hotkey in the template selection UI
+	  "Todo" ; A description for the template
+	  entry ; A type, usually entry
+	  (file ,(concat org-directory inbox-org)) ; A function that takes
+						   ; some input, which must
+						   ; resolve to a string, so
+						   ; it must be interpreted!
+	  "* TODO %?\n  %i\n  %a") ; An actual template string
+      #+END_SRC
+
+      This is important, because putting a function call in the ~(file
+      (concat ...))~ line will cause things to not evaluate correctly,
+      so we have to make use of [[*Backtick and comma notation][backtick and comma notation]].
+
+****** Todo template
+
+       This template is just a simple TODO template that drops things
+       in my inbox file.
+
+       #+BEGIN_SRC emacs-lisp
+	 (setq org-todo-capture-template
+	       `("t"
+		 "Todo"
+		 entry
+		 (file ,(concat org-directory inbox-org))
+		 "* TODO %?\n  %i\n  %a"))
+       #+END_SRC
+       
+****** Interruption template
+
+       This template is to note times that I am interrupted by
+       something unexpected. I mostly use these entries to track time
+       and see where I am getting interrupted at work.
+
+       #+BEGIN_SRC emacs-lisp
+	 (setq org-interruption-capture-template
+	       `("i"
+		 "interruption"
+		 entry
+		 (file+datetree ,(concat org-directory interruption-org))
+		 "* Interrupted by %?\n%t"))
+       #+END_SRC
+       
+****** Note template
+
+       All of my notes start off as "notes to self" in my notes
+       file. I regularly prune that section to store things that I
+       want to reference in more permanent locations. This is
+       basically a separate inbox just for my notes. I may in the
+       future just redirect this to drop things right in my normal
+       inbox file.
+
+       #+BEGIN_SRC emacs-lisp
+	 (setq org-note-capture-template
+	       `("n"
+		 "Note to self"
+		 entry
+		 (file+headline ,(concat org-directory notes-org) "Note to Self")
+		 "* %?\nEntered on %U\n  %i\n  %a"))
+       #+END_SRC
+
+****** Contact template
+
+       The contact template helps me track important interractions
+       that I have.  I use this file sort of like a personal CRM so
+       that I can easily check in on whether or not I know someone or
+       what my last meaningful interaction with them was. I only use
+       this for professional contact.
+
+       #+BEGIN_SRC emacs-lisp
+	 (setq org-contact-capture-template
+	       `("c"
+		 "contact"
+		 entry
+		 (file+datetree ,(concat org-directory contact-log-org))
+		 "* Contacted by: %\\1%?
+						   :PROPERTIES:
+						   :NAME:       %^{Name}
+						   :COMPANY:    %^{Company}
+						   :HEADHUNTER: %^{Headhunter|Y|N}
+						   :SOURCE:     %^{Source|LinedIn|Phone|Email}
+						   :END:"))
+       #+END_SRC
+
 ***** The junk
      
       #+BEGIN_SRC emacs-lisp :noweb yes
 	(defun org-variables-config()
-
-	  (setup-org-global-vars)
-
-	  (setup-org-custom-file-vars)
-
 	  (setup-org-agenda-files)
 
-	  (setq org-todo-capture-template
-		`("t"
-		  "Todo"
-		  entry
-		  (file ,(concat org-directory inbox-org))
-		  "* TODO %?\n  %i\n  %a"))
-
-	  (setq org-note-capture-template
-		`("n"
-		  "Note to self"
-		  entry
-		  (file+headline ,(concat org-directory notes-org) "Note to Self")
-		  "* %?\nEntered on %U\n  %i\n  %a"))
-
-	  (setq org-interruption-capture-template
-		`("i"
-		  "interruption"
-		  entry
-		  (file+datetree ,(concat org-directory interruption-org))
-		  "* Interrupted by %?\n%t"))
-
-	  (setq org-contact-capture-template
-		`("c"
-		  "contact"
-		  entry
-		  (file+datetree ,(concat org-directory contact-log-org))
-		  "* Contacted by: %\\1%?
-					  :PROPERTIES:
-					  :NAME:       %^{Name}
-					  :COMPANY:    %^{Company}
-					  :HEADHUNTER: %^{Headhunter|Y|N}
-					  :SOURCE:     %^{Source|LinedIn|Phone|Email}
-					  :END:"))
 	  (setq org-one-on-one-capture-template
 		'("wo"
 		  "one on one topics"
@@ -502,6 +556,7 @@
 		  (file+function ,(concat org-directory one_on_one_topics-org) org-week-datetree)
 		  "*** %?" ; note the 3 asterisks.  Would be nice to figure out how to do that without but eh.
 		  ))
+
 	  (setq org-query-capture-template
 		`("wQ"
 		  "Datebase Query"
@@ -516,6 +571,7 @@
 					  ,,#+BEGIN_SRC sql :tangle %\\2-%\\1-%\\3.txt
 					  ,,#+END_SRC
 					  "))
+
 	  (setq org-jira-ticket-capture-template
 		`("wj"
 		 "Jira ticket"
@@ -744,4 +800,40 @@
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
-    
+* Notes
+** Backtick and comma notation
+
+   Normally when initializing a list, one would use the form:
+
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (defvar my-list '(a b c))
+   #+END_SRC
+
+   Which is really just a shortcut for:
+
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (defvar my-list (list a b c))
+   #+END_SRC
+
+   This is all well and good, until you need to do something that
+   would require you to not pass a variable, such as in a macro.  For
+   example:
+   
+
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (defvar foo 'asdf)
+     (defvar my-list '(a b c foo))
+   #+END_SRC
+
+   isn't going to have the effect you want (having the atom ~asdf~ in
+   your list). In this case, you can use the backtick (`) in place of
+   the quote. It's functionally equivalent to the quote form, except
+   it will cause expressions preceded with a comma to be evaluated for
+   their result. So instead of the above, you could do:
+
+   #+BEGIN_SRC emacs-lisp :tangle no
+     (defvar foo 'asdf)
+     (defvar my-list `(a b c ,foo))
+   #+END_SRC
+
+   Which will give you the expected result.
