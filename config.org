@@ -268,13 +268,14 @@
      able to use a native option.
      
      #+BEGIN_SRC emacs-lisp
-       (use-package undo-tree
-	 :ensure t
-	 :after evil
-	 :diminish
-	 :config
-	 (evil-set-undo-system 'undo-tree)
-	 (global-undo-tree-mode 1))
+	      (use-package undo-tree
+		:ensure t
+		:after evil
+		:diminish
+		:config
+		(evil-set-undo-system 'undo-tree)
+		(defvar undo-tree-auto-save-history "~/.undo-history/")
+		(global-undo-tree-mode 1))
      #+END_SRC
 *** Company-mode
 
@@ -797,6 +798,55 @@
       (use-package csharp-mode
 	:ensure t)
     #+END_SRC
+
+*** Treemacs
+
+    
+**** Treemacs itself
+
+     #+BEGIN_SRC emacs-lisp
+       (use-package treemacs
+	 :ensure t
+	 :defer t
+	 :config
+	 (progn
+	   ;; The default width and height of the icons is 22 pixels. If you are
+	   ;; using a Hi-DPI display, uncomment this to double the icon size.
+	   ;; (treemacs-resize-icons 44)
+
+	   (treemacs-follow-mode t)
+	   (treemacs-filewatch-mode t)
+	   (treemacs-fringe-indicator-mode 'always)
+
+	   (pcase (cons (not (null (executable-find "git")))
+			(not (null treemacs-python-executable)))
+	     (`(t . t)
+	      (treemacs-git-mode 'deferred))
+	     (`(t . _)
+	      (treemacs-git-mode 'simple)))
+
+	   (treemacs-hide-gitignored-files-mode nil))
+	 :bind
+	 (:map evil-normal-state-map 
+	       ("SPC p t"   . treemacs)))
+
+       (use-package treemacs-evil
+	 :after (treemacs evil)
+	 :ensure t)
+
+       (use-package treemacs-icons-dired
+	 :hook (dired-mode . treemacs-icons-dired-enable-once)
+	 :ensure t)
+
+       (use-package treemacs-magit
+	 :after (treemacs magit)
+	 :ensure t)
+
+       (use-package treemacs-tab-bar ;;treemacs-tab-bar if you use tab-bar-mode
+	 :after (treemacs)
+	 :ensure t
+	 :config (treemacs-set-scope-type 'Tabs))
+     #+END_SRC
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
