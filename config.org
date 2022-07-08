@@ -544,49 +544,90 @@
 						   :END:"))
        #+END_SRC
 
+****** One on one template
+
+       I have regular one on one meetings with people, both as a
+       mentor and to get mentoring. As such, I often need to keep
+       track of a list of topics to discuss with different people on a
+       given week. This template generates a note in a "weekly
+       datetree" for each of those conversations.
+
+       #+BEGIN_SRC emacs-lisp
+	 (setq org-one-on-one-capture-template
+	       '("wo"
+		 "one on one topics"
+		 plain		       ; also unsure what plain actually means
+		 (file+function ,(concat org-directory one_on_one_topics-org) org-week-datetree)
+		 "*** %?")) ; note the 3 asterisks.  Would be nice to figure out how to do that without but eh.
+       #+END_SRC
+
+****** Query template
+
+       I write a lot of SQL queries.  Sometimes this is a migration to
+       set up data for a new enhancement, and sometimes it's a one-off
+       query to help investigate something. This template asks for a
+       DB to run against, a ticket (like Jira), and a type (which is a
+       flexible field that could mean anything) and saves it in my
+       inbox so I can archive it for reference later.
+
+       #+BEGIN_SRC emacs-lisp
+	 (setq org-query-capture-template
+	       `("wQ"
+		 "Datebase Query"
+		 entry
+		 (file ,(concat org-directory inbox-org))
+		 "* %\\2%?
+						   :PROPERTIES:
+						   :DATABASE: %^{database|STATIC_TABLES|TENANTS}
+						   :TICKET:   %^{ticket}
+						   :TYPE:     %^{type|DATA|POST_MIGRATION}
+						   :END:
+						   ,,,#+BEGIN_SRC sql :tangle %\\2-%\\1-%\\3.txt
+						   ,,,#+END_SRC
+						   "))
+       #+END_SRC
+
+****** Jira ticket
+
+       I work on projects that use Jira a lot, so often I find myself
+       wanting to keep track of a ticket. Jira boards are nice, but my
+       agenda with all my other tasks is nicer. This template will
+       format a nice entry in my todo list with a link to your Jira
+       instance.  Just make sure ~org-jira-link~ is set prior to
+       running this template.
+
+       #+BEGIN_SRC emacs-lisp
+	 (setq org-jira-ticket-capture-template
+	       `("wj"
+		 "Jira ticket"
+		 entry
+		 (file ,(concat org-directory inbox-org))
+		 ,(concat "* TODO %\\1%?
+						   [[" org-jira-link "%^{ticket}][%\\1]]")))
+       #+END_SRC
+
+****** Meeting capture template
+
+       I am in a lot of meetings. I also often fail to remember
+       things. this capture template will create a new entry in the
+       meetings file under the given day (in a date tree) to make it
+       easier for me to find meetings if I know about when they
+       happened.
+
+       #+BEGIN_SRC emacs-lisp
+	 (setq org-meeting-minute-capture-template
+	       `("wm"
+		 "Meeting notes"
+		 entry
+		 (file+datetree ,(concat org-directory meetings-org))
+		 "* %?\n%U\n"))
+       #+END_SRC
+
 ***** The junk
      
       #+BEGIN_SRC emacs-lisp :noweb yes
 	(defun org-variables-config()
 	  (setup-org-agenda-files)
-
-	  (setq org-one-on-one-capture-template
-		'("wo"
-		  "one on one topics"
-		  plain ; also unsure what plain actually means
-		  (file+function ,(concat org-directory one_on_one_topics-org) org-week-datetree)
-		  "*** %?" ; note the 3 asterisks.  Would be nice to figure out how to do that without but eh.
-		  ))
-
-	  (setq org-query-capture-template
-		`("wQ"
-		  "Datebase Query"
-		  entry
-		  (file ,(concat org-directory inbox-org))
-		  "* %\\2%?
-					  :PROPERTIES:
-					  :DATABASE: %^{database|STATIC_TABLES|TENANTS}
-					  :TICKET:   %^{ticket}
-					  :TYPE:     %^{type|DATA|POST_MIGRATION}
-					  :END:
-					  ,,#+BEGIN_SRC sql :tangle %\\2-%\\1-%\\3.txt
-					  ,,#+END_SRC
-					  "))
-
-	  (setq org-jira-ticket-capture-template
-		`("wj"
-		 "Jira ticket"
-		 entry
-		 (file ,(concat org-directory inbox-org))
-		 ,(concat "* TODO %\\1%?
-					  [[" org-jira-link "%^{ticket}][%\\1]]")))
-
-	  (setq org-meeting-minute-capture-template
-		`("wm"
-		  "Meeting notes"
-		  entry
-		  (file+datetree ,(concat org-directory meetings-org))
-		  "* %?\n%U\n"))
 
 	  (setq org-capture-templates
 		`(,org-todo-capture-template 
