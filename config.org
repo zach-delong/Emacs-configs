@@ -202,6 +202,7 @@
 	       ("SPC w d" . 'evil-window-delete)
 	       ("SPC w o" . 'other-window)
 	       ("SPC w m" . 'delete-other-windows)
+	       ("SPC w f" . 'make-frame)
 	       ("SPC b d" . 'kill-buffer)
 	       ("SPC b s" . 'switch-to-scratch)
 	       ("SPC q f" . 'save-buffers-kill-terminal)
