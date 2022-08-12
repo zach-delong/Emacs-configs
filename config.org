@@ -214,6 +214,7 @@
 	       ("SPC h k" . 'describe-key)
 	       ("SPC h n" . 'view-emacs-news)
 	       ("SPC h m" . 'describe-mode)
+	       ("SPC h i" . 'info)
 	       ("SPC h M" . 'view-order-manuals))
 	 :init
 	 (setq evil-want-keybinding nil)
@@ -930,3 +931,4 @@
    #+END_SRC
 
    Which will give you the expected result.
+   
