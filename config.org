@@ -100,6 +100,15 @@
 	(substring (file-name-as-directory "foo") -1))
     #+END_SRC 
 
+**** Unit tests
+
+#+BEGIN_SRC emacs-lisp
+  (ert-deftest get-path-separator-should-work ()
+    "The function should always return / in gnu/linux"
+    (skip-unless (equal system-type 'gnu/linux))
+    (should (equal (get-path-separator) "/")))
+#+END_SRC
+
 *** Get file path
     Inserts the current file name from the buffer.  Based on answer
     [[https://unix.stackexchange.com/questions/45125/how-to-get-current-buffers-filename-in-emacs][here.]] I have some questions about how this is implemented. I'm not
@@ -932,3 +941,11 @@
 
    Which will give you the expected result.
    
+** Scratch ERT space
+
+    I just discovered ERT so I added a simple example.
+   #+BEGIN_SRC emacs-lisp
+     (ert-deftest testing-ert ()
+       "This is a test"
+       (should (equal 1 1)))
+   #+END_SRC
