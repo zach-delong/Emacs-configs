@@ -131,6 +131,35 @@
 	(car (reverse (split-string path (get-path-separator)))))
     #+END_SRC
 
+**** Unit tests
+    #+BEGIN_SRC emacs-lisp
+      (ert-deftest get-file-name-from-relative-path ()
+	"given a relative path with a file at the end of it, return the
+      file's name."
+	(should
+	 (equal (get-file-name-from-path "relative/path/to/file.md")
+		"file.md")))
+    #+END_SRC
+
+    #+BEGIN_SRC emacs-lisp
+      (ert-deftest get-file-name-from-absolute-path ()
+	"given an absolute path with a file at the end of it, return the
+      file's name."
+	(should
+	 (equal (get-file-name-from-path "/this/is/a/relative/path/to/file.md")
+		"file.md")))
+    #+END_SRC
+
+    #+BEGIN_SRC emacs-lisp
+      (ert-deftest get-file-name-from-absolute-path-to-folder ()
+	"given an absolute path with a to a folder, return the folder's
+      name."
+	(should
+	 (equal (get-file-name-from-path "/this/is/a/relative/path/to/folder")
+		"folder")))
+    #+END_SRC
+
+
 *** Insert file name
 
    Inserts the current file name.
