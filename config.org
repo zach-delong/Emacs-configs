@@ -104,8 +104,9 @@
 
 #+BEGIN_SRC emacs-lisp
   (ert-deftest get-path-separator-should-work ()
-    "The function should always return / in gnu/linux"
-    (skip-unless (equal system-type 'gnu/linux))
+    "The function should always return / in gnu/linux. I thought it
+  shold return \ on Windows, but it also returns / there, so I am
+  unsure what the expected behavior should be."
     (should (equal (get-path-separator) "/")))
 #+END_SRC
 
