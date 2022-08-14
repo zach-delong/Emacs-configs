@@ -86,80 +86,6 @@
    #+END_SRC
 ** Utilities
 
-*** Get current file path separator
-
-    This is dependent on your OS, which makes it a bit of a pain to
-    figure out. Luckily, Elisp comes with a function,
-    ~file-name-as-directory~ which will just return whatever string
-    you give it, but with a path separator on the end. We can use
-    that, then just take whatever is on the end of the result and be
-    sure that's a path separator, correct for the current OS.
-
-    #+BEGIN_SRC emacs-lisp
-      (defun get-path-separator ()
-	(substring (file-name-as-directory "foo") -1))
-    #+END_SRC 
-
-**** Unit tests
-
-#+BEGIN_SRC emacs-lisp
-  (ert-deftest get-path-separator-should-work ()
-    "The function should always return / in gnu/linux. I thought it
-  shold return \ on Windows, but it also returns / there, so I am
-  unsure what the expected behavior should be."
-    (should (equal (get-path-separator) "/")))
-#+END_SRC
-
-*** Get file path
-    Inserts the current file name from the buffer.  Based on answer
-    [[https://unix.stackexchange.com/questions/45125/how-to-get-current-buffers-filename-in-emacs][here.]] I have some questions about how this is implemented. I'm not
-    really sure what the ~minibuffer-selected-window~ is, or how
-    that's relevant. I think this could just be written as
-    ~(buffer-file-name)~
-
-    #+BEGIN_SRC emacs-lisp
-      (defun get-current-buffer-file-path()
-	"get current buffer's file name."
-	(interactive)
-	(buffer-file-name (window-buffer (minibuffer-selected-window))))
-   #+END_SRC
-   
-*** Get current file name
-
-    #+BEGIN_SRC emacs-lisp
-      (defun get-file-name-from-path (path)
-	(car (reverse (split-string path (get-path-separator)))))
-    #+END_SRC
-
-**** Unit tests
-    #+BEGIN_SRC emacs-lisp
-      (ert-deftest get-file-name-from-relative-path ()
-	"given a relative path with a file at the end of it, return the
-      file's name."
-	(should
-	 (equal (get-file-name-from-path "relative/path/to/file.md")
-		"file.md")))
-    #+END_SRC
-
-    #+BEGIN_SRC emacs-lisp
-      (ert-deftest get-file-name-from-absolute-path ()
-	"given an absolute path with a file at the end of it, return the
-      file's name."
-	(should
-	 (equal (get-file-name-from-path "/this/is/a/relative/path/to/file.md")
-		"file.md")))
-    #+END_SRC
-
-    #+BEGIN_SRC emacs-lisp
-      (ert-deftest get-file-name-from-absolute-path-to-folder ()
-	"given an absolute path with a to a folder, return the folder's
-      name."
-	(should
-	 (equal (get-file-name-from-path "/this/is/a/relative/path/to/folder")
-		"folder")))
-    #+END_SRC
-
-
 *** Insert file name
 
    Inserts the current file name.
@@ -167,7 +93,10 @@
        (defun insert-file-name ()
 	 "Insert the file name into the current buffer (at point)."
 	 (interactive)
-	 (insert (get-file-name-from-path (get-current-buffer-file-path))))
+	 (insert (file-name-nondirectory
+		  (buffer-file-name
+		   (window-buffer
+		    (minibuffer-selected-window))))))
    #+END_SRC
 
 *** Yank current file name
@@ -178,7 +107,11 @@
       (defun evil-yank-file-name ()
 	"yank the file name associated with the current buffer."
 	(interactive)
-	(kill-new (get-file-name-from-path (get-current-buffer-file-path))))
+	(kill-new
+	 (file-name-nondirectory
+	   (buffer-file-name
+	    (window-buffer
+	     (minibuffer-selected-window))))))
     #+END_SRC
 
 *** Switch to the scratch buffer
