@@ -242,14 +242,14 @@
      able to use a native option.
      
      #+BEGIN_SRC emacs-lisp
-	      (use-package undo-tree
-		:ensure t
-		:after evil
-		:diminish
-		:config
-		(evil-set-undo-system 'undo-tree)
-		(defvar undo-tree-auto-save-history "~/.undo-history/")
-		(global-undo-tree-mode 1))
+       (use-package undo-tree
+	 :ensure t
+	 :after evil
+	 :diminish
+	 :config
+	 (evil-set-undo-system 'undo-tree)
+	 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
+	 (global-undo-tree-mode 1))
      #+END_SRC
 *** Company-mode
 
