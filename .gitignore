@@ -17,3 +17,5 @@ session.*
 /.lsp-session-v1
 /.cache/
 /%backup%~
+/eln-cache/
+/url/
