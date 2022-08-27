@@ -19,3 +19,4 @@ session.*
 /%backup%~
 /eln-cache/
 /url/
+/projects
