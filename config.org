@@ -178,9 +178,6 @@
 	       ("SPC b d" . 'kill-buffer)
 	       ("SPC b s" . 'switch-to-scratch)
 	       ("SPC q f" . 'save-buffers-kill-terminal)
-	       ("SPC p f" . 'project-find-file)
-	       ("SPC p d" . 'project-dired)
-	       ("SPC p !" . 'project-shell-command)
 	       ("SPC h f" . 'describe-function)
 	       ("SPC h v" . 'describe-variable)
 	       ("SPC h k" . 'describe-key)
@@ -864,6 +861,27 @@
 	 :ensure t
 	 :config (treemacs-set-scope-type 'Tabs))
      #+END_SRC
+
+*** project.el
+I need a convenient way to remember "the current project"
+#+BEGIN_SRC emacs-lisp
+  (defun project-remember-current
+      (interactive)
+    (project-remember-project (project-current)))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package project
+    :bind
+    (:map evil-normal-state-map
+	  ("SPC p r" . 'project-remember-current)
+	  ("SPC p s" . 'project-switch-project)
+	  ("SPC p b" . 'project-switch-to-buffer)
+	  ("SPC p f" . 'project-find-file)
+	  ("SPC p d" . 'project-dired)
+	  ("SPC p !" . 'project-shell-command)))
+
+#+END_SRC
 
 ** Backups
 
