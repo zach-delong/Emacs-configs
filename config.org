@@ -329,6 +329,16 @@
      #+BEGIN_SRC emacs-lisp
        (setq ido-file-extensions-order '(".org" ".el"))
      #+END_SRC
+
+     
+**** Ido-completing-read+
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package ido-completing-read+
+	:ensure t
+	:config
+	(ido-ubiquitous-mode 1))
+    #+END_SRC
 *** Magit
 
     I love [[https://magit.vc/][Magit]]. Enough said.
