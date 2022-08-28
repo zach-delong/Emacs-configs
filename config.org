@@ -911,6 +911,16 @@ I need a convenient way to remember "the current project"
        kept-old-versions 5    ; and how many of the old
        )
    #+END_SRC
+
+   There is also an "autosave" functionality that saves files every
+   few minutes in case of a crash. These files are usually dropped
+   inline just like the backup files, but they are usually named
+   #filename#. This is super useful, but also junks up git repos, etc,
+   so lets store them in our .emacs.d as well.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq auto-save-file-name-transforms `((".", "~/.emacs-saves/" t)))
+   #+END_SRC
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
