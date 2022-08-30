@@ -917,9 +917,9 @@ I need a convenient way to remember "the current project"
    inline just like the backup files, but they are usually named
    #filename#. This is super useful, but also junks up git repos, etc,
    so lets store them in our .emacs.d as well.
-
+   
    #+BEGIN_SRC emacs-lisp
-     (setq auto-save-file-name-transforms `((".", "~/.emacs.d/saves" t)))
+     (setq auto-save-file-name-transforms `((".", "~/.emacs.d/saves/" t)))
    #+END_SRC
 * Sources
 
