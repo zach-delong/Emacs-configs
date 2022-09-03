@@ -903,7 +903,7 @@ I need a convenient way to remember "the current project"
     central location. Stolen from [[https://stackoverflow.com/questions/2680389/how-to-remove-all-files-ending-with-made-by-emacs][Stack Overflow]].
 
    #+BEGIN_SRC emacs-lisp
-     (setq backup-directory-alist '(("." . "~/.emacs.d/backup"))
+     (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backup/")))
        backup-by-copying t    ; Don't delink hardlinks
        version-control t      ; Use version numbers on backups
        delete-old-versions t  ; Automatically delete excess backups
