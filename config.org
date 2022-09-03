@@ -919,7 +919,8 @@ I need a convenient way to remember "the current project"
    so lets store them in our .emacs.d as well.
    
    #+BEGIN_SRC emacs-lisp
-     (setq auto-save-file-name-transforms `((".", "~/.emacs.d/saves/" t)))
+     (setq auto-save-file-name-transforms
+	   `((".*" ,(concat user-emacs-directory "saves/") t)))
    #+END_SRC
 * Sources
 
