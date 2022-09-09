@@ -875,8 +875,8 @@
 *** project.el
 I need a convenient way to remember "the current project"
 #+BEGIN_SRC emacs-lisp
-  (defun project-remember-current
-      (interactive)
+  (defun project-remember-current ()
+    (interactive)
     (project-remember-project (project-current)))
 #+END_SRC
 
