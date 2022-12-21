@@ -752,8 +752,20 @@
       (use-package markdown-mode
 	:ensure t
 	:config
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m d") 'markdown-do)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m g f") 'markdown-outline-next-same-level)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m g b") 'markdown-outline-previous-same-level)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m g n") 'markdown-outline-next)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m g p") 'markdown-outline-previous)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m g u") 'markdown-outline-up)
+
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i f") 'markdown-insert-footnote)
-	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i w") 'markdown-insert-wiki-link))
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i w") 'markdown-insert-wiki-link)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i i") 'markdown-insert-image)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i l") 'markdown-insert-link)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i h 1") 'markdown-insert-header-atx-1)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i h 2") 'markdown-insert-header-atx-2)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i h 3") 'markdown-insert-header-atx-3))
     #+END_SRC
 *** Python mode
 
