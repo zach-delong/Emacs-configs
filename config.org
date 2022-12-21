@@ -763,6 +763,7 @@
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i w") 'markdown-insert-wiki-link)
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i i") 'markdown-insert-image)
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i l") 'markdown-insert-link)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i H") 'markdown-insert-hr)
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i h 1") 'markdown-insert-header-atx-1)
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i h 2") 'markdown-insert-header-atx-2)
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i h 3") 'markdown-insert-header-atx-3))
