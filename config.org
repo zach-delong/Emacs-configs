@@ -346,9 +346,9 @@
     #+BEGIN_SRC emacs-lisp
       (use-package magit
 	:ensure t
-	:bind
-	(:map evil-normal-state-map
-	      ("SPC g s" . 'magit-status)))
+	:after evil
+	:config
+	(evil-global-set-key 'normal (kbd "SPC g s") 'magit-status))
     #+END_SRC
 *** Org mode
     
