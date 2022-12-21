@@ -294,16 +294,16 @@
     #+BEGIN_SRC emacs-lisp
       (use-package ido
 	:ensure t
+	:after evil
 	:config
 	(setq ido-enable-flex-matching t)
 	(setq ido-everywhere t)
 	(ido-mode 1)
 	(setq ido-use-filename-at-point 'guess)
-	:bind
-	(:map evil-normal-state-map
-	      ("SPC f f" . 'ido-find-file)
-	      ("SPC b b" . 'ido-switch-buffer)
-	      ("SPC f d" . 'ido-dired)))
+	:config
+	(evil-global-set-key 'normal (kbd"SPC f f") 'ido-find-file)
+	(evil-global-set-key 'normal (kbd"SPC b b") 'ido-switch-buffer)
+	(evil-global-set-key 'normal (kbd"SPC f d") 'ido-dired))
     #+END_SRC
 
 **** Vertical display
