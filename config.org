@@ -651,8 +651,8 @@
 	(evil-define-key 'normal org-mode-map (kbd "SPC m s r") 'org-refile)
 	(evil-define-key 'normal org-mode-map (kbd "SPC m s n") 'org-narrow-to-subtree)
 	(evil-define-key 'normal org-mode-map (kbd "SPC m s w") 'widen)
-	(evil-define-key 'normal org-mode-map (kbd "SPC m s h") 'org-promote-subtree)
-	(evil-define-key 'normal org-mode-map (kbd "SPC m s l") 'org-demote-subtree)
+	(evil-define-key 'normal org-mode-map (kbd "SPC m s h") 'org-promote)
+	(evil-define-key 'normal org-mode-map (kbd "SPC m s l") 'org-demote)
 
 	(evil-define-key 'normal org-mode-map (kbd "SPC m p") 'org-priority)
 
