@@ -822,7 +822,8 @@
 	:after evil
 	:ensure t
 	:init
-	(evil-define-key 'normal lsp-mode-map (kbd "SPC m") lsp-command-map)  :hook
+	(evil-define-key 'normal lsp-mode-map (kbd "SPC m") lsp-command-map)
+	:hook
 	((csharp-mode . lsp)
 	 (lsp-mode . lsp-enable-which-key-integration))
 	:commands lsp)
