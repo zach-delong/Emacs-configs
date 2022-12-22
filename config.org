@@ -669,6 +669,8 @@
 	(evil-define-key 'normal org-mode-map (kbd "SPC m i T r") 'org-table-insert-row)
 	(evil-define-key 'normal org-mode-map (kbd "SPC m i T c") 'org-table-insert-column)
 
+	(evil-define-key 'normal org-mode-map (kbd "SPC m <return>") 'org-open-at-point)
+
 	(evil-define-key 'edit 'org-mode-map (kbd "<M-return>") 'org-insert-item)
 
 	(evil-global-set-key 'normal (kbd "SPC a o a") 'org-agenda)
@@ -763,7 +765,7 @@
       (use-package markdown-mode
 	:ensure t
 	:config
-	(evil-define-key 'normal markdown-mode-map (kbd "SPC m d") 'markdown-do)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m <return>") 'markdown-do)
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m g f") 'markdown-outline-next-same-level)
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m g b") 'markdown-outline-previous-same-level)
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m g n") 'markdown-outline-next)
