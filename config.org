@@ -829,12 +829,30 @@
       (use-package dockerfile-mode
 	:ensure t)
     #+END_SRC
-*** Typescript mode
+*** TODO Typescript mode
 
     #+BEGIN_SRC emacs-lisp
       (use-package typescript-mode
 	:ensure t)
+
+      (use-package tide
+	:after (typescript-mode company flycheck)
+	:ensure t
+	:config
+	(evil-define-key 'normal tide-mode-map (kbd "SPC m g d") 'tide-jump-to-definition)
+	(evil-define-key 'normal tide-mode-map (kbd "SPC m r .") 'tide-refactor)
+	(evil-define-key 'normal tide-mode-map (kbd "SPC m r r") 'tide-rename-symbol)
+	:hook
+	((before-save . tide-format-before-save)
+	 (typescript-mode . tide-setup)))
+
     #+END_SRC
+*** TODO Flycheck mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flycheck
+    :ensure t)
+#+END_SRC
 *** LSP-mode
 
     #+BEGIN_SRC emacs-lisp
