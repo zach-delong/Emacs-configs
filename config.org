@@ -71,6 +71,48 @@
      (eval-when-compile
        (require 'use-package))
    #+END_SRC
+
+*** A brief introduction to use-package
+
+Use package has a ton of options that I frequently forget how to use,
+so I want to explain a few of them here for future reference. One of
+the big benefits is that nothing is loaded by `use-package` until a
+provided feature is actually requested. This means that you can defer
+configuration easily!
+
+**** Basic use-package and ensure
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (use-package evil
+    :ensure t)
+#+END_SRC
+When you include a package via `use-package` you simply specify the
+name of the package. That will look at your load-path and try to find
+a package that matches the name you've listed. This doesn't actually
+install anything! It just looks at what is already installed and set
+up on your load path. If you would like `use-package` to actually load
+packages from your package archive(s) for you, you can provide the
+`:ensure` option. By default this will cause it to load using
+`package.el`, but I have heard that you can also use straight.el as
+well.
+
+**** Configuring things
+
+In general, it's not a good idea to assume that a package is always
+loaded. If you want to set things up only when a given package is
+actually loaded, do your configuration in the `:config` section of
+the use-package instance
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (use-package evil
+    :ensure t
+    :config
+    (format "Hello, world this should only show up when evil is actually loaded"))
+#+END_SRC
+
+You can also use the `:init` block if you want it to happen before the
+package is loaded.
+
 * Configuration
   
   This is where the meat-and-potatoes of my configuratoin will live.
