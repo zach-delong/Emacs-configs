@@ -114,7 +114,7 @@ You can also use the `:init` block if you want it to happen before the
 package is loaded.
 
 * Configuration
-  
+
   This is where the meat-and-potatoes of my configuratoin will live.
   
 ** Utilities
@@ -1032,6 +1032,16 @@ I also don't like the cursor blinking like a terminal from the 60s
 
 #+BEGIN_SRC emacs-lisp
   (blink-cursor-mode -1)
+#+END_SRC
+
+I also like having the line the cursor is currently on hilighted a
+different color to make it easier to see. I have this turned on only
+for things that inherit ~prog-mode~ because it helps keep the line
+highlighting when writing prose.
+
+#+BEGIN_SRC emacs-lisp
+  (let ((hl-line-hooks '(text-mode-hook prog-mode-hook)))
+    (mapc (lambda (hook) (add-hook hook 'hl-line-mode)) hl-line-hooks))
 #+END_SRC
 * Sources
 
