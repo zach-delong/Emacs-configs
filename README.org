@@ -28,3 +28,8 @@
    this?][config.org]].
   That file, apart from containing the actual code, also has an
   explanation of what/why.
+
+  You also might want to look at the ~early-init.el~ file. [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Early-Init-File.html][Emacs loads
+  this file before loading the package system and long before loading]]
+  ~init.el~, so there are some things in there to speed up startup and
+  configure things before the main init file loads.

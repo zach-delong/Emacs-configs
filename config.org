@@ -116,16 +116,7 @@ package is loaded.
 * Configuration
   
   This is where the meat-and-potatoes of my configuratoin will live.
-** Variables
 
-   In this section, I set global settings that are specific to native
-   emacs, rather than to a particular package.
-
-   #+BEGIN_SRC emacs-lisp
-     (tool-bar-mode -1)
-     (menu-bar-mode -1)
-     (scroll-bar-mode -1)
-   #+END_SRC
 ** Utilities
 
 *** Insert file name

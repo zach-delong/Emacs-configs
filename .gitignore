@@ -20,3 +20,4 @@ session.*
 /eln-cache/
 /url/
 /projects
+/early-config.el
