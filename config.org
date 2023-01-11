@@ -155,6 +155,19 @@ package is loaded.
 	(interactive)
 	(switch-to-buffer "*scratch*"))
     #+END_SRC
+
+*** Global auto revert
+
+In most modern editors, when a file changes on disk, the editor warns
+you or even automatically reads the file on disk! This is really
+useful if you, for example, run a git pull, or have a file system sync
+tool like Dropbox. This should enable just such a feature that is
+built into most modern Emacs.
+
+#+BEGIN_SRC emacs-lisp
+  (setq auto-revert-check-vc-info t)
+  (global-auto-revert-mode)
+#+END_SRC 
 ** Local configuration
 
    This file is set up only so that you can set any local variables
