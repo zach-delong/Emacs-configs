@@ -1043,6 +1043,17 @@ highlighting when writing prose.
   (let ((hl-line-hooks '(text-mode-hook prog-mode-hook)))
     (mapc (lambda (hook) (add-hook hook 'hl-line-mode)) hl-line-hooks))
 #+END_SRC
+
+*** Fonts
+
+Fonts are a complicated topic and I expect this section to change
+quite a lot.  I happen to really like the Spacemacs font
+(SourceCodePro) which is an adobe font.
+
+#+BEGIN_SRC  emacs-lisp
+  (set-frame-font "Source Code Pro 12" )
+#+END_SRC
+
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
