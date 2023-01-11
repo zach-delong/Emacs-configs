@@ -1021,6 +1021,7 @@ I need a convenient way to remember "the current project"
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
+  + [[https://git.sr.ht/~ashton314/emacs-bedrock][Emacs Bedrock]]
 * Notes
 ** Backtick and comma notation
 
