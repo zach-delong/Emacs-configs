@@ -116,7 +116,7 @@ package is loaded.
 * Configuration
   
   This is where the meat-and-potatoes of my configuratoin will live.
-
+  
 ** Utilities
 
 *** Insert file name
@@ -1018,6 +1018,21 @@ I need a convenient way to remember "the current project"
      (setq auto-save-file-name-transforms
 	   `((".*" ,(concat user-emacs-directory "saves/") t)))
    #+END_SRC
+
+** Visual changes
+
+I like being able to see when I am looking at the first or last line
+in a buffer. This should show that in the margin around the buffer.
+
+#+BEGIN_SRC emacs-lisp
+  (setq-default indicate-buffer-boundaries 'left)
+#+END_SRC
+
+I also don't like the cursor blinking like a terminal from the 60s
+
+#+BEGIN_SRC emacs-lisp
+  (blink-cursor-mode -1)
+#+END_SRC
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
