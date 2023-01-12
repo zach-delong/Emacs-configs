@@ -1051,7 +1051,7 @@ quite a lot.  I happen to really like the Spacemacs font
 (SourceCodePro) which is an adobe font.
 
 #+BEGIN_SRC  emacs-lisp
-  (set-frame-font "Source Code Pro 12" )
+  (set-frame-font "Source Code Pro 12" nil t)
 #+END_SRC
 
 * Sources
