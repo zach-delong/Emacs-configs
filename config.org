@@ -747,6 +747,19 @@ built into most modern Emacs.
 	 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
      #+END_SRC
 
+**** org rifle
+
+[[https://github.com/alphapapa/org-rifle][Org rifle]] is a plugin for searching your org headers/body.
+
+#+BEGIN_SRC emacs-lisp
+    (use-package helm-org-rifle
+      :ensure t
+      :config
+      (evil-global-set-key 'normal (kbd "SPC a o r r") 'helm-org-rifle)
+      (evil-global-set-key 'normal (kbd "SPC a o r a") 'helm-org-rifle-agenda-files)
+      (evil-global-set-key 'normal (kbd "SPC a o r o") 'helm-org-rifle-org-directory))
+#+END_SRC
+
 *** Editorconfig
     
     Editorconfig is a standard for keeping code editing settings in
