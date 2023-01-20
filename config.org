@@ -754,11 +754,12 @@ org headers/body. I primarily just use it to find tasks/notes in
 either my org-directory or in my agenda (a smaller list).
 
 #+BEGIN_SRC emacs-lisp
-    (use-package org-ql
-      :ensure t
-      :config
-      (evil-global-set-key 'normal (kbd "SPC a o s d") 'org-ql-find-in-org-directory)
-      (evil-global-set-key 'normal (kbd "SPC a o s a") 'org-ql-find-in-agenda))
+  (use-package org-ql
+    :ensure t
+    :config
+    (evil-global-set-key 'normal (kbd "SPC a o s d") 'org-ql-find-in-org-directory)
+    (evil-global-set-key 'normal (kbd "SPC a o s a") 'org-ql-find-in-agenda)
+    (evil-global-set-key 'normal (kbd "SPC a o s f") 'org-ql-find))
 #+END_SRC
 
 *** Editorconfig
