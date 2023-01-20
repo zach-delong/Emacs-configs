@@ -747,17 +747,18 @@ built into most modern Emacs.
 	 (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
      #+END_SRC
 
-**** org rifle
+**** org-ql 
 
-[[https://github.com/alphapapa/org-rifle][Org rifle]] is a plugin for searching your org headers/body.
+[[https://github.com/alphapapa/org-ql][Org-ql]], similar to the older [[https://github.com/alphapapa/org-rifle][org-rifle]],is a plugin for searching your
+org headers/body. I primarily just use it to find tasks/notes in
+either my org-directory or in my agenda (a smaller list).
 
 #+BEGIN_SRC emacs-lisp
-    (use-package helm-org-rifle
+    (use-package org-ql
       :ensure t
       :config
-      (evil-global-set-key 'normal (kbd "SPC a o r r") 'helm-org-rifle)
-      (evil-global-set-key 'normal (kbd "SPC a o r a") 'helm-org-rifle-agenda-files)
-      (evil-global-set-key 'normal (kbd "SPC a o r o") 'helm-org-rifle-org-directory))
+      (evil-global-set-key 'normal (kbd "SPC a o s d") 'org-ql-find-in-org-directory)
+      (evil-global-set-key 'normal (kbd "SPC a o s a") 'org-ql-find-in-agenda))
 #+END_SRC
 
 *** Editorconfig
