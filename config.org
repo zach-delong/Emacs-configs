@@ -846,7 +846,14 @@ either my org-directory or in my agenda (a smaller list).
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m i t c") 'markdown-table-insert-column)
 
 	(evil-define-key 'normal markdown-mode-map (kbd "SPC m s h") 'markdown-promote)
-	(evil-define-key 'normal markdown-mode-map (kbd "SPC m s l") 'markdown-demote))
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m s l") 'markdown-demote)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m S h") 'markdown-toggle-markup-hiding)
+
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m p") 'markdown-live-preview-mode)
+
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m e e") 'markdown-export)
+	(evil-define-key 'normal markdown-mode-map (kbd "SPC m e p") 'markdown-export-and-preview)
+	(markdown-toggle-markup-hiding 1))
     #+END_SRC
 *** Python mode
 
