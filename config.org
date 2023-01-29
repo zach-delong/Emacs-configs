@@ -817,7 +817,7 @@ either my org-directory or in my agenda (a smaller list).
 	:config
 	(zettelkasten-mode 1))
     #+END_SRC
-*** TODO Markdown-mode
+*** Markdown-mode
 
     I use Markdown for quite a lot, so I need a markdown mode. This
     one could probably be configured more.
