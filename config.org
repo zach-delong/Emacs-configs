@@ -1012,6 +1012,19 @@ I need a convenient way to remember "the current project"
 
 #+END_SRC
 
+*** Flyspell mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package flyspell
+    :ensure t
+    :hook
+    ((prog-mode . flyspell-prog-mode)
+     (text-mode . flyspell-mode))
+    :config
+    (evil-global-set-key 'normal (kbd "SPC s c") 'flyspell-correct-word-before-point)
+    (evil-global-set-key 'normal (kbd "SPC s b") 'flyspell-buffer))
+#+END_SRC
+
 ** Backups
 
     Emacs keeps backups of files that you have open in case something
