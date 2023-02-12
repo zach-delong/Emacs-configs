@@ -790,6 +790,7 @@ either my org-directory or in my agenda (a smaller list).
 	:ensure t
 	:config
 	(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+	(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
 	(evil-define-key 'normal web-mode-map (kbd "SPC m <tab>") 'web-mode-fold-or-unfold)
 	(evil-define-key 'normal web-mode-map (kbd "SPC m i l") 'web-mode-file-link)
 	(evil-define-key 'normal web-mode-map (kbd "SPC m g t") 'web-mode-navigate)
