@@ -2,13 +2,11 @@
 * What is this?
 
   This literate file rep literate programming to make it easier to document the strange and arcane things that I sometimes have to do while learning more about Emacs. Hopefully this makes it easier to maintain and change in the future.
+  
 
 * Pre-configuration
 
-  Before I actually configure anything interesting, I need to do
-  certain things (like install use-package). In this section, do not
-  assume that anything has been installed, but configure things that
-  are generic (at least in theory) to any configuration of Emacs.
+  Before I actually configure anything interesting, I need to do  certain things (like install use-package). In this section, do not  assume that anything has been installed, but configure things that  are generic (at least in theory) to any configuration of Emacs.
 
 ** package.el
 
@@ -1040,6 +1038,12 @@ said I would like it to turn on in org-mode and in markdown-mode.
 #+BEGIN_SRC emacs-lisp
   (use-package visual-line-mode
     :hook (text-mode . visual-line-mode))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp
+  (use-package adaptive-wrap
+    :ensure t
+    :hook (text-mode . adaptive-wrap-prefix-mode))
 #+END_SRC
 ** Backups
 
