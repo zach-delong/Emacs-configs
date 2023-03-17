@@ -1,10 +1,7 @@
 #+TITLE: Emacs Configuration
 * What is this?
 
-  This literate file rep literate programming to make it easier to document the
-  strange and arcane things that I sometimes have to do while learning
-  more about Emacs. Hopefully this makes it easier to maintain and
-  change in the future.
+  This literate file rep literate programming to make it easier to document the strange and arcane things that I sometimes have to do while learning more about Emacs. Hopefully this makes it easier to maintain and change in the future.
 
 * Pre-configuration
 
@@ -1034,7 +1031,6 @@ look decent on my mobile devices.
 #+BEGIN_SRC emacs-lisp
   (use-package visual-fill-column
     :ensure t
-    :after visual-line-mode
     :hook (visual-line-mode . visual-fill-column-mode))
 #+END_SRC
 
@@ -1043,7 +1039,7 @@ said I would like it to turn on in org-mode and in markdown-mode.
 
 #+BEGIN_SRC emacs-lisp
   (use-package visual-line-mode
-    :hook (text-mode . visual-fill-column-mode))
+    :hook (text-mode . visual-line-mode))
 #+END_SRC
 ** Backups
 
