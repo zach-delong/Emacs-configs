@@ -295,7 +295,7 @@ built into most modern Emacs.
      #+BEGIN_SRC emacs-lisp
        (use-package company
 	 :ensure t
-	 :hook (after-init . global-company-mode)
+	 :hook (prog-mode . company-mode)
 	 :config
 	 (setq company-idle-delay 0)
 	 (setq company-minimum-prefix-length 1)
