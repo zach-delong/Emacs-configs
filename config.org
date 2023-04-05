@@ -235,7 +235,7 @@ built into most modern Emacs.
 
      #+BEGIN_SRC emacs-lisp
        (use-package evil-collection
-	 :after evil
+	 :after (evil magit)
 	 :ensure t
 	 :config
 	 (evil-collection-init))
