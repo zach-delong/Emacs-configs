@@ -195,6 +195,7 @@ built into most modern Emacs.
 	 (evil-global-set-key 'normal (kbd "SPC <S-tab>") 'next-buffer) ; this works on Windows
 	 (evil-global-set-key 'normal (kbd "SPC <backtab>") 'next-buffer) ; this works on Linux
 	 (evil-global-set-key 'normal (kbd "SPC f s") 'save-buffer)
+	 (evil-global-set-key 'normal (kbd "SPC f S") 'evil-write-all)
 	 (evil-global-set-key 'normal (kbd "SPC f y") 'evil-yank-file-name)
 	 (evil-global-set-key 'normal (kbd "SPC l l") 'eval-last-sexp)
 	 (evil-global-set-key 'normal (kbd "SPC l L") 'eval-print-last-sexp)
