@@ -387,7 +387,7 @@ built into most modern Emacs.
 	(evil-global-set-key 'normal (kbd "SPC g s") 'magit-status))
     #+END_SRC
 *** Org mode
-    
+
 **** TODO Temporary org mode config block
 
      I stole this from my old config and just threw it in a function
@@ -676,7 +676,7 @@ built into most modern Emacs.
 
 ***** inserting blocks
 
-I borrowed this from a blog post
+I borrowed this [[https://www.handsonprogramming.io/blog/2021/12/source-block/][from a blog post]] and adapted it for my needs.
 
 #+BEGIN_SRC emacs-lisp
   (defun org-insert-src-block (src-code-type)
