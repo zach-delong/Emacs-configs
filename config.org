@@ -784,6 +784,21 @@ either my org-directory or in my agenda (a smaller list).
     (evil-global-set-key 'normal (kbd "SPC a o s f") 'org-ql-find))
 #+END_SRC
 
+**** org-pomodoro
+
+[[https://github.com/marcinkoziej/org-pomodoro][Org pomodoro]] is a tool for doing the [[https://en.wikipedia.org/wiki/Pomodoro_Technique][pomodoro technique]] in Emacs org mode.
+
+
+#+BEGIN_SRC emacs-lisp
+  (use-package org-pomodoro
+    :ensure t
+    :after org
+    :config
+    (evil-define-key 'normal org-mode-map (kbd "SPC m C p") 'org-pomodoro)
+    (evil-define-key 'motion org-agenda-mode-map (kbd "c p") 'org-pomodoro))
+
+#+END_SRC
+
 *** Editorconfig
     
     Editorconfig is a standard for keeping code editing settings in
