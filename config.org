@@ -674,6 +674,36 @@ built into most modern Emacs.
 
       #+END_SRC
 
+***** inserting blocks
+
+I borrowed this from a blog post
+
+#+BEGIN_SRC emacs-lisp
+  (defun org-insert-src-block (src-code-type)
+    "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
+    (interactive
+     (let ((src-code-types
+	    '(
+	      "emacs-lisp"
+	      "python"
+	      "C"
+	      "sh"
+	      "js" 
+	      "sql" 
+	      "latex"
+	      "lisp"
+	      "org" 
+	      "scheme" )))
+       (list (ido-completing-read "Source code type: " src-code-types))))
+    (progn
+      (newline-and-indent)
+      (insert (format "#+BEGIN_SRC %s\n" src-code-type))
+      (newline-and-indent)
+      (insert "#+END_SRC\n")
+      (previous-line 2)
+      (org-edit-src-code)))
+#+END_SRC
+
 **** Require package
 
     #+BEGIN_SRC emacs-lisp
@@ -705,6 +735,7 @@ built into most modern Emacs.
 	(evil-define-key 'normal org-mode-map (kbd "SPC m i T t") 'org-table-create)
 	(evil-define-key 'normal org-mode-map (kbd "SPC m i T r") 'org-table-insert-row)
 	(evil-define-key 'normal org-mode-map (kbd "SPC m i T c") 'org-table-insert-column)
+	(evil-define-key 'normal org-mode-map (kbd "SPC m i s") 'org-insert-src-block)
 
 	(evil-define-key 'normal org-mode-map (kbd "SPC m <return>") 'org-open-at-point)
 
