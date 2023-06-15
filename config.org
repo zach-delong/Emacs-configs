@@ -3,7 +3,6 @@
 
   This literate file rep literate programming to make it easier to document the strange and arcane things that I sometimes have to do while learning more about Emacs. Hopefully this makes it easier to maintain and change in the future.
   
-
 * Pre-configuration
 
   Before I actually configure anything interesting, I need to do  certain things (like install use-package). In this section, do not  assume that anything has been installed, but configure things that  are generic (at least in theory) to any configuration of Emacs.
