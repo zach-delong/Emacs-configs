@@ -191,6 +191,7 @@ built into most modern Emacs.
 	 (evil-mode 1)
 
 	 (evil-set-leader '(motion normal visual) (kbd "SPC"))
+	 (evil-set-leader '(motion normal visual) (kbd "<leader> m") t)
 
 	 (evil-global-set-key 'normal (kbd "<leader> SPC") 'execute-extended-command)
 
@@ -714,33 +715,33 @@ I borrowed this [[https://www.handsonprogramming.io/blog/2021/12/source-block/][
 	:ensure t
 	:config
 	(org-variables-config)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m d s") 'org-schedule)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m d d") 'org-deadline)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> d s") 'org-schedule)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> d d") 'org-deadline)
 
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m s r") 'org-refile)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m s n") 'org-narrow-to-subtree)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m s a") 'org-archive-subtree-default)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m s w") 'widen)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m s h") 'org-promote)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m s l") 'org-demote)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s r") 'org-refile)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s n") 'org-narrow-to-subtree)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s a") 'org-archive-subtree-default)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s w") 'widen)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s h") 'org-promote)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s l") 'org-demote)
 
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m p") 'org-priority)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> p") 'org-priority)
 
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m C i") 'org-clock-in)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m C o") 'org-clock-out)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> C i") 'org-clock-in)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> C o") 'org-clock-out)
 
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m T T") 'org-todo)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m b t") 'org-babel-tangle)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> T T") 'org-todo)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> b t") 'org-babel-tangle)
 
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m i l") 'org-insert-link)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m i i") 'org-insert-item)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m i t") 'org-set-tags-command)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m i T t") 'org-table-create)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m i T r") 'org-table-insert-row)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m i T c") 'org-table-insert-column)
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m i s") 'org-insert-src-block)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i l") 'org-insert-link)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i i") 'org-insert-item)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i t") 'org-set-tags-command)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i T t") 'org-table-create)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i T r") 'org-table-insert-row)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i T c") 'org-table-insert-column)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i s") 'org-insert-src-block)
 
-	(evil-define-key 'normal org-mode-map (kbd "<leader> m <return>") 'org-open-at-point)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> <return>") 'org-open-at-point)
 
 	(evil-define-key 'edit 'org-mode-map (kbd "<M-return>") 'org-insert-item)
 
@@ -797,7 +798,7 @@ either my org-directory or in my agenda (a smaller list).
     :ensure t
     :after org
     :config
-    (evil-define-key 'normal org-mode-map (kbd "<leader> m C p") 'org-pomodoro)
+    (evil-define-key 'normal org-mode-map (kbd "<localleader> C p") 'org-pomodoro)
     (evil-define-key 'motion org-agenda-mode-map (kbd "c p") 'org-pomodoro))
 
 #+END_SRC
@@ -830,11 +831,11 @@ either my org-directory or in my agenda (a smaller list).
 	:config
 	(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 	(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-	(evil-define-key 'normal web-mode-map (kbd "<leader> m <tab>") 'web-mode-fold-or-unfold)
-	(evil-define-key 'normal web-mode-map (kbd "<leader> m i l") 'web-mode-file-link)
-	(evil-define-key 'normal web-mode-map (kbd "<leader> m g t") 'web-mode-navigate)
-	(evil-define-key 'normal web-mode-map (kbd "<leader> m g j") 'web-mode-tag-next)
-	(evil-define-key 'normal web-mode-map (kbd "<leader> m g k") 'web-mode-tag-previous))
+	(evil-define-key 'normal web-mode-map (kbd "<localleader> <tab>") 'web-mode-fold-or-unfold)
+	(evil-define-key 'normal web-mode-map (kbd "<localleader> i l") 'web-mode-file-link)
+	(evil-define-key 'normal web-mode-map (kbd "<localleader> g t") 'web-mode-navigate)
+	(evil-define-key 'normal web-mode-map (kbd "<localleader> g j") 'web-mode-tag-next)
+	(evil-define-key 'normal web-mode-map (kbd "<localleader> g k") 'web-mode-tag-previous))
     #+END_SRC
 *** Zettelkasten
 
@@ -867,33 +868,33 @@ either my org-directory or in my agenda (a smaller list).
       (use-package markdown-mode
 	:ensure t
 	:config
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m <return>") 'markdown-do)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m g f") 'markdown-outline-next-same-level)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m g b") 'markdown-outline-previous-same-level)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m g n") 'markdown-outline-next)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m g p") 'markdown-outline-previous)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m g u") 'markdown-outline-up)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> <return>") 'markdown-do)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> g f") 'markdown-outline-next-same-level)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> g b") 'markdown-outline-previous-same-level)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> g n") 'markdown-outline-next)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> g p") 'markdown-outline-previous)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> g u") 'markdown-outline-up)
 
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m i f") 'markdown-insert-footnote)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m i w") 'markdown-insert-wiki-link)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m i i") 'markdown-insert-image)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m i l") 'markdown-insert-link)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m i H") 'markdown-insert-hr)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m i h 1") 'markdown-insert-header-atx-1)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m i h 2") 'markdown-insert-header-atx-2)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m i h 3") 'markdown-insert-header-atx-3)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m i t t") 'markdown-insert-table)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m i t r") 'markdown-table-insert-row)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m i t c") 'markdown-table-insert-column)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i f") 'markdown-insert-footnote)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i w") 'markdown-insert-wiki-link)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i i") 'markdown-insert-image)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i l") 'markdown-insert-link)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i H") 'markdown-insert-hr)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 1") 'markdown-insert-header-atx-1)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 2") 'markdown-insert-header-atx-2)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 3") 'markdown-insert-header-atx-3)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t t") 'markdown-insert-table)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t r") 'markdown-table-insert-row)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t c") 'markdown-table-insert-column)
 
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m s h") 'markdown-promote)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m s l") 'markdown-demote)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m S h") 'markdown-toggle-markup-hiding)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> s h") 'markdown-promote)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> s l") 'markdown-demote)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> S h") 'markdown-toggle-markup-hiding)
 
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m p") 'markdown-live-preview-mode)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> p") 'markdown-live-preview-mode)
 
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m e e") 'markdown-export)
-	(evil-define-key 'normal markdown-mode-map (kbd "<leader> m e p") 'markdown-export-and-preview)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> e e") 'markdown-export)
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> e p") 'markdown-export-and-preview)
 	(markdown-toggle-markup-hiding 1))
     #+END_SRC
 *** Python mode
@@ -948,9 +949,9 @@ either my org-directory or in my agenda (a smaller list).
 	:after (typescript-mode company flycheck)
 	:ensure t
 	:config
-	(evil-define-key 'normal tide-mode-map (kbd "<leader> m g d") 'tide-jump-to-definition)
-	(evil-define-key 'normal tide-mode-map (kbd "<leader> m r .") 'tide-refactor)
-	(evil-define-key 'normal tide-mode-map (kbd "<leader> m r r") 'tide-rename-symbol)
+	(evil-define-key 'normal tide-mode-map (kbd "<localleader> g d") 'tide-jump-to-definition)
+	(evil-define-key 'normal tide-mode-map (kbd "<localleader> r .") 'tide-refactor)
+	(evil-define-key 'normal tide-mode-map (kbd "<localleader> r r") 'tide-rename-symbol)
 	:hook
 	((before-save . tide-format-before-save)
 	 (typescript-mode . tide-setup)))
@@ -969,7 +970,7 @@ either my org-directory or in my agenda (a smaller list).
 	:after evil
 	:ensure t
 	:init
-	(evil-define-key 'normal lsp-mode-map (kbd "<leader> m") lsp-command-map)
+	(evil-define-key 'normal lsp-mode-map (kbd "<localleader>") lsp-command-map)
 	:hook
 	((csharp-mode . lsp)
 	 (lsp-mode . lsp-enable-which-key-integration))
