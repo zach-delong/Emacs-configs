@@ -1221,6 +1221,7 @@ quite a lot.  I happen to really like the Spacemacs font
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
   + [[https://git.sr.ht/~ashton314/emacs-bedrock][Emacs Bedrock]]
+  + [[https://sachachua.com/blog/][Sachachua's blog]] 
 * Notes
 ** Backtick and comma notation
 
