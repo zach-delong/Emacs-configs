@@ -391,7 +391,6 @@ built into most modern Emacs.
 	(evil-global-set-key 'normal (kbd "<leader> g s") 'magit-status))
     #+END_SRC
 *** Org mode
-
 **** TODO Temporary org mode config block
 
      I stole this from my old config and just threw it in a function
