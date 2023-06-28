@@ -231,6 +231,29 @@ built into most modern Emacs.
 	 )
      #+END_SRC
 
+***** Evil init
+:PROPERTIES:
+:header-args: :noweb-ref evil-init-config
+:END:
+
+This section will be inserted into my use-package definition in the ~:init~ block, so it's executed before evil mode is loaded.
+
+****** TODO keybindings?
+
+I am really not sure why this is here. It appears to have to do with [[*Evil-collection][evil-collection]]. I should come back to this and figure out what it is doing.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setq evil-want-keybinding nil)
+#+END_SRC
+
+****** Scrolling keybindings
+
+There are some keybindings where Emacs native and Evil-mode keybindings clash. Control + U is one of them. In Emacs, C-u is a prefix binding that lets you provide parameters to other commands, but in normal mode in Vim, C-u is page down. I prefer that it behave like Vim, which this should do
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setq evil-want-C-u-scroll t)
+#+END_SRC
+
 **** Evil-collection
 
      We also want to use [[https://github.com/emacs-evil/evil-collection][`evil-collection`]] to set up things for
