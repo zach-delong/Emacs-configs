@@ -176,17 +176,16 @@ built into most modern Emacs.
 ** Packages
 *** Evil-mode
 
-    Evil mode is the vim emulation layer.  I am using use-package to
+    [[https://github.com/emacs-evil/evil][Evil mode]] is the vim emulation layer.  I am using use-package to
     install and enable it. 
     
 **** Evil itself
 
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :noweb yes
        (use-package evil
 	 :ensure t
 	 :init
-	 (setq evil-want-keybinding nil)
-	 (setq evil-want-C-u-scroll t)
+	 <<evil-init-config>>
 	 :config
 	 (evil-mode 1)
 
