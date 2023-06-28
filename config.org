@@ -391,18 +391,23 @@ built into most modern Emacs.
 	(evil-global-set-key 'normal (kbd "<leader> g s") 'magit-status))
     #+END_SRC
 *** Org mode
-**** TODO Temporary org mode config block
-
-     I stole this from my old config and just threw it in a function
-     so it doesn't junk things up. Now I need to work on refactoring
-     it.
-     
-***** Org mode agenda files
+**** Various org mode configuration
+:PROPERTIES:
+:header-args: :noweb-ref org-variables-config
+:END:
       
+***** Variable tweaks for Org mode
+
+There are a ton of options for org mode and I only use a very small number of them. Here I attempt to organize my config into subsections that can be tangled elsewhere using ~noweb~.
+
+Notice the properties on this header. It means that all the source blocks below this header will have that name, so we can reference them all at once. 
+
+******* Set up org agenda files
+
       Note, you will probably want to override these variables in your
       local config.
       
-      #+BEGIN_SRC emacs-lisp 
+      #+BEGIN_SRC emacs-lisp :tangle no
 	(defvar org-directory nil) ; Set this in your local.org file!
 	(defvar org-jira-link "") ; Set this in your local.org file!
       #+END_SRC
@@ -411,7 +416,7 @@ built into most modern Emacs.
       are. I'm going to wind up using these all over the place, so I
       am going to define them all together
 
-      #+BEGIN_SRC emacs-lisp
+      #+BEGIN_SRC emacs-lisp :tangle no
 	(setq todo-org "todo.org")
 	(setq professional-org "professional.org")
 	(setq personal-org "personal.org")
@@ -430,12 +435,12 @@ built into most modern Emacs.
       the path to my org files to them. To enable that, we should
       write a handly little method
       
-      #+BEGIN_SRC emacs-lisp
+      #+BEGIN_SRC emacs-lisp :tangle no
 	(defun org-concat-org-directory (fileName)
 	  (concat org-directory fileName))
       #+END_SRC
       
-      #+BEGIN_SRC emacs-lisp 
+      #+BEGIN_SRC emacs-lisp :tangle no
 	(defun setup-org-agenda-files ()
 	  (add-to-list 'org-agenda-files (org-concat-org-directory todo-org))
 	  (add-to-list 'org-agenda-files (org-concat-org-directory professional-org))
@@ -448,29 +453,14 @@ built into most modern Emacs.
 	  (add-to-list 'org-agenda-files (org-concat-org-directory interruption-org))
 	  (add-to-list 'org-agenda-files (org-concat-org-directory contact-log-org)))
       #+END_SRC
-      
-***** Org datetree functions
 
-      I have two custom date-tree functions that I wrote to make
-      capture templates easier to work with. These were based on [[https://emacs.stackexchange.com/questions/48414/monthly-date-tree][this]].
-      
-      First up, this tree is a "datetree" only to the month.
-      #+BEGIN_SRC emacs-lisp
-	(defun org-month-datetree()
-	  (org-datetree-find-date-create (calendar-current-date))
-	  ;; Kill the line because this date tree will involve a subheading for the week
-	  (kill-line))
-      #+END_SRC
-      
-      Next up, a date tree th a week
-      #+BEGIN_SRC emacs-lisp
-	(defun org-week-datetree()
-	  (org-datetree-find-iso-week-create (calendar-current-date))
-	  ;; Kill the line because this date tree will involve a subheading for the day
-	  (kill-line))
-      #+END_SRC
+The I have a number of files defined elsewhere. This function should take all those file names and append them into whatever org-directory the system has set up.
 
-***** Capture templates
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setup-org-agenda-files)
+#+END_SRC
+
+******* Configure capture templates
 
       In this section, I define a bunch of lists that represent
       capture templates. Normally, one would have one large list that
@@ -480,7 +470,7 @@ built into most modern Emacs.
       subtletly, though, because a capture template needs to be in a
       form like this:
 
-      #+BEGIN_SRC emacs-lisp :tangle no
+      #+BEGIN_SRC emacs-lisp :tangle no 
 	`("t" ; A "key" to use as a hotkey in the template selection UI
 	  "Todo" ; A description for the template
 	  entry ; A type, usually entry
@@ -495,12 +485,12 @@ built into most modern Emacs.
       (concat ...))~ line will cause things to not evaluate correctly,
       so we have to make use of [[*Backtick and comma notation][backtick and comma notation]].
 
-****** Todo template
+******** Todo template
 
        This template is just a simple TODO template that drops things
        in my inbox file.
 
-       #+BEGIN_SRC emacs-lisp
+       #+BEGIN_SRC emacs-lisp :tangle no
 	 (setq org-todo-capture-template
 	       `("t"
 		 "Todo"
@@ -509,13 +499,13 @@ built into most modern Emacs.
 		 "* TODO %?\n  %i\n  %a"))
        #+END_SRC
        
-****** Interruption template
+******** Interruption template
 
        This template is to note times that I am interrupted by
        something unexpected. I mostly use these entries to track time
        and see where I am getting interrupted at work.
 
-       #+BEGIN_SRC emacs-lisp
+       #+BEGIN_SRC emacs-lisp :tangle no
 	 (setq org-interruption-capture-template
 	       `("i"
 		 "interruption"
@@ -524,7 +514,7 @@ built into most modern Emacs.
 		 "* Interrupted by %?\n%t"))
        #+END_SRC
        
-****** Note template
+******** Note template
 
        All of my notes start off as "notes to self" in my notes
        file. I regularly prune that section to store things that I
@@ -533,7 +523,7 @@ built into most modern Emacs.
        future just redirect this to drop things right in my normal
        inbox file.
 
-       #+BEGIN_SRC emacs-lisp
+       #+BEGIN_SRC emacs-lisp :tangle no
 	 (setq org-note-capture-template
 	       `("n"
 		 "Note to self"
@@ -542,7 +532,7 @@ built into most modern Emacs.
 		 "* %?\nEntered on %U\n  %i\n  %a"))
        #+END_SRC
 
-****** Contact template
+******** Contact template
 
        The contact template helps me track important interractions
        that I have.  I use this file sort of like a personal CRM so
@@ -550,7 +540,7 @@ built into most modern Emacs.
        what my last meaningful interaction with them was. I only use
        this for professional contact.
 
-       #+BEGIN_SRC emacs-lisp
+       #+BEGIN_SRC emacs-lisp :tangle no
 	 (setq org-contact-capture-template
 	       `("c"
 		 "contact"
@@ -565,7 +555,7 @@ built into most modern Emacs.
 						   :END:"))
        #+END_SRC
 
-****** One on one template
+******** One on one template
      
        I have regular one on one meetings with people, both as a
        mentor and to get mentoring. As such, I often need to keep
@@ -573,7 +563,7 @@ built into most modern Emacs.
        given week. This template generates a note in a "weekly
        datetree" for each of those conversations.
 
-       #+BEGIN_SRC emacs-lisp
+       #+BEGIN_SRC emacs-lisp :tangle no
 	  (setq org-one-on-one-capture-template
 		`("wo"
 		  "one on one topics"
@@ -582,7 +572,7 @@ built into most modern Emacs.
 		 "*** %?")) ; note the 3 asterisks.  Would be nice to figure out how to do that without but eh.
        #+END_SRC
 
-****** Query template
+******** Query template
 
        I write a lot of SQL queries.  Sometimes this is a migration to
        set up data for a new enhancement, and sometimes it's a one-off
@@ -591,7 +581,7 @@ built into most modern Emacs.
        flexible field that could mean anything) and saves it in my
        inbox so I can archive it for reference later.
 
-       #+BEGIN_SRC emacs-lisp
+       #+BEGIN_SRC emacs-lisp :tangle no
 	  (setq org-query-capture-template
 		`("wQ"
 		  "Datebase Query"
@@ -608,7 +598,7 @@ built into most modern Emacs.
 					  "))
        #+END_SRC
 
-****** Jira ticket
+******** Jira ticket
 
        I work on projects that use Jira a lot, so often I find myself
        wanting to keep track of a ticket. Jira boards are nice, but my
@@ -617,7 +607,7 @@ built into most modern Emacs.
        instance.  Just make sure ~org-jira-link~ is set prior to
        running this template.
 
-       #+BEGIN_SRC emacs-lisp
+       #+BEGIN_SRC emacs-lisp :tangle no
 	  (setq org-jira-ticket-capture-template
 		`("wj"
 		 "Jira ticket"
@@ -627,7 +617,7 @@ built into most modern Emacs.
 					  [[" org-jira-link "%^{ticket}][%\\1]]")))
        #+END_SRC
 
-****** Meeting capture template
+******** Meeting capture template
 
        I am in a lot of meetings. I also often fail to remember
        things. this capture template will create a new entry in the
@@ -635,7 +625,7 @@ built into most modern Emacs.
        easier for me to find meetings if I know about when they
        happened.
 
-       #+BEGIN_SRC emacs-lisp
+       #+BEGIN_SRC emacs-lisp :tangle no
 	  (setq org-meeting-minute-capture-template
 		`("wm"
 		  "Meeting notes"
@@ -643,23 +633,6 @@ built into most modern Emacs.
 		  (file+datetree ,(concat org-directory meetings-org))
 		  "* %?\n%U\n"))
        #+END_SRC
-
-***** Variable tweaks for Org mode
-:PROPERTIES:
-:header-args: :noweb-ref org-variables-config
-:END:
-
-There are a ton of options for org mode and I only use a very small number of them. Here I attempt to organize my config into subsections that can be tangled elsewhere using ~noweb~.
-
-Notice the properties on this header. It means that all the source blocks below this header will have that name, so we can reference them all at once. 
-
-******* Set up org agenda files
-
-The I have a number of files defined elsewhere. This function should take all those file names and append them into whatever org-directory the system has set up.
-
-#+BEGIN_SRC emacs-lisp :tangle no
-  (setup-org-agenda-files)
-#+END_SRC
 
 ******* Set capture templates
 
@@ -724,12 +697,32 @@ I have had some issues with different apps logging repeating tasks and I don't u
   (setq org-log-repeat nil)
 #+END_SRC
 
+***** Org datetree functions
+
+      I have two custom date-tree functions that I wrote to make
+      capture templates easier to work with. These were based on [[https://emacs.stackexchange.com/questions/48414/monthly-date-tree][this]].
+      
+      First up, this tree is a "datetree" only to the month.
+      #+BEGIN_SRC emacs-lisp :tangle no
+	(defun org-month-datetree()
+	  (org-datetree-find-date-create (calendar-current-date))
+	  ;; Kill the line because this date tree will involve a subheading for the week
+	  (kill-line))
+      #+END_SRC
+      
+      Next up, a date tree th a week
+      #+BEGIN_SRC emacs-lisp :tangle no
+	(defun org-week-datetree()
+	  (org-datetree-find-iso-week-create (calendar-current-date))
+	  ;; Kill the line because this date tree will involve a subheading for the day
+	  (kill-line))
+      #+END_SRC
 
 ***** inserting blocks
 
 I borrowed this [[https://www.handsonprogramming.io/blog/2021/12/source-block/][from a blog post]] and adapted it for my needs.
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
   (defun org-insert-src-block (src-code-type)
     "Insert a `SRC-CODE-TYPE' type source code block in org-mode."
     (interactive
