@@ -649,18 +649,7 @@ built into most modern Emacs.
      
       #+BEGIN_SRC emacs-lisp :noweb yes
 	(defun org-variables-config()
-	  (setup-org-agenda-files)
-
-	  (setq org-capture-templates
-		`(,org-todo-capture-template 
-		  ,org-note-capture-template
-		  ,org-interruption-capture-template
-		  ,org-contact-capture-template 
-		  ("w" "Templates around office/work stuff")
-		  ,org-one-on-one-capture-template
-		  ,org-query-capture-template 
-		  ,org-jira-ticket-capture-template
-		  ,org-meeting-minute-capture-template)))
+	<<junk-org-config>>
 
 	;; Agenda configuration
 	(setq org-agenda-span 14)
@@ -677,6 +666,39 @@ built into most modern Emacs.
 	(setq org-log-repeat nil)
 
       #+END_SRC
+
+****** The junk broken out
+:PROPERTIES:
+:header-args: :noweb-ref junk-org-config
+:END:
+This part of the doc is an attempt to decompose the above block into smaller blocks that can be more easily documented. Eventually this will replace the above header with just a small block at the top. For now, though, have a fun duplicate header. Notice the properties on this header. It means that all the source blocks below this header will have that name, so we can reference them all at once.
+
+******* Set up org agenda files
+
+The I have a number of files defined elsewhere. This function should take all those file names and append them into whatever org-directory the system has set up.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setup-org-agenda-files)
+#+END_SRC
+
+******* Set capture templates
+
+Org has a system called "[[https://orgmode.org/manual/Using-capture.html][capture]]" data from wherever you are. You can fire that off using ~org-capture~. I have set up capture templates elsewhere and this line should combine all my capture templates into the final list that Emacs actually reads from.
+
+You can also group templates behind prefixes. I do this with "work" specific templates. Templates that are specific to "work" are hidden behind ~w~ which has its own description as seen below.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setq org-capture-templates
+	`(,org-todo-capture-template 
+	  ,org-note-capture-template
+	  ,org-interruption-capture-template
+	  ,org-contact-capture-template 
+	  ("w" "Templates around office/work stuff")
+	  ,org-one-on-one-capture-template
+	  ,org-query-capture-template 
+	  ,org-jira-ticket-capture-template
+	  ,org-meeting-minute-capture-template)))
+#+END_SRC
 
 ***** inserting blocks
 
