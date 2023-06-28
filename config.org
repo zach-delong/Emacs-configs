@@ -645,33 +645,14 @@ built into most modern Emacs.
 		  "* %?\n%U\n"))
        #+END_SRC
 
-***** The junk
-     
-      #+BEGIN_SRC emacs-lisp :noweb yes
-	(defun org-variables-config()
-	<<junk-org-config>>
-
-	;; Agenda configuration
-	(setq org-agenda-span 14)
-	(setq org-refile-targets (quote ((nil :maxlevel . 5)
-					 (org-agenda-files :maxlevel . 5))))
-	(setq org-refile-use-outline-path 'file)
-
-	;; Sets the org-repeat logbook to store its information in the "LOGBOOK" drawer instead of in a bulleted list on the header. this should keep things cleaner
-	(setq org-log-into-drawer "LOGBOOK")
-
-	(setq org-todo-keywords
-	      '((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
-
-	(setq org-log-repeat nil)
-
-      #+END_SRC
-
-****** The junk broken out
+***** Variable tweaks for Org mode
 :PROPERTIES:
-:header-args: :noweb-ref junk-org-config
+:header-args: :noweb-ref org-variables-config
 :END:
-This part of the doc is an attempt to decompose the above block into smaller blocks that can be more easily documented. Eventually this will replace the above header with just a small block at the top. For now, though, have a fun duplicate header. Notice the properties on this header. It means that all the source blocks below this header will have that name, so we can reference them all at once.
+
+There are a ton of options for org mode and I only use a very small number of them. Here I attempt to organize my config into subsections that can be tangled elsewhere using ~noweb~.
+
+Notice the properties on this header. It means that all the source blocks below this header will have that name, so we can reference them all at once. 
 
 ******* Set up org agenda files
 
@@ -697,8 +678,53 @@ You can also group templates behind prefixes. I do this with "work" specific tem
 	  ,org-one-on-one-capture-template
 	  ,org-query-capture-template 
 	  ,org-jira-ticket-capture-template
-	  ,org-meeting-minute-capture-template)))
+	  ,org-meeting-minute-capture-template))
 #+END_SRC
+
+******* Agenda config
+
+I happen to like seeing two weeks at once in my agenda. This line should make that the default view.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setq org-agenda-span 14)
+#+END_SRC
+
+This changes the [[https://orgmode.org/manual/Refile-and-Copy.html][refile]] targets. Refile is a tool for re-organizing org mode files. In my case, I want to be able to refile to files and not just org headers. This should make that possible!
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setq org-refile-targets (quote ((nil :maxlevel . 5)
+				   (org-agenda-files :maxlevel . 5))))
+#+END_SRC
+
+This change should make it so that the UI that displays "where" you are in a org heading tree shows as a file path. So if you have a doc that contains a header called Heading 1 and a subheading called Subheading 1, if you are refiling into Subheading 1 you will see Heading 1/Subheading 1 in the refile auto-complete.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setq org-refile-use-outline-path 'file)
+#+END_SRC
+
+******* Drawer config
+
+Sets the org-repeat logbook to store its information in the "LOGBOOK" drawer instead of in a bulleted list on the header. this should keep things cleaner. I was having issues with beorg putting things in some places and emacs putting them in others, so for now I am just putting it all in here.
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setq org-log-into-drawer "LOGBOOK")
+#+END_SRC
+******* Task keywords
+
+You can set what states are valid for tasks in org files globally. I do sometimes override this on a per-file basis as it's appropriate, so I don't have many states set up here.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setq org-todo-keywords
+	'((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
+#+END_SRC
+******* org-log
+
+I have had some issues with different apps logging repeating tasks and I don't usually care about tracking it, so this should just disable that for now.
+
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (setq org-log-repeat nil)
+#+END_SRC
+
 
 ***** inserting blocks
 
@@ -732,11 +758,11 @@ I borrowed this [[https://www.handsonprogramming.io/blog/2021/12/source-block/][
 
 **** Require package
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :noweb yes
       (use-package org
 	:ensure t
 	:config
-	(org-variables-config)
+	<<org-variables-config>>
 	(evil-define-key 'normal org-mode-map (kbd "<localleader> d s") 'org-schedule)
 	(evil-define-key 'normal org-mode-map (kbd "<localleader> d d") 'org-deadline)
 
