@@ -969,11 +969,10 @@ either my org-directory or in my agenda (a smaller list).
       (use-package lsp-mode
 	:after evil
 	:ensure t
-	:init
+	:config
 	(evil-define-key 'normal lsp-mode-map (kbd "<localleader>") lsp-command-map)
-	:hook
-	((csharp-mode . lsp)
-	 (lsp-mode . lsp-enable-which-key-integration))
+	:hook ((csharp-mode . lsp-mode)
+	       (lsp-mode . lsp-enable-which-key-integration))
 	:commands lsp)
     #+END_SRC
 *** Csharp mode
