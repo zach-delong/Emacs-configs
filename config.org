@@ -153,9 +153,6 @@ This file is set up only so that you can set any local variables you might need.
 
     <<evil-keybindings>>
   
-    (evil-global-set-key 'normal (kbd "<leader> f s") 'save-buffer)
-    (evil-global-set-key 'normal (kbd "<leader> f S") 'evil-write-all)
-    (evil-global-set-key 'normal (kbd "<leader> f y") 'evil-yank-file-name)
     (evil-global-set-key 'normal (kbd "<leader> l l") 'eval-last-sexp)
     (evil-global-set-key 'normal (kbd "<leader> l L") 'eval-print-last-sexp)
     (evil-global-set-key 'normal (kbd "<leader> l b") 'eval-buffer)
@@ -254,6 +251,28 @@ Unfortunately, that doesn't work on Linux, which seems to use <backtab> as a sep
 
 #+BEGIN_SRC emacs-lisp :tangle no
   (evil-global-set-key 'normal (kbd "<leader> <backtab>") 'next-buffer)
+#+END_SRC
+
+****** File manipulation hotkeys
+
+All of these are prefixed with ~<leader> f~ to denote that they have to do with file manipulation.
+
+First up, a hotkey for writing whatever the current file is. This is equivalent to ~:w~ in Vim, or ~C-x C-s~ in Emacs.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> f s") 'save-buffer)
+#+END_SRC
+
+I also frequently edit many files at once and want to write them all at once. This should allow that.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> f S") 'evil-write-all)
+#+END_SRC
+
+Another frequent need of mine is to copy the name of the file that the current buffer is visiting.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> f y") 'evil-yank-file-name)
 #+END_SRC
 
 **** Evil-collection
