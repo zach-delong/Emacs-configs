@@ -140,58 +140,29 @@ This file is set up only so that you can set any local variables you might need.
 *** Evil-mode
 
 [[https://github.com/emacs-evil/evil][Evil mode]] is the vim emulation layer.  I am using use-package to install and enable it. 
-    
-**** Evil itself
 
 #+BEGIN_SRC emacs-lisp :noweb yes
   (use-package evil
     :ensure t
     :init
+
     <<evil-init-config>>
+
     :config
+
     (evil-mode 1)
 
-    <<evil-keybindings>>
-  
-    (evil-global-set-key 'normal (kbd "<leader> l l") 'eval-last-sexp)
-    (evil-global-set-key 'normal (kbd "<leader> l L") 'eval-print-last-sexp)
-    (evil-global-set-key 'normal (kbd "<leader> l b") 'eval-buffer)
-    (evil-global-set-key 'normal (kbd "<leader> l r") 'eval-region)
-    (evil-global-set-key 'normal (kbd "<leader> w h") 'evil-window-left)
-    (evil-global-set-key 'normal (kbd "<leader> w j") 'evil-window-down)
-    (evil-global-set-key 'normal (kbd "<leader> w k") 'evil-window-up)
-    (evil-global-set-key 'normal (kbd "<leader> w l") 'evil-window-right)
-    (evil-global-set-key 'normal (kbd "<leader> w H") 'evil-window-move-far-left)
-    (evil-global-set-key 'normal (kbd "<leader> w J") 'evil-window-move-far-down)
-    (evil-global-set-key 'normal (kbd "<leader> w K") 'evil-window-move-far-up)
-    (evil-global-set-key 'normal (kbd "<leader> w L") 'evil-window-move-far-right)
-    (evil-global-set-key 'normal (kbd "<leader> w s") 'evil-window-split)
-    (evil-global-set-key 'normal (kbd "<leader> w v") 'evil-window-vsplit)
-    (evil-global-set-key 'normal (kbd "<leader> w d") 'evil-window-delete)
-    (evil-global-set-key 'normal (kbd "<leader> w o") 'other-window)
-    (evil-global-set-key 'normal (kbd "<leader> w m") 'delete-other-windows)
-    (evil-global-set-key 'normal (kbd "<leader> w f") 'make-frame)
-    (evil-global-set-key 'normal (kbd "<leader> b d") 'kill-buffer)
-    (evil-global-set-key 'normal (kbd "<leader> b s") 'switch-to-scratch)
-    (evil-global-set-key 'normal (kbd "<leader> q f") 'save-buffers-kill-terminal)
-    (evil-global-set-key 'normal (kbd "<leader> h f") 'describe-function)
-    (evil-global-set-key 'normal (kbd "<leader> h v") 'describe-variable)
-    (evil-global-set-key 'normal (kbd "<leader> h k") 'describe-key)
-    (evil-global-set-key 'normal (kbd "<leader> h n") 'view-emacs-news)
-    (evil-global-set-key 'normal (kbd "<leader> h m") 'describe-mode)
-    (evil-global-set-key 'normal (kbd "<leader> h i") 'info)
-    (evil-global-set-key 'normal (kbd "<leader> h M") 'view-order-manuals)
-    )
+    <<evil-keybindings>>)
 #+END_SRC
 
-***** Evil init
+**** Evil init
 :PROPERTIES:
 :header-args: :noweb-ref evil-init-config
 :END:
 
 This section will be inserted into my use-package definition in the ~:init~ block, so it's executed before evil mode is loaded.
 
-****** TODO keybindings?
+***** TODO keybindings?
 
 I am really not sure why this is here. It appears to have to do with [[*Evil-collection][evil-collection]]. I should come back to this and figure out what it is doing.
 
@@ -199,7 +170,7 @@ I am really not sure why this is here. It appears to have to do with [[*Evil-col
   (setq evil-want-keybinding nil)
 #+END_SRC
 
-****** Scrolling keybindings
+***** Scrolling keybindings
 
 There are some keybindings where Emacs native and Evil-mode keybindings clash. Control + U is one of them. In Emacs, C-u is a prefix binding that lets you provide parameters to other commands, but in normal mode in Vim, C-u is page down. I prefer that it behave like Vim, which this should do
 
@@ -207,7 +178,7 @@ There are some keybindings where Emacs native and Evil-mode keybindings clash. C
   (setq evil-want-C-u-scroll t)
 #+END_SRC
 
-***** Evil keybindings
+**** Evil keybindings
 :PROPERTIES:
 :header-args: :noweb-ref evil-keybindings
 :END:
@@ -216,7 +187,7 @@ I have a ton of various keybindings that all don't really relate to a particular
 
 While I am generally familiar with [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Keymaps.html][keymaps]] in Emacs, I am not yet so comfortable with them that I am building and manipulating them directly. [[https://evil.readthedocs.io/en/latest/keymaps.html][Instead, I have most of my keybindings set using normal]] ~evil-define-key~ to add things to the appropriate map for the mode/whatever combination.
 
-****** Leader
+***** Leader
 
 On top of using the evil methods for defining keymaps, I am also using Evil mode's built [[https://evil.readthedocs.io/en/latest/keymaps.html#leader-keys][support for leader and local leader keys]]. I am using this basically to support Spacemacs style leader keybindings where all my keybindings are "hidden" behind the space key in normal and other similar modes (visual, motion, etc). I am also using local leader to hide "major mode specific bindings." So ~SPC M~ should always trigger hotkeys for the current major mode.
 
@@ -225,7 +196,7 @@ On top of using the evil methods for defining keymaps, I am also using Evil mode
   (evil-set-leader '(motion normal visual) (kbd "<leader> m") t)
 #+END_SRC
 
-****** Misc unsorted hotkeys
+***** Misc unsorted hotkeys
 
 This section is just some meta keybindings that don't relate nicely to one topic area.
 
@@ -253,7 +224,14 @@ Unfortunately, that doesn't work on Linux, which seems to use <backtab> as a sep
   (evil-global-set-key 'normal (kbd "<leader> <backtab>") 'next-buffer)
 #+END_SRC
 
-****** File manipulation hotkeys
+Do you like quitting Emacs?  Me neither, but occasionally I need to do it. Often I do that with ~ZZ~ in normal mode, but until I discovered that, I often used this.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> q f") 'save-buffers-kill-terminal)
+#+END_SRC
+
+
+***** File manipulation hotkeys
 
 All of these are prefixed with ~<leader> f~ to denote that they have to do with file manipulation.
 
@@ -273,6 +251,68 @@ Another frequent need of mine is to copy the name of the file that the current b
 
 #+BEGIN_SRC emacs-lisp :tangle no
   (evil-global-set-key 'normal (kbd "<leader> f y") 'evil-yank-file-name)
+#+END_SRC
+
+***** Lisp manipulation/evaluation
+
+One of the most interesting features of Emacs is its ability to dynamically evaluate random blocks of Elisp. I frequently swap over to a scratch buffer, type out some functions, execute them to do something useful, and then toggle back to whatever I was doing previously. These bindings make that easier.
+
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> l l") 'eval-last-sexp)
+  (evil-global-set-key 'normal (kbd "<leader> l L") 'eval-print-last-sexp)
+  (evil-global-set-key 'normal (kbd "<leader> l b") 'eval-buffer)
+  (evil-global-set-key 'normal (kbd "<leader> l r") 'eval-region)
+#+END_SRC
+
+***** Window manipulation
+
+Emacs calls what a normal person would call a window a frame. These keybindings manipulate what Emacs calls Windows, which are essentially just individual buffers open in some kind of a split inside a frame. There are bindings for switching the active window a certain direction, etc.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> w h") 'evil-window-left)
+  (evil-global-set-key 'normal (kbd "<leader> w j") 'evil-window-down)
+  (evil-global-set-key 'normal (kbd "<leader> w k") 'evil-window-up)
+  (evil-global-set-key 'normal (kbd "<leader> w l") 'evil-window-right)
+  (evil-global-set-key 'normal (kbd "<leader> w H") 'evil-window-move-far-left)
+  (evil-global-set-key 'normal (kbd "<leader> w J") 'evil-window-move-far-down)
+  (evil-global-set-key 'normal (kbd "<leader> w K") 'evil-window-move-far-up)
+  (evil-global-set-key 'normal (kbd "<leader> w L") 'evil-window-move-far-right)
+  (evil-global-set-key 'normal (kbd "<leader> w s") 'evil-window-split)
+  (evil-global-set-key 'normal (kbd "<leader> w v") 'evil-window-vsplit)
+  (evil-global-set-key 'normal (kbd "<leader> w d") 'evil-window-delete)
+  (evil-global-set-key 'normal (kbd "<leader> w o") 'other-window)
+  (evil-global-set-key 'normal (kbd "<leader> w m") 'delete-other-windows)
+#+END_SRC
+
+There is one exception about frames, here's a keybinding for making a new frame.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> w f") 'make-frame)
+#+END_SRC
+
+***** Buffers
+
+Surprisingly, I don't do much with buffers. There are more buffer-related commands set by [[*IDO-mode][ido-mode]].
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> b d") 'kill-buffer)
+  (evil-global-set-key 'normal (kbd "<leader> b s") 'switch-to-scratch)
+#+END_SRC
+
+
+***** Getting help
+
+There are a ton of helpful commands for identifying what is going on using ~C-h~.  I have put many of those same bindings under ~leader h~ just because I find it more intuitive and helpful.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> h f") 'describe-function)
+  (evil-global-set-key 'normal (kbd "<leader> h v") 'describe-variable)
+  (evil-global-set-key 'normal (kbd "<leader> h k") 'describe-key)
+  (evil-global-set-key 'normal (kbd "<leader> h n") 'view-emacs-news)
+  (evil-global-set-key 'normal (kbd "<leader> h m") 'describe-mode)
+  (evil-global-set-key 'normal (kbd "<leader> h i") 'info)
+  (evil-global-set-key 'normal (kbd "<leader> h M") 'view-order-manuals)
 #+END_SRC
 
 **** Evil-collection
