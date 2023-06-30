@@ -78,7 +78,7 @@ You can also use the `:init` block if you want it to happen before the package i
 * Configuration
 
 This is where the meat-and-potatoes of my configuratoin will live.
-  
+
 ** Utilities
 
 *** Insert file name
@@ -151,14 +151,8 @@ This file is set up only so that you can set any local variables you might need.
     :config
     (evil-mode 1)
 
-    (evil-set-leader '(motion normal visual) (kbd "SPC"))
-    (evil-set-leader '(motion normal visual) (kbd "<leader> m") t)
-
-    (evil-global-set-key 'normal (kbd "<leader> SPC") 'execute-extended-command)
-
-    (evil-global-set-key 'normal (kbd "<leader> <tab>") 'previous-buffer)
-    (evil-global-set-key 'normal (kbd "<leader> <S-tab>") 'next-buffer) ; this works on Windows
-    (evil-global-set-key 'normal (kbd "<leader> <backtab>") 'next-buffer) ; this works on Linux
+    <<evil-keybindings>>
+  
     (evil-global-set-key 'normal (kbd "<leader> f s") 'save-buffer)
     (evil-global-set-key 'normal (kbd "<leader> f S") 'evil-write-all)
     (evil-global-set-key 'normal (kbd "<leader> f y") 'evil-yank-file-name)
@@ -214,6 +208,52 @@ There are some keybindings where Emacs native and Evil-mode keybindings clash. C
 
 #+BEGIN_SRC emacs-lisp :tangle no
   (setq evil-want-C-u-scroll t)
+#+END_SRC
+
+***** Evil keybindings
+:PROPERTIES:
+:header-args: :noweb-ref evil-keybindings
+:END:
+
+I have a ton of various keybindings that all don't really relate to a particular plugin, and those keybindings are all set up here and explained as much as I could provide
+
+While I am generally familiar with [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Keymaps.html][keymaps]] in Emacs, I am not yet so comfortable with them that I am building and manipulating them directly. [[https://evil.readthedocs.io/en/latest/keymaps.html][Instead, I have most of my keybindings set using normal]] ~evil-define-key~ to add things to the appropriate map for the mode/whatever combination.
+
+****** Leader
+
+On top of using the evil methods for defining keymaps, I am also using Evil mode's built [[https://evil.readthedocs.io/en/latest/keymaps.html#leader-keys][support for leader and local leader keys]]. I am using this basically to support Spacemacs style leader keybindings where all my keybindings are "hidden" behind the space key in normal and other similar modes (visual, motion, etc). I am also using local leader to hide "major mode specific bindings." So ~SPC M~ should always trigger hotkeys for the current major mode.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-set-leader '(motion normal visual) (kbd "SPC"))
+  (evil-set-leader '(motion normal visual) (kbd "<leader> m") t)
+#+END_SRC
+
+****** Misc unsorted hotkeys
+
+This section is just some meta keybindings that don't relate nicely to one topic area.
+
+First up, I like to run arbitrary Elisp functions constantly, and the default ~M-x~ isn't terribly ergonomic to me. what I do find ergonomic is ~leader SPC~ which currently evaluates to just being ~SPC SPC~. This does also leave the default ~M-x~ in place for use when in edit mode.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> SPC") 'execute-extended-command)
+#+END_SRC
+
+I also tend to go back and forth between buffers a lot, so I have ~leader tab~ and ~leader shift+tab~ bound to work sort of like control + tab and control + shift + tab on a normal modern web browser.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> <tab>") 'previous-buffer)
+#+END_SRC
+
+This binding makes the shift+tab work in Windows specifically.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> <S-tab>") 'next-buffer)
+#+END_SRC
+
+Unfortunately, that doesn't work on Linux, which seems to use <backtab> as a separate key.
+
+#+BEGIN_SRC emacs-lisp :tangle no
+  (evil-global-set-key 'normal (kbd "<leader> <backtab>") 'next-buffer)
 #+END_SRC
 
 **** Evil-collection
