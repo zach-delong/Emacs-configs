@@ -576,7 +576,7 @@ All of my notes start off as "notes to self" in my notes file. I regularly prune
 	  "Note to self"
 	  entry
 	  (file+headline ,(concat org-directory notes-org) "Note to Self")
-	  "* %?\nEntered on %U\n  %i\n  %a"))
+	  "* Note: %?\nEntered on %U\n  %i\n  %a"))
 #+END_SRC
 
 ******** Contact template
