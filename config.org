@@ -659,6 +659,21 @@ I am in a lot of meetings. I also often fail to remember things. this capture te
 	  "* %?\n%U\n"))
 #+END_SRC
 
+******** Emacs tweak capture template
+
+I make a lot (and I mean a lot...) of tweaks to my Emacs configuration. I so often run across a package to implement or a thing to investigate, that I have started keeping a separate todo list that I try to keep prioritized in my school org file.
+
+
+#+BEGIN_SRC emacs-lisp
+  (setq org-emacs-tweak-capture-template
+	`("e"
+	  "Emacs tweak"
+	  entry
+	  (file+headline ,(concat org-directory school-org) "Emacs Config Changes")
+	  "* %?\nEntered on %U\n  %i\n  %a"))
+#+END_SRC
+
+
 ******* Set capture templates
 
 Org has a system called "[[https://orgmode.org/manual/Using-capture.html][capture]]" data from wherever you are. You can fire that off using ~org-capture~. I have set up capture templates elsewhere and this line should combine all my capture templates into the final list that Emacs actually reads from.
@@ -671,6 +686,7 @@ You can also group templates behind prefixes. I do this with "work" specific tem
 	  ,org-note-capture-template
 	  ,org-interruption-capture-template
 	  ,org-contact-capture-template 
+	  ,org-emacs-tweak-capture-template
 	  ("w" "Templates around office/work stuff")
 	  ,org-one-on-one-capture-template
 	  ,org-query-capture-template 
