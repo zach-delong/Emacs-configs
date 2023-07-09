@@ -664,7 +664,7 @@ I am in a lot of meetings. I also often fail to remember things. this capture te
 I make a lot (and I mean a lot...) of tweaks to my Emacs configuration. I so often run across a package to implement or a thing to investigate, that I have started keeping a separate todo list that I try to keep prioritized in my school org file.
 
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :tangle no
   (setq org-emacs-tweak-capture-template
 	`("e"
 	  "Emacs tweak"
