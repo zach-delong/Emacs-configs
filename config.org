@@ -6,12 +6,10 @@ This literate file rep literate programming to make it easier to document the st
 * Pre-configuration
 
 Before I actually configure anything interesting, I need to do  certain things (like install use-package). In this section, do not  assume that anything has been installed, but configure things that  are generic (at least in theory) to any configuration of Emacs.
-  
 
 ** package.el
 
 First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/emacs-lisp/package.el][package.el]] is configured. Package.el is a package manager that's built into GNU Emacs (apparently since Emacs24). I will be using `use-package` for the most part, but I will have to bootstrap that somehow and for now package.el (which is built in anywhere I have needed it) fits fine.
-   
 
 #+BEGIN_SRC emacs-lisp
   (require 'package)
@@ -20,7 +18,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 *** Package repositories
 
 By default, my Emacs distribution uses [[http://elpa.gnu.org/][ELPA]] , but I also want to use [[https://melpa.org/][MELPA]], so I will include that here.
-    
+
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'package-archives
 	       '("melpa" . "https://melpa.org/packages/") t)
