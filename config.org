@@ -23,6 +23,19 @@ By default, my Emacs distribution uses [[http://elpa.gnu.org/][ELPA]] , but I al
   (add-to-list 'package-archives
 	       '("melpa" . "https://melpa.org/packages/") t)
 #+END_SRC
+
+We also want to make sure we are pulling from sources in a way that keeps with our priorities. I trust what the FSF is reviewing in ELPA much more than I do the stuff that is in the more public MELPA repository, so I am interested in pulling from there as much as possible.
+
+
+#+BEGIN_SRC emacs-lisp
+  (setq package-archive-priorities
+	'(("gnu"    . 2)
+	  ("nongnu" . 1)
+	  ("melpa") . 0))
+#+END_SRC
+
+
+
 *** Initialization
 
 To set up `package.el` I need to call `package-initialize`.
