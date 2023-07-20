@@ -922,11 +922,9 @@ To actually configure it, though, I still want to use ~use-package~, so now that
     
 #+BEGIN_SRC emacs-lisp
   (use-package zettelkasten-mode
-    :bind
-    (:map evil-normal-state-map
-	  ("SPC a z c" . 'zettel-create-new)
-	  ("SPC a z i" . 'zettel-insert-and-create-new))
     :config
+    (evil-global-set-key 'normal (kbd "<leader> a z c") 'zettel-create-new)
+    (evil-global-set-key 'normal (kbd "<leader> a z i") 'zettel-insert-and-create-new)
     (zettelkasten-mode 1))
 #+END_SRC
 *** Markdown-mode
@@ -986,13 +984,12 @@ This should enable a tab bar. This is built into emacs as of 27, I think. Each t
 
 #+BEGIN_SRC emacs-lisp
   (use-package tab-bar
-    :bind
-    (:map evil-normal-state-map
-	  ("<leader> C-t" . 'tab-new)
-	  ("<leader> <C-tab>" . 'tab-next)
-	  ("<leader> <C-S-tab>" . 'tab-previous)
-	  ("<leader> <C-backtab>" . 'tab-previous)
-	  ("<leader> C-w" . 'tab-close)))
+    :config
+    (evil-global-set-key 'normal (kbd "<leader> C-t") 'tab-new)
+    (evil-global-set-key 'normal (kbd "<leader> <C-tab>") 'tab-next)
+    (evil-global-set-key 'normal (kbd "<leader> <C-S-tab>") 'tab-previous)
+    (evil-global-set-key 'normal (kbd "<leader> <C-backtab>") 'tab-previous)
+    (evil-global-set-key 'normal (kbd "<leader> C-w") 'tab-close))
 #+END_SRC
 *** Powershell mode
 
@@ -1058,6 +1055,8 @@ This should enable a tab bar. This is built into emacs as of 27, I think. Each t
   (use-package treemacs
     :ensure t
     :defer t
+    :init
+    (evil-global-set-key 'normal (kbd "<leader> p t") 'treemacs)
     :config
     (progn
       ;; The default width and height of the icons is 22 pixels. If you are
@@ -1075,10 +1074,7 @@ This should enable a tab bar. This is built into emacs as of 27, I think. Each t
 	(`(t . _)
 	 (treemacs-git-mode 'simple)))
 
-      (treemacs-hide-gitignored-files-mode nil))
-    :bind
-    (:map evil-normal-state-map 
-	  ("SPC p t"   . treemacs)))
+      (treemacs-hide-gitignored-files-mode nil)))
 
   (use-package treemacs-evil
     :after (treemacs evil)
@@ -1108,14 +1104,13 @@ I need a convenient way to remember "the current project"
 
 #+BEGIN_SRC emacs-lisp
   (use-package project
-    :bind
-    (:map evil-normal-state-map
-	  ("<leader> p r" . 'project-remember-current)
-	  ("<leader> p s" . 'project-switch-project)
-	  ("<leader> p b" . 'project-switch-to-buffer)
-	  ("<leader> p f" . 'project-find-file)
-	  ("<leader> p d" . 'project-dired)
-	  ("<leader> p !" . 'project-shell-command)))
+    :config
+    (evil-global-set-key 'normal (kbd "<leader> p r") 'project-remember-current)
+    (evil-global-set-key 'normal (kbd "<leader> p s") 'project-switch-project)
+    (evil-global-set-key 'normal (kbd "<leader> p b") 'project-switch-to-buffer)
+    (evil-global-set-key 'normal (kbd "<leader> p f") 'project-find-file)
+    (evil-global-set-key 'normal (kbd "<leader> p d") 'project-dired)
+    (evil-global-set-key 'normal (kbd "<leader> p !") 'project-shell-command))
 
 #+END_SRC
 
