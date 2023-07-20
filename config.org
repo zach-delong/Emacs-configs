@@ -1156,6 +1156,14 @@ This uses visual line mode, which is built into emacs itself. That said I would 
     :ensure t
     :hook (text-mode . adaptive-wrap-prefix-mode))
 #+END_SRC
+
+*** Yaml mode
+
+#+BEGIN_SRC emacs-lisp
+  (use-package yaml-mode
+    :ensure t)
+#+END_SRC
+
 ** Backups
 
 Emacs keeps backups of files that you have open in case something bad happens and they need to be recovered. They're stored in the same directory as the file you are working on by default, and end in a "~". I find all these extra files pretty bothersome, but I similar to what I do with undo-tree, I want to store them in a central location. Stolen from [[https://stackoverflow.com/questions/2680389/how-to-remove-all-files-ending-with-made-by-emacs][Stack Overflow]].
