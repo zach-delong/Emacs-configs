@@ -1067,10 +1067,10 @@ This should enable a tab bar. This is built into emacs as of 27, I think. Each t
 #+BEGIN_SRC emacs-lisp
   (use-package treemacs
     :ensure t
-    :defer t
+    :demand t 
     :init
-    (evil-global-set-key 'normal (kbd "<leader> p t") 'treemacs)
     :config
+    (evil-global-set-key 'normal (kbd "<leader> p t") 'treemacs)
     (progn
       ;; The default width and height of the icons is 22 pixels. If you are
       ;; using a Hi-DPI display, uncomment this to double the icon size.
