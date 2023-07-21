@@ -1224,7 +1224,10 @@ Fonts are a complicated topic and I expect this section to change quite a lot.  
 
 + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
 + [[https://git.sr.ht/~ashton314/emacs-bedrock][Emacs Bedrock]]
-+ [[https://sachachua.com/blog/][Sachachua's blog]] 
++ [[https://sachachua.com/blog/][Sachachua's blog]]
++ [[https://github.com/chrisdone/elisp-guide][Elisp guide]]
++ [[https://ianyepan.github.io/posts/setting-up-use-package/][Blog post about use-package]]
++ [[https://github.com/ianyepan/yay-evil-emacs][YayEvilEmacs]] (reference for different config parts)
 
 * Notes
 ** Backtick and comma notation
