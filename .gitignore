@@ -21,3 +21,4 @@ session.*
 /url/
 /projects
 /early-config.el
+/projectile-bookmarks.eld

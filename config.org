@@ -1069,10 +1069,9 @@
      #+BEGIN_SRC emacs-lisp
        (use-package treemacs
 	 :ensure t
-	 :demand t 
 	 :init
-	 :config
 	 (evil-global-set-key 'normal (kbd "<leader> p t") 'treemacs)
+	 :config
 	 ;; The default width and height of the icons is 22 pixels. If you are
 	 ;; using a Hi-DPI display, uncomment this to double the icon size.
 	 ;; (treemacs-resize-icons 44)
@@ -1089,7 +1088,8 @@
 	    (treemacs-git-mode 'simple)))
 
 	 (treemacs-hide-gitignored-files-mode nil)
-	 (treemacs-project-follow-mode))
+	 (treemacs-project-follow-mode)
+	 (evil-global-set-key 'normal (kbd "<leader> f t") 'treemacs))
 
        (use-package treemacs-evil
 	 :after (treemacs evil)
@@ -1109,24 +1109,22 @@
 	 :config (treemacs-set-scope-type 'Tabs))
      #+END_SRC
 
-*** project.el
-    I need a convenient way to remember "the current project"
-    #+BEGIN_SRC emacs-lisp
-      (defun project-remember-current ()
-	(interactive)
-	(project-remember-project (project-current)))
-    #+END_SRC
+*** Projectile
+
+Projectile is a library to replace project.el (the built in project management tool). They have a ton of overlap between their functionality, but for now, I am preferring using Projectile because I like the fact that it provides tools for both compiling and testing code and allows easy customization of what commands run in each project.
+
+Notice that on init, we are enabling the mode. This is so that it loads the list of "known projects" immediately on starting emacs, so I can easily immediately ~<leader> p p~ to switch to a project.
+
+I also set a keybinding for saving projects to that list.
 
     #+BEGIN_SRC emacs-lisp
-      (use-package project
+      (use-package projectile
+	:ensure t
+	:init
+	(projectile-mode)
 	:config
-	(evil-global-set-key 'normal (kbd "<leader> p r") 'project-remember-current)
-	(evil-global-set-key 'normal (kbd "<leader> p s") 'project-switch-project)
-	(evil-global-set-key 'normal (kbd "<leader> p b") 'project-switch-to-buffer)
-	(evil-global-set-key 'normal (kbd "<leader> p f") 'project-find-file)
-	(evil-global-set-key 'normal (kbd "<leader> p d") 'project-dired)
-	(evil-global-set-key 'normal (kbd "<leader> p !") 'project-shell-command))
-
+	(evil-global-set-key 'normal (kbd "<leader> p") 'projectile-command-map)
+	(evil-global-set-key 'normal (kbd "<leader> f p r") 'projectile-add-known-project))
     #+END_SRC
 
 *** Flyspell mode
