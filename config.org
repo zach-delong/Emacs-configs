@@ -380,10 +380,11 @@
       (use-package company
 	:ensure t
 	:hook (prog-mode . company-mode)
+	:custom
+	(company-idle-delay 0)
+	(company-minimum-prefix-length 1)
+	(company-selection-wrap-around t)
 	:config
-	(setq company-idle-delay 0)
-	(setq company-minimum-prefix-length 1)
-	(setq company-selection-wrap-around t)
 	(company-tng-configure-default))
     #+END_SRC
 *** Spacemacs theme
