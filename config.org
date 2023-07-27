@@ -433,20 +433,42 @@
 
     IDO mode is a completion engine. There are two other primary engines that people use: [[https://emacs-helm.github.io/helm/][Heml]] and [[https://github.com/abo-abo/swiper][Ivy]]. I'm not really sure what the advantages of either are, but Mastering Emacs suggests IDO. I have used Helm in Spacemacs before, so I may later switch to that.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :noweb yes
       (use-package ido
 	:ensure t
 	:after evil
+	:custom
+	<<ido-variables-config>>
 	:config
-	(setq ido-enable-flex-matching t)
-	(setq ido-everywhere t)
 	(ido-mode 1)
-	(setq ido-use-filename-at-point 'guess)
-	:config
+        (ido-everywhere 1)
 	(evil-global-set-key 'normal (kbd "<leader> f f") 'ido-find-file)
 	(evil-global-set-key 'normal (kbd "<leader> b b") 'ido-switch-buffer)
 	(evil-global-set-key 'normal (kbd "<leader> f d") 'ido-dired))
     #+END_SRC
+
+**** Customized variables
+     :PROPERTIES:
+     :header-args: :noweb-ref ido-variables-config
+     :END:
+
+     It annoys me that when I am editing projects that contain files of the same name but with differing extensions, that IDO doesn't know which one I usually want. This should make sure that when I am editing files, IDO prefers ~.org~ files to ~.el~ files.
+
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (ido-file-extensions-order '(".org" ".el"))
+     #+END_SRC
+
+     Flexible matching allows Ido to match strings when characters match but do not completely match together. Meaning that if you typed "math" but nothing contained the string "math" but "Management Theory" was in the set, the "Ma" in "management" and the "Th" in "theory" would match.
+     
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (ido-enable-flex-matching t)
+     #+END_SRC
+
+     If you have a file path at your point (cursor) and you want to open that file, IDO can try to pre-populate the prompt with the file path at point.
+     
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (ido-use-filename-at-point 'guess)
+     #+END_SRC
 
 **** Vertical display
 
@@ -458,14 +480,6 @@
 	 :after ido
 	 :config
 	 (ido-vertical-mode 1))
-     #+END_SRC
-
-**** Priority
-
-     It annoys me that when I am editing projects that contain files of the same name but with differing extensions, that IDO doesn't know which one I usually want. This should make sure that when I am editing files, IDO prefers ~.org~ files to ~.el~ files.
-
-     #+BEGIN_SRC emacs-lisp
-       (setq ido-file-extensions-order '(".org" ".el"))
      #+END_SRC
 
      
