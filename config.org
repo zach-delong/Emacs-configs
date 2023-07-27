@@ -410,7 +410,7 @@
      
 *** Spacemacs theme
 
-    I like the Spacemacs theme quite a lot, so I'll use it.
+    I like the Spacemacs theme quite a lot, so I'll use it. I have no idea why I have to defer loading to get things working correctly, but for some reason I get an error if I don't.
 
     #+BEGIN_SRC emacs-lisp
       (use-package spacemacs-theme
