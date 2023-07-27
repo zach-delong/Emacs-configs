@@ -374,19 +374,40 @@
      #+END_SRC
 *** Company-mode
 
-    [[http://company-mode.github.io/][Company mode]] is an auto complete plugin (*comp*-lete *any*-thing). I am still exploring how it can be used.
+    [[http://company-mode.github.io/][Company mode]] is an auto complete plugin (*comp*-lete *any*-thing). I am still exploring how it can be used. Note the hooks set up below. I am only enabling company mode in modes that inherit from ~prog-mode~ because I don't want it popping up constantly while I am typing in org mode or in markdown mode.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :noweb yes
       (use-package company
 	:ensure t
 	:hook (prog-mode . company-mode)
 	:custom
-	(company-idle-delay 0)
-	(company-minimum-prefix-length 1)
-	(company-selection-wrap-around t)
+	<<company-variables-config>>
 	:config
 	(company-tng-configure-default))
     #+END_SRC
+**** company variables
+     :PROPERTIES:
+     :header-args: :noweb-ref company-variables-config
+     :END:
+
+     The delay between when company mode starts searching for items and the actual display of items in the UI. This defaults to a half a second, and I'd like it to just appear immediately.
+
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (company-idle-delay 0)
+     #+END_SRC
+
+     Company by default forces you to type at least 3 characters before it starts making suggestions. I would like it to just appear immediately.
+
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (company-minimum-prefix-length 1)
+     #+END_SRC
+
+     By default, the company popups do not wrap around when you try to "next" at the end of the list. This is annoying, so lets fix it.
+
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (company-selection-wrap-around t)
+     #+END_SRC
+     
 *** Spacemacs theme
 
     I like the Spacemacs theme quite a lot, so I'll use it.
