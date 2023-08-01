@@ -943,9 +943,14 @@
     #+END_SRC
 *** Smartparens
 
+    Smartparens is a minor mode that can automatically close parentheses and other things that must be matched. I use this specifically in Lisp-mode because it makes writing Lisp a lot nicer.
+
+    I am pinning this package specifically to MELPA for now because the version in ELPA is very out of date and throws warnings about deprecated packages.
+
     #+BEGIN_SRC emacs-lisp
       (use-package smartparens
 	:ensure t
+	:pin melpa
 	:hook ( emacs-lisp-mode . smartparens-mode))
     #+END_SRC
 *** Web mode
