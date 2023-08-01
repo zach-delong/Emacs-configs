@@ -22,3 +22,4 @@ session.*
 /projects
 /early-config.el
 /projectile-bookmarks.eld
+/.last-package-update-day
