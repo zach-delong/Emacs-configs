@@ -429,68 +429,67 @@
 	:config
 	(which-key-mode))
     #+END_SRC
-*** IDO-mode
+*** Completion 
 
-    IDO mode is a completion engine. There are two other primary engines that people use: [[https://emacs-helm.github.io/helm/][Heml]] and [[https://github.com/abo-abo/swiper][Ivy]]. I'm not really sure what the advantages of either are, but Mastering Emacs suggests IDO. I have used Helm in Spacemacs before, so I may later switch to that.
+    There are a bunch of libraries out there for doing suggestion and completion. I have historically used ~ido~ for that purpose, but I recently learned that there is a built in mode that emulates a lot of the functionality of ~ido~ called ~fido-mode~. Since that is built in, I want to give it a try as a replacement.
+    
 
+    First up, IDO mode is dependent on ~icomplete~ which is a built in package.
+    
     #+BEGIN_SRC emacs-lisp :noweb yes
-      (use-package ido
-	:ensure t
-	:after evil
+      (use-package icomplete
 	:custom
-	<<ido-variables-config>>
+	<<completion-variables-config>>
 	:config
-	(ido-mode 1)
-        (ido-everywhere 1)
-	(evil-global-set-key 'normal (kbd "<leader> f f") 'ido-find-file)
-	(evil-global-set-key 'normal (kbd "<leader> b b") 'ido-switch-buffer)
-	(evil-global-set-key 'normal (kbd "<leader> f d") 'ido-dired))
+	<<completion-fido-config>>
+	(evil-global-set-key 'normal (kbd "<leader> f f") 'find-file)
+	(evil-global-set-key 'normal (kbd "<leader> b b") 'switch-to-buffer)
+	(evil-global-set-key 'normal (kbd "<leader> f d") 'dired))
     #+END_SRC
 
-**** Customized variables
+    
+**** Completion Customized Variables
      :PROPERTIES:
-     :header-args: :noweb-ref ido-variables-config
+     :header-args: :noweb-ref completion-variables-config
      :END:
 
-     It annoys me that when I am editing projects that contain files of the same name but with differing extensions, that IDO doesn't know which one I usually want. This should make sure that when I am editing files, IDO prefers ~.org~ files to ~.el~ files.
+     There are a few things about ~icomplete~ that I like to tweak for my usage. Case insensitivity is the big thing. You can't globally turn off case sensitivity that I know of, but you can disable it on a per-usage basis, which I do here for the file selector:
 
      #+BEGIN_SRC emacs-lisp :tangle no
-       (ido-file-extensions-order '(".org" ".el"))
+       (read-file-name-completion-ignore-case 1)
      #+END_SRC
 
-     Flexible matching allows Ido to match strings when characters match but do not completely match together. Meaning that if you typed "math" but nothing contained the string "math" but "Management Theory" was in the set, the "Ma" in "management" and the "Th" in "theory" would match.
-     
+     And here for the buffer selector:
+
      #+BEGIN_SRC emacs-lisp :tangle no
-       (ido-enable-flex-matching t)
+       (read-buffer-completion-ignore-case 1)
      #+END_SRC
 
-     If you have a file path at your point (cursor) and you want to open that file, IDO can try to pre-populate the prompt with the file path at point.
-     
+**** Enable fido-mode
+     :PROPERTIES:
+     :header-args: :noweb-ref completion-fido-config
+     :END:
+
+     Now that we have loaded ~icomplete~ we can enable it:
+
      #+BEGIN_SRC emacs-lisp :tangle no
-       (ido-use-filename-at-point 'guess)
+       (icomplete-mode 1)
      #+END_SRC
 
-**** Vertical display
+     ~fido-mode~ itself is a customization of ~icomplete~, so we can enable that here:
 
-     Also, I dislike that ido mode organizes itself horizontally, and want it to not do that.
-
-     #+BEGIN_SRC emacs-lisp
-       (use-package ido-vertical-mode
-	 :ensure t
-	 :after ido
-	 :config
-	 (ido-vertical-mode 1))
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (fido-mode 1)
      #+END_SRC
 
-     
-**** Ido-completing-read+
+     And I don't like that ~icomplete~ and ~fido-mode~ show their completion horizontally across the screen. I much prefer it to be done vertically, so I can enable that:
 
-     #+BEGIN_SRC emacs-lisp
-       (use-package ido-completing-read+
-	 :ensure t
-	 :config
-	 (ido-ubiquitous-mode 1))
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (fido-vertical-mode)
      #+END_SRC
+
+
+
 *** Magit
 
     I love [[https://magit.vc/][Magit]]. Enough said.
