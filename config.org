@@ -771,7 +771,7 @@
 
 	#+BEGIN_SRC emacs-lisp :tangle no
 	  (setq org-todo-keywords
-		'((sequence "TODO(t)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
+		'((sequence "TODO(t)" "IN_PROGRESS(p)" "WAITING(w)" "|" "DONE(d)" "CANCELED(c)")))
 	#+END_SRC
 ******* org-log
 
