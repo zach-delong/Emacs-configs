@@ -506,7 +506,7 @@
      :PROPERTIES:
      :header-args: :noweb-ref org-variables-config
      :END:
-      
+     
 ***** Variable tweaks for Org mode
 
       There are a ton of options for org mode and I only use a very small number of them. Here I attempt to organize my config into subsections that can be tangled elsewhere using ~noweb~.
@@ -748,14 +748,19 @@
 	This changes the [[https://orgmode.org/manual/Refile-and-Copy.html][refile]] targets. Refile is a tool for re-organizing org mode files. In my case, I want to be able to refile to files and not just org headers. This should make that possible!
 
 	#+BEGIN_SRC emacs-lisp :tangle no
-	  (setq org-refile-targets (quote ((nil :maxlevel . 5)
-					   (org-agenda-files :maxlevel . 5))))
+	  (setq org-refile-targets
+		(quote
+		 ((nil :maxlevel . 5)
+		  (org-agenda-files :maxlevel . 5))))
 	#+END_SRC
 
-	This change should make it so that the UI that displays "where" you are in a org heading tree shows as a file path. So if you have a doc that contains a header called Heading 1 and a subheading called Subheading 1, if you are refiling into Subheading 1 you will see Heading 1/Subheading 1 in the refile auto-complete.
+	+This change should make it so that the UI that displays "where" you are in a org heading tree shows as a file path. So if you have a doc that contains a header called Heading 1 and a subheading called Subheading 1, if you are refiling into Subheading 1 you will see Heading 1/Subheading 1 in the refile auto-complete.+
+	
+
+	This doesn't behave properly with fido-mode, and I haven't been able to figure out why, so I have it set to ~nil~ for now. 
 
 	#+BEGIN_SRC emacs-lisp :tangle no
-	  (setq org-refile-use-outline-path 'file)
+	  (setq org-refile-use-outline-path nil)
 	#+END_SRC
 
 ******* Drawer config
