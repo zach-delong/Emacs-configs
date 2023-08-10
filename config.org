@@ -9,7 +9,7 @@
 
 ** package.el
 
-   First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/emacs-lisp/package.el][package.el]] is configured. Package.el is a package manager that's built into GNU Emacs (apparently since Emacs24). I will be using `use-package` for the most part, but I will have to bootstrap that somehow and for now package.el (which is built in anywhere I have needed it) fits fine.
+First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/emacs-lisp/package.el][package.el]] is configured. Package.el is a package manager that's built into GNU Emacs (apparently since Emacs24). I will be using `use-package` for the most part, but I will have to bootstrap that somehow and for now package.el (which is built in anywhere I have needed it) fits fine.
 
    #+BEGIN_SRC emacs-lisp
      (require 'package)
@@ -82,6 +82,15 @@
      #+END_SRC
 
      You can also use the `:init` block if you want it to happen before the package is loaded.
+
+** Customization file
+
+   Emacs allows you to set certain customizations via its own UI. When you do that, it has to save it somewhere and by default it saves in the ~init.el~ file. I would like to keep that file as simple as possible, so I am going to put those customizations in a separate file.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq custom-file "~/.emacs.d/custom.el")
+     (load custom-file)
+   #+END_SRC
 
 * Configuration
 
