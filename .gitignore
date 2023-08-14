@@ -23,3 +23,4 @@ session.*
 /early-config.el
 /projectile-bookmarks.eld
 /.last-package-update-day
+projectile.cache
