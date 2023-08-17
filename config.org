@@ -332,6 +332,15 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(evil-global-set-key 'normal (kbd "<leader> h M") 'view-order-manuals)
       #+END_SRC
 
+***** Running console programs
+
+      I really like running shell commands from inside of Emacs. ~shell-command~ will run whatever you ask for in your default shell, then pipe the output into a buffer for you to manipulate.
+      
+      #+BEGIN_SRC emacs-lisp
+	(evil-global-set-key 'normal (kbd "<leader> r") 'shell-command)
+      #+END_SRC
+
+
 **** Evil-collection
 
      We also want to use [[https://github.com/emacs-evil/evil-collection][`evil-collection`]] to set up things for "buffers evil mode doesn't think about by default"
