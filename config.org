@@ -295,6 +295,12 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(evil-global-set-key 'normal (kbd "<leader> w J") 'evil-window-move-far-down)
 	(evil-global-set-key 'normal (kbd "<leader> w K") 'evil-window-move-far-up)
 	(evil-global-set-key 'normal (kbd "<leader> w L") 'evil-window-move-far-right)
+
+	(evil-global-set-key 'normal (kbd "<leader> w C-H") 'evil-window-move-far-left)
+	(evil-global-set-key 'normal (kbd "<leader> w C-J") 'evil-window-move-very-bottom)
+	(evil-global-set-key 'normal (kbd "<leader> w C-K") 'evil-window-move-very-top)
+	(evil-global-set-key 'normal (kbd "<leader> w C-L") 'evil-window-move-far-right)
+
 	(evil-global-set-key 'normal (kbd "<leader> w s") 'evil-window-split)
 	(evil-global-set-key 'normal (kbd "<leader> w v") 'evil-window-vsplit)
 	(evil-global-set-key 'normal (kbd "<leader> w d") 'evil-window-delete)
