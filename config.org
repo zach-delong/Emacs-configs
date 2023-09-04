@@ -861,10 +861,52 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	    (org-edit-src-code)))
       #+END_SRC
 
-**** Require package
-     
-     This is a test 
+***** Keybindings
+      :PROPERTIES:
+      :header-args: :noweb-ref org-keybindings
+      :END:
 
+      I use a lot of custom keybindings for org-mode. Most of them are entirely self explanatory, so I am not going to include much documentation of them.
+
+      #+BEGIN_SRC emacs-lisp
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> d s") 'org-schedule)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> d d") 'org-deadline)
+
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s r") 'org-refile)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s n") 'org-narrow-to-subtree)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s a") 'org-archive-subtree-default)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s w") 'widen)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s h") 'org-promote)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> s l") 'org-demote)
+
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> p") 'org-priority)
+
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> C i") 'org-clock-in)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> C o") 'org-clock-out)
+
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> T T") 'org-todo)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> b t") 'org-babel-tangle)
+
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i l") 'org-insert-link)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i i") 'org-insert-item)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i t") 'org-set-tags-command)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i T t") 'org-table-create)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i T r") 'org-table-insert-row)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i T c") 'org-table-insert-column)
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> i s") 'org-insert-src-block)
+
+	(evil-define-key 'normal org-mode-map (kbd "<localleader> <return>") 'org-open-at-point)
+
+	(evil-define-key 'edit 'org-mode-map (kbd "<M-return>") 'org-insert-item)
+
+	(evil-global-set-key 'normal (kbd "<leader> a o a") 'org-agenda)
+	(evil-global-set-key 'normal (kbd "<leader> a o c") 'org-capture)
+      #+END_SRC
+
+
+**** Require package
+
+     The actual org-mode package 
      #+BEGIN_SRC emacs-lisp :noweb yes
        (use-package org
 	 :ensure t
@@ -873,38 +915,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 (org-adapt-indentation t)
 	 :config
 	 <<org-variables-config>>
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> d s") 'org-schedule)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> d d") 'org-deadline)
-
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> s r") 'org-refile)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> s n") 'org-narrow-to-subtree)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> s a") 'org-archive-subtree-default)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> s w") 'widen)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> s h") 'org-promote)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> s l") 'org-demote)
-
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> p") 'org-priority)
-
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> C i") 'org-clock-in)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> C o") 'org-clock-out)
-
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> T T") 'org-todo)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> b t") 'org-babel-tangle)
-
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> i l") 'org-insert-link)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> i i") 'org-insert-item)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> i t") 'org-set-tags-command)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> i T t") 'org-table-create)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> i T r") 'org-table-insert-row)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> i T c") 'org-table-insert-column)
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> i s") 'org-insert-src-block)
-
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> <return>") 'org-open-at-point)
-
-	 (evil-define-key 'edit 'org-mode-map (kbd "<M-return>") 'org-insert-item)
-
-	 (evil-global-set-key 'normal (kbd "<leader> a o a") 'org-agenda)
-	 (evil-global-set-key 'normal (kbd "<leader> a o c") 'org-capture))
+	 <<org-keybindings>>)
      #+END_SRC
 
 **** evil-org
