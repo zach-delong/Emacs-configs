@@ -343,7 +343,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       I really like running shell commands from inside of Emacs. ~shell-command~ will run whatever you ask for in your default shell, then pipe the output into a buffer for you to manipulate.
       
       #+BEGIN_SRC emacs-lisp
-	(evil-global-set-key 'normal (kbd "<leader> r") 'shell-command)
+	(evil-global-set-key 'normal (kbd "<leader> !") 'shell-command)
       #+END_SRC
 
 
