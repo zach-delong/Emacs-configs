@@ -736,8 +736,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 		 `("e"
 		   "Emacs tweak"
 		   entry
-		   (file+headline ,(concat org-directory school-org) "Emacs Config Changes")
-		   "* %?\nEntered on %U\n  %i\n  %a"))
+		   (file+olp,(concat org-directory school-org) "Research Topics" "Software engineering & Computer Science" "Emacs reading & config changes")
+		   "* %?:emacs:\nEntered on %U\n  %i\n  %a "))
 	 #+END_SRC
 
 
@@ -862,7 +862,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       #+END_SRC
 
 **** Require package
-
+     
      This is a test 
 
      #+BEGIN_SRC emacs-lisp :noweb yes
