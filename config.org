@@ -994,7 +994,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(evil-define-key 'normal web-mode-map (kbd "<localleader> g t") 'web-mode-navigate)
 	(evil-define-key 'normal web-mode-map (kbd "<localleader> g j") 'web-mode-tag-next)
 	(evil-define-key 'normal web-mode-map (kbd "<localleader> g k") 'web-mode-tag-previous))
-    #+END_SRC
+	#+END_SRC
 *** Zettelkasten
 
     This is a plugin that isn't in MELPA for now, and I can't seem to convince it to load by adding it to ~load-path~ so I am instead going to manually require it.
@@ -1018,6 +1018,9 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+BEGIN_SRC emacs-lisp
       (use-package markdown-mode
 	:ensure t
+	:custom
+	(markdown-hide-markup 1)
+	(markdown-hide-urls 1)
 	:config
 	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> <return>") 'markdown-do)
 	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> g f") 'markdown-outline-next-same-level)
@@ -1045,8 +1048,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> p") 'markdown-live-preview-mode)
 
 	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> e e") 'markdown-export)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> e p") 'markdown-export-and-preview)
-	(markdown-toggle-markup-hiding 1))
+	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> e p") 'markdown-export-and-preview))
     #+END_SRC
 *** Python mode
 
