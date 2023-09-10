@@ -346,6 +346,14 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(evil-global-set-key 'normal (kbd "<leader> !") 'shell-command)
       #+END_SRC
 
+***** Setting themes
+
+      I often toggle between a few themes depending on if I'm working inside our outside. I use this hotkey to do that.
+
+      #+BEGIN_SRC emacs-lisp
+	(evil-global-set-key 'normal (kbd "<leader> c t") 'load-theme)
+      #+END_SRC
+
 
 **** Evil-collection
 
