@@ -277,11 +277,25 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(evil-global-set-key 'normal (kbd "<leader> f f") 'find-file)
       #+END_SRC
 
-      I also frequently use dired to jump around my file system, especially when I don't know what I am looking for.
-      #+BEGIN_SRC emacs-lisp :tangle no
-	(evil-global-set-key 'normal (kbd "<leader> f d") 'dired)
-      #+END_SRC
 
+****** Dired
+
+       Dired is a pretty incredible little program that you can use to navigate around your file system. It has really interesting integration with find as well.
+
+       The basic dired command is simple enough. This should make it possible to open a file system buffer wherever your current buffer happens to be pointing.
+
+       #+BEGIN_SRC emacs-lisp :tangle no
+	 (evil-global-set-key 'normal (kbd "<leader> f d d") 'dired)
+       #+END_SRC
+
+       There are also commands that can pipe the output of find to a buffer, for you to perform bulk operations on. [[https://www.masteringemacs.org/article/working-multiple-files-dired][See here for more info]]. The only real difference is that the ~lisp~ variant is written in emacs lisp and works in environments that might not have GNU Find installed.
+
+       #+BEGIN_SRC emacs-lisp
+	 (evil-global-set-key 'normal (kbd "<leader> f d f") 'find-name-dired)
+	 (evil-global-set-key 'normal (kbd "<leader> f d e") 'find-lisp-find-dired)
+       #+END_SRC
+
+       
 ***** Lisp manipulation/evaluation
 
       One of the most interesting features of Emacs is its ability to dynamically evaluate random blocks of Elisp. I frequently swap over to a scratch buffer, type out some functions, execute them to do something useful, and then toggle back to whatever I was doing previously. These bindings make that easier.
