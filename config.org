@@ -270,6 +270,18 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(evil-global-set-key 'normal (kbd "<leader> f y") 'evil-yank-file-name)
       #+END_SRC
 
+
+      I also don't like the default emacs ~C-x C-f~ for finding files, so I have swapped it under my file manipulation keybindings.
+
+      #+BEGIN_SRC emacs-lisp :tangle no
+	(evil-global-set-key 'normal (kbd "<leader> f f") 'find-file)
+      #+END_SRC
+
+      I also frequently use dired to jump around my file system, especially when I don't know what I am looking for.
+      #+BEGIN_SRC emacs-lisp :tangle no
+	(evil-global-set-key 'normal (kbd "<leader> f d") 'dired)
+      #+END_SRC
+
 ***** Lisp manipulation/evaluation
 
       One of the most interesting features of Emacs is its ability to dynamically evaluate random blocks of Elisp. I frequently swap over to a scratch buffer, type out some functions, execute them to do something useful, and then toggle back to whatever I was doing previously. These bindings make that easier.
@@ -321,6 +333,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       #+BEGIN_SRC emacs-lisp :tangle no
 	(evil-global-set-key 'normal (kbd "<leader> b d") 'kill-buffer)
 	(evil-global-set-key 'normal (kbd "<leader> b s") 'switch-to-scratch)
+	(evil-global-set-key 'normal (kbd "<leader> b b") 'switch-to-buffer)
       #+END_SRC
 
 
@@ -473,10 +486,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	:custom
 	<<completion-variables-config>>
 	:config
-	<<completion-fido-config>>
-	(evil-global-set-key 'normal (kbd "<leader> f f") 'find-file)
-	(evil-global-set-key 'normal (kbd "<leader> b b") 'switch-to-buffer)
-	(evil-global-set-key 'normal (kbd "<leader> f d") 'dired))
+	<<completion-fido-config>>)
     #+END_SRC
 
     
