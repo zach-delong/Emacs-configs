@@ -1223,24 +1223,27 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 :config (treemacs-set-scope-type 'Tabs))
      #+END_SRC
 
-*** Projectile
 
-Projectile is a library to replace project.el (the built in project management tool). They have a ton of overlap between their functionality, but for now, I am preferring using Projectile because I like the fact that it provides tools for both compiling and testing code and allows easy customization of what commands run in each project.
+*** project.el
 
-Notice that on init, we are enabling the mode. This is so that it loads the list of "known projects" immediately on starting emacs, so I can easily immediately ~<leader> p p~ to switch to a project.
-
-I also set a keybinding for saving projects to that list.
-
+    I need a convenient way to remember "the current project"
     #+BEGIN_SRC emacs-lisp
-      (use-package projectile
-	:ensure t
-	:init
-	(projectile-mode)
-	:config
-	(evil-global-set-key 'normal (kbd "<leader> p") 'projectile-command-map)
-	(evil-global-set-key 'normal (kbd "<leader> f p r") 'projectile-add-known-project))
+      (defun project-remember-current ()
+	(interactive)
+	(project-remember-project (project-current)))
     #+END_SRC
 
+     #+BEGIN_SRC emacs-lisp
+       (use-package project
+	 :config
+	 (evil-global-set-key 'normal (kbd "<leader> p r") 'project-remember-current)
+	 (evil-global-set-key 'normal (kbd "<leader> p s") 'project-switch-project)
+	 (evil-global-set-key 'normal (kbd "<leader> p b") 'project-switch-to-buffer)
+	 (evil-global-set-key 'normal (kbd "<leader> p f") 'project-find-file)
+	 (evil-global-set-key 'normal (kbd "<leader> p d") 'project-dired)
+	 (evil-global-set-key 'normal (kbd "<leader> p !") 'project-shell-command)
+	 (evil-global-set-key 'normal (kbd "<leader> p c") 'project-compile))
+     #+END_SRC
 *** Flyspell mode
 
     #+BEGIN_SRC emacs-lisp
