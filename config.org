@@ -545,7 +545,6 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
      #+END_SRC
 
 
-
 *** Magit
 
     I love [[https://magit.vc/][Magit]]. Enough said.
@@ -1222,7 +1221,6 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 :ensure t
 	 :config (treemacs-set-scope-type 'Tabs))
      #+END_SRC
-
 
 *** project.el
 
