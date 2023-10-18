@@ -288,11 +288,23 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 (evil-global-set-key 'normal (kbd "<leader> f d d") 'dired)
        #+END_SRC
 
-       There are also commands that can pipe the output of find to a buffer, for you to perform bulk operations on. [[https://www.masteringemacs.org/article/working-multiple-files-dired][See here for more info]]. The only real difference is that the ~lisp~ variant is written in emacs lisp and works in environments that might not have GNU Find installed.
+       There are also commands that can pipe the output of find to a buffer, for you to perform bulk operations on. [[https://www.masteringemacs.org/article/working-multiple-files-dired][See here for more info]]. The only real difference is that the ~lisp~ variant is written in emacs lisp and works in environments that might not have GNU Find installed. Below I've written a program that checks to see if you have ~find~ installed. If you do, it calls out to it interactively (so as though you had executed it interactively yourself via a keybinding or via calling ~execute-extended-comand~. If you don't, it falls back to the ~lisp~ implementation of ~find~, which might be significantly slower, but should work in any environment.
 
        #+BEGIN_SRC emacs-lisp
-	 (evil-global-set-key 'normal (kbd "<leader> f d f") 'find-name-dired)
-	 (evil-global-set-key 'normal (kbd "<leader> f d e") 'find-lisp-find-dired)
+	 (defun find-name-dired-fallback ()
+	     "Runs the local executable 'find' CLI program (if it exists) and
+	 pipes the output to dired. If it does not exist, it will fallback
+	 to using the elisp implementation which may be slower."
+	   (interactive)
+	   (if (not (eq (executable-find "find") nil))
+	       (call-interactively 'find-name-dired) 
+	     (call-interactively 'find-lisp-find-dired)))
+       #+END_SRC
+
+       And I have bound my new utility function so I can use it easily.
+
+       #+BEGIN_SRC emacs-lisp
+	 (evil-global-set-key 'normal (kbd "<leader> f d f") 'find-name-dired-fallback)
        #+END_SRC
 
        
