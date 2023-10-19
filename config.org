@@ -556,7 +556,6 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
        (fido-vertical-mode)
      #+END_SRC
 
-
 *** Magit
 
     I love [[https://magit.vc/][Magit]]. Enough said.
