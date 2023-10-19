@@ -1310,6 +1310,30 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(auto-package-update-maybe))
     #+END_SRC
 
+*** TODO dired
+
+    I know that dired mode and dired-x are a thing, but I don't really make much use of them in my current workflow. I should change that and revisit this in the future.
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package dired
+	:custom
+	; I don't like having dotfiles in my output, so I have them hidden here. 
+	(dired-listing-switches "-l"))
+    #+END_SRC
+
+
+    I can probably omit the files using dired-x instead of doing that via the listing switches, but this is okay for now.
+    #+BEGIN_SRC emacs-lisp
+      (use-package dired-x
+	:after dired)
+    #+END_SRC
+
+    References for dired
+    + [[https://www.gnu.org/software/emacs/manual/html_mono/dired-x.html#Installation][emacs manual on dired-x]]
+    + [[https://www.masteringemacs.org/article/dired-shell-commands-find-xargs-replacement][mastering emacs article mentioning dired-x]]
+    + [[https://www.emacswiki.org/emacs/DiredExtra#Dired_X][emacs wiki on dired-x]]
+    + [[https://github.com/mattss/emacs.d/blob/4e3cb1f597a271a8fba99729f66606f8ae5db8b8/init.el#L120][an example where somebody figured out how to make things work nicely with use-package]] 
+
 ** Backups
 
    Emacs keeps backups of files that you have open in case something bad happens and they need to be recovered. They're stored in the same directory as the file you are working on by default, and end in a "~". I find all these extra files pretty bothersome, but I similar to what I do with undo-tree, I want to store them in a central location. Stolen from [[https://stackoverflow.com/questions/2680389/how-to-remove-all-files-ending-with-made-by-emacs][Stack Overflow]].
