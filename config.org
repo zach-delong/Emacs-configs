@@ -1334,6 +1334,28 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     + [[https://www.emacswiki.org/emacs/DiredExtra#Dired_X][emacs wiki on dired-x]]
     + [[https://github.com/mattss/emacs.d/blob/4e3cb1f597a271a8fba99729f66606f8ae5db8b8/init.el#L120][an example where somebody figured out how to make things work nicely with use-package]] 
 
+*** Yasnippet
+
+    [[https://github.com/joaotavora/yasnippet][Yasnippet]] is a library for expanding snippets to autocomplete code. It has a ton of options, so I have just set it up in a basic way to test it out.
+
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package yasnippet
+	:ensure t
+	:hook
+	(prog-mode . yas-minor-mode)
+	:config
+	(evil-global-set-key 'insert (kbd "<C-tab>") 'yas-expand))
+    #+END_SRC
+
+    Of course Yasnipets hasn't come with its own default snippets for a long time, so [[https://github.com/AndreaCrotti/yasnippet-snippets][here is a community maintained package]] that has a ton of useful ones!
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package yasnippet-snippets
+	:ensure t)
+    #+END_SRC
+
+
 ** Backups
 
    Emacs keeps backups of files that you have open in case something bad happens and they need to be recovered. They're stored in the same directory as the file you are working on by default, and end in a "~". I find all these extra files pretty bothersome, but I similar to what I do with undo-tree, I want to store them in a central location. Stolen from [[https://stackoverflow.com/questions/2680389/how-to-remove-all-files-ending-with-made-by-emacs][Stack Overflow]].
