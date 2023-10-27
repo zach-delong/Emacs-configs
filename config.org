@@ -1176,24 +1176,11 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       (use-package dockerfile-mode
 	:ensure t)
     #+END_SRC
-*** TODO Typescript mode
+*** Typescript mode
 
     #+BEGIN_SRC emacs-lisp
       (use-package typescript-mode
 	:ensure t)
-
-      (use-package tide
-	:after (typescript-mode company flycheck)
-	:ensure t
-	:custom
-	(tide-completion-setup-company-backend nil)
-	:config
-	(evil-define-key 'normal tide-mode-map (kbd "<localleader> g d") 'tide-jump-to-definition)
-	(evil-define-key 'normal tide-mode-map (kbd "<localleader> r .") 'tide-refactor)
-	(evil-define-key 'normal tide-mode-map (kbd "<localleader> r r") 'tide-rename-symbol)
-	:hook ((typescript-mode . tide-setup)
-	       (before-save . tide-format-before-save)))
-
     #+END_SRC
 *** TODO Flycheck mode
 
@@ -1245,13 +1232,16 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
        (csharp-mode . lsp-mode)
      #+END_SRC
 
-
      #+BEGIN_SRC emacs-lisp :tangle no
        (lsp-mode . lsp-enable-which-key-integration)
      #+END_SRC
 
      #+BEGIN_SRC emacs-lisp :tangle no
        (vue-mode . lsp-mode)
+     #+END_SRC
+
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (typescript-mode . lsp-mode)
      #+END_SRC
 
 
