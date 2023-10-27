@@ -1148,7 +1148,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     #+BEGIN_SRC emacs-lisp
       (use-package vue-mode
-	:ensure t)
+	:ensure t
+	:mode "\\.vue\\'")
     #+END_SRC
 *** Tab bar mode
 
@@ -1190,9 +1191,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(evil-define-key 'normal tide-mode-map (kbd "<localleader> g d") 'tide-jump-to-definition)
 	(evil-define-key 'normal tide-mode-map (kbd "<localleader> r .") 'tide-refactor)
 	(evil-define-key 'normal tide-mode-map (kbd "<localleader> r r") 'tide-rename-symbol)
-	:hook
-	((before-save . tide-format-before-save)
-	 (typescript-mode . tide-setup)))
+	:hook ((typescript-mode . tide-setup)
+	       (before-save . tide-format-before-save)))
 
     #+END_SRC
 *** TODO Flycheck mode
@@ -1249,6 +1249,11 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
      #+BEGIN_SRC emacs-lisp :tangle no
        (lsp-mode . lsp-enable-which-key-integration)
      #+END_SRC
+
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (vue-mode . lsp-mode)
+     #+END_SRC
+
 
 *** Csharp mode
 
@@ -1416,6 +1421,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	:ensure t
 	:hook
 	(prog-mode . yas-minor-mode)
+	(vue-mode . yas-minor-mode)
 	:config
 	(evil-global-set-key 'insert (kbd "<C-tab>") 'yas-expand))
     #+END_SRC
@@ -1426,7 +1432,6 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       (use-package yasnippet-snippets
 	:ensure t)
     #+END_SRC
-
 
 ** Backups
 
