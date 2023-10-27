@@ -1423,6 +1423,33 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	:ensure t)
     #+END_SRC
 
+*** prettier-js mode
+
+    Prettier-js is a [[https://prettier.io/][project for formatting javascript and typescript code]]. It is really common in front end projects these days. I would like it to run whenever I save, which is exactly what this plugin does. I just have to make sure it gets active on the right modes.
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package prettier-js
+	:ensure t
+	:hook ((typescript-mode . prettier-js-mode)
+	       (javascript-mode . prettier-js-mode)
+	       (vue-mode . prettier-js-mode)))
+    #+END_SRC
+
+    Unfortunately, most projects these days use a "local" copy of prettier installed in the node_modules folder. There is a plugin that purports to do that, but it has a bug in current versions of node. I have tried to fix that myself locally. I should try to submit that upstream.
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package add-node-modules-path
+	:ensure t
+	:custom
+	(add-node-modules-path-command '("echo \"$(npm root)\"/.bin"))
+	:config
+	(add-hook 'javascript-mode-hook #'add-node-modules-path)
+	(add-hook 'typescript-mode-hook #'add-node-modules-path)
+	(add-hook 'vue-mode-hook #'add-node-modules-path))
+    #+END_SRC
+
+
+
 ** Backups
 
    Emacs keeps backups of files that you have open in case something bad happens and they need to be recovered. They're stored in the same directory as the file you are working on by default, and end in a "~". I find all these extra files pretty bothersome, but I similar to what I do with undo-tree, I want to store them in a central location. Stolen from [[https://stackoverflow.com/questions/2680389/how-to-remove-all-files-ending-with-made-by-emacs][Stack Overflow]].
