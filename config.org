@@ -862,12 +862,6 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	  (setq org-refile-use-outline-path nil)
 	#+END_SRC
 
-******* Drawer config
-
-	Sets the org-repeat logbook to store its information in the "LOGBOOK" drawer instead of in a bulleted list on the header. this should keep things cleaner. I was having issues with beorg putting things in some places and emacs putting them in others, so for now I am just putting it all in here.
-	#+BEGIN_SRC emacs-lisp :tangle no
-	  (setq org-log-into-drawer "LOGBOOK")
-	#+END_SRC
 ******* Task keywords
 
 	You can set what states are valid for tasks in org files globally. I do sometimes override this on a per-file basis as it's appropriate, so I don't have many states set up here.
