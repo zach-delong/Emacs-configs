@@ -985,6 +985,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 (org-agenda-span 14)
 	 (org-adapt-indentation t)
 	 :config
+	 (add-hook 'org-mode-hook (lambda () (setq mode-name "✔")))
 	 <<org-variables-config>>
 	 <<org-keybindings>>)
      #+END_SRC
