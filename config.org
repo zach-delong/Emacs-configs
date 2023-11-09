@@ -401,6 +401,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
      #+BEGIN_SRC emacs-lisp
        (use-package evil-collection
 	 :after (evil magit)
+	 :diminish evil-collection-unimpaired-mode
 	 :ensure t
 	 :config
 	 (evil-collection-init))
@@ -530,6 +531,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+BEGIN_SRC emacs-lisp
       (use-package which-key
 	:ensure t
+	:diminish which-key-mode
 	:config
 	(which-key-mode))
     #+END_SRC
@@ -1046,6 +1048,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+BEGIN_SRC emacs-lisp
       (use-package editorconfig
 	:ensure t
+	:diminish editorconfig-mode
 	:config
 	(editorconfig-mode 1))
     #+END_SRC
@@ -1086,6 +1089,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     
     #+BEGIN_SRC emacs-lisp
       (use-package zettelkasten-mode
+	:diminish zettelkasten-mode
 	:config
 	(evil-global-set-key 'normal (kbd "<leader> a z c") 'zettel-create-new)
 	(evil-global-set-key 'normal (kbd "<leader> a z i") 'zettel-insert-and-create-new)
@@ -1443,6 +1447,12 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(add-hook 'vue-mode-hook #'add-node-modules-path))
     #+END_SRC
 
+*** Diminish
+
+    #+BEGIN_SRC emacs-lisp
+      (use-package diminish
+	:ensure t)
+    #+END_SRC
 
 
 ** Backups
