@@ -1065,7 +1065,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       (use-package smartparens
 	:ensure t
 	:pin melpa
-	:hook ( emacs-lisp-mode . smartparens-mode))
+	:hook ((emacs-lisp-mode . smartparens-mode)
+		(vue-mode . smartparens-mode)))
     #+END_SRC
 *** Web mode
 
