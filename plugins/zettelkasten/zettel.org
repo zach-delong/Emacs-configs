@@ -1,0 +1,131 @@
+#+TITLE: Zettelkasten-mode
+
+* What
+  
+  This is an Emacs minor mode for enabling the [[https://zettelkasten.de/introduction/?utm_source=pocket_mylist][Zettelkasten method]]. My
+  intention is to make it easier to work on a markdown-based
+  Zettelkasten inside Emacs.
+
+* Requirements
+
+  + Markdown-mode
+  + Markdown wiki mode (to enable wiki style links)
+
+* Variables
+  
+** Markdown
+
+   I happen to like using the wiki style links for my zettelkasten
+   because they are nicer to view without fancy formatting. This will
+   probably become a setting external to this plugin at some point in
+   the future.
+
+   #+BEGIN_SRC emacs-lisp
+     (setq markdown-enable-wiki-links t)
+   #+END_SRC
+
+** Note creation and paths
+
+   These variables should be overridden by users in their configs.
+
+*** Path to notes
+
+    #+BEGIN_SRC emacs-lisp
+      (defvar zettel-path "~/Dropbox/zettelkasten")
+    #+END_SRC
+
+*** File names
+
+    There are a bunch of different opinions about how to format a file
+    name. Overload this to customize it to your liking. Any Bash
+    command shold probably work?
+
+    #+BEGIN_SRC emacs-lisp
+      (setq zettel-date-command "date +%Y-%m-%d_%k-%m-%S")
+    #+END_SRC
+
+* Utilities
+  
+** Create buffer and switch
+
+  #+BEGIN_SRC emacs-lisp
+    (defun zettel-create-buffer-for-file-and-switch (new-file-path)
+      "Creates a new buffer for a particular file, set up the backing
+    file for that buffer to your provided path."
+      (switch-to-buffer
+       (create-file-buffer new-file-path))
+      (set-visited-file-name new-file-path))
+  #+END_SRC
+
+** Get a new file name
+
+   This function will give you back a file name, formatted properly. 
+
+   #+BEGIN_SRC emacs-lisp
+     (defun zettel-get-file-name ()
+       "Override this to get a totally different file name if you'd
+     like. Ex, make it interactive and provide a string"
+       (substring
+	(shell-command-to-string zettel-date-command)
+	0			      ; Start from the beginning of the screen
+	-1)) ; Go to the character before the end of the string. This discards a final newline
+   #+END_SRC
+
+* Main functions
+  
+** Get path to file
+
+   #+BEGIN_SRC emacs-lisp
+     (defun zettel-get-path (file-name)
+       (concat zettel-path "/" file-name))
+   #+END_SRC
+
+** Create a new note
+
+   #+BEGIN_SRC emacs-lisp
+     (defun zettel-create-new ()
+       "Create a new note in your zettelkasten using your name format"
+       (interactive) 
+       (setq path (concat
+		   (zettel-get-path (zettel-get-file-name))
+		   ".md"))
+       (zettel-create-buffer-for-file-and-switch path))
+   #+END_SRC
+
+   
+** Insert the text to the buffer and create a new note
+
+   #+BEGIN_SRC emacs-lisp
+     (defun zettel-insert-and-create-new ()
+       "Inserts a new note name at point, creates a note, and switches to a buffer with that note pulled up"
+       (interactive)
+       (setq file-name (zettel-get-file-name))
+       (insert
+	(format "[[%s]]" file-name))
+       (setq file-path (format "%s.md" 
+			(zettel-get-path file-name)))
+       (zettel-create-buffer-for-file-and-switch file-path))
+   #+END_SRC
+
+* The minor mode
+
+  #+BEGIN_SRC emacs-lisp
+
+    (define-minor-mode zettelkasten-mode
+      "Toggle zettelkasten mode. 
+    You shold probably bind 'zettel-create-new"
+      :lighter " Zettel"
+      :global t)
+  #+END_SRC
+* Provide feature
+
+  #+BEGIN_SRC emacs-lisp
+    (provide 'zettelkasten-mode)
+  #+END_SRC
+
+* Whishlist
+** TODO Insert method
+
+   The insert mehtod should basically call ~zettel-create-new~ but
+   should also insert a link to the new file at wherever the current
+   point is.

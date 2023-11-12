@@ -1,0 +1,19 @@
+* Early Init
+
+[[https://www.gnu.org/software/emacs/manual/html_node/emacs/Early-Init-File.html][This file is loaded way before the normal config file]]. As such, I am
+using it to set certain things that I like to have set but which can
+be slow or need to be configured before all packages are loaded. 
+
+** Visual customizations
+
+It's slightly faster to customize the UI before it's actually
+loaded. This can also help prevent the UI from "flickering" as things
+that I don't really need are disabled. That flickering was happening
+before I moved into the ~early-init.el~ model.
+
+   #+BEGIN_SRC emacs-lisp
+     (tool-bar-mode -1) ; There are "shortcut" tools I don't really use
+     (menu-bar-mode -1) ; The File, Edit, etc. menues that I don't use
+     (scroll-bar-mode -1) ; The scroll bars are just kind of bad looking
+			  ; in my opinion
+   #+END_SRC
