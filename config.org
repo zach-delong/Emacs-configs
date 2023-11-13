@@ -28,9 +28,9 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     #+BEGIN_SRC emacs-lisp
       (setq package-archive-priorities
-	    '(("gnu"    . 2)
-	      ("nongnu" . 1)
-	      ("melpa") . 0))
+	    '(("gnu"    . 1)
+	      ("nongnu" . 2)
+	      ("melpa") . 2))
     #+END_SRC
 
 *** Initialization
