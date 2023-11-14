@@ -10,7 +10,7 @@
   Just clone this into your emacs config folder!
 
   #+BEGIN_SRC sh
-    git clone git@github.com:ZacheryPD/Emacs-From-Scratch.git ~/.emacs.d
+    git clone git@github.com:zach-delong/Emacs-configs.git ~/.emacs.d
   #+END_SRC
 
 * Where is the config?
