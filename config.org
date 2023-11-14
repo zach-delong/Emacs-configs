@@ -17,14 +17,14 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 *** Package repositories
 
-    By default, my Emacs distribution uses [[http://elpa.gnu.org/][ELPA]] , but I also want to use [[https://melpa.org/][MELPA]], so I will include that here.
+    By default my config uses [[https://melpa.org/][MELPA]]. I would love to rely on [[http://elpa.gnu.org/][ELPA]] more, but I have had issues with timely resolution of issues, so for now I am primarily using MELPA.
 
     #+BEGIN_SRC emacs-lisp
       (add-to-list 'package-archives
 		   '("melpa" . "https://melpa.org/packages/") t)
     #+END_SRC
 
-    We also want to make sure we are pulling from sources in a way that keeps with our priorities. I trust what the FSF is reviewing in ELPA much more than I do the stuff that is in the more public MELPA repository, so I am interested in pulling from there as much as possible.
+    We also want to make sure we are pulling from sources in a way that keeps with our priorities. Since I have had issues with ELPA having up to date packages, I am giving MELPA highest priority, then nongnu ELPA, followed by ELPA. I would love to flip this around eventually, but right now this is working well.
 
     #+BEGIN_SRC emacs-lisp
       (setq package-archive-priorities
