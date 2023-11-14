@@ -179,9 +179,11 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
      This section will be inserted into my use-package definition in the ~:init~ block, so it's executed before evil mode is loaded.
 
-***** TODO keybindings?
+***** Keybindings for "other modes"
 
-      I am really not sure why this is here. It appears to have to do with [[*Evil-collection][evil-collection]]. I should come back to this and figure out what it is doing.
+      Evil itself has a set of keybindings for lots of modes, but not all of them make sense to me. Instead, I want to use [[*Evil-collection][evil-collection]] to set up a bunch of defaults that I can manipulate as I see fit.
+
+      To make sure that I don't conflict with ~evil-collection~ I need to make sure Evil doesn't try to load those default keybindings.
 
       #+BEGIN_SRC emacs-lisp :tangle no
 	(setq evil-want-keybinding nil)
