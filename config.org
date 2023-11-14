@@ -9,7 +9,7 @@
 
 ** package.el
 
-First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/emacs-lisp/package.el][package.el]] is configured. Package.el is a package manager that's built into GNU Emacs (apparently since Emacs24). I will be using `use-package` for the most part, but I will have to bootstrap that somehow and for now package.el (which is built in anywhere I have needed it) fits fine.
+First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/emacs-lisp/package.el][package.el]] is configured. Package.el is a package manager that's built into GNU Emacs (apparently since Emacs24). I will be using ~use-package~ for the most part, but I will have to bootstrap that somehow and for now package.el (which is built in anywhere I have needed it) fits fine.
 
    #+BEGIN_SRC emacs-lisp
      (require 'package)
