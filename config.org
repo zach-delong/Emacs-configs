@@ -35,7 +35,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 *** Initialization
 
-    To set up `package.el` I need to call `package-initialize`.
+    To set up ~package.el~ I need to call ~package-initialize~.
     
     #+BEGIN_SRC emacs-lisp
       (package-initialize)
@@ -60,7 +60,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 *** A brief introduction to use-package
 
-    Use package has a ton of options that I frequently forget how to use, so I want to explain a few of them here for future reference. One of the big benefits is that nothing is loaded by ~use-package~ until a provided feature is actually requested. This means that you can defer configuration easily!
+    Use package has a ton of options that I frequently forget how to use, so I want to explain a few of them here for future reference. One of the big benefits is that nothing is loaded by `use-package` until a provided feature is actually requested. This means that you can defer configuration easily!
 
 **** Basic use-package and ensure
 
@@ -94,7 +94,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 * Configuration
 
-  This is where the meat-and-potatoes of my configuration will live.
+  This is where the meat-and-potatoes of my configuratoin will live.
 
 ** Utilities
 
@@ -179,11 +179,9 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
      This section will be inserted into my use-package definition in the ~:init~ block, so it's executed before evil mode is loaded.
 
-***** Keybindings for "other modes"
+***** TODO keybindings?
 
-      Evil itself has a set of keybindings for lots of modes, but not all of them make sense to me. Instead, I want to use [[*Evil-collection][evil-collection]] to set up a bunch of defaults that I can manipulate as I see fit.
-
-      To make sure that I don't conflict with ~evil-collection~ I need to make sure Evil doesn't try to load those default keybindings.
+      I am really not sure why this is here. It appears to have to do with [[*Evil-collection][evil-collection]]. I should come back to this and figure out what it is doing.
 
       #+BEGIN_SRC emacs-lisp :tangle no
 	(setq evil-want-keybinding nil)
@@ -398,7 +396,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 **** Evil-collection
 
-     We also want to use [[https://github.com/emacs-evil/evil-collection][evil-collection]] to set up things for "buffers evil mode doesn't think about by default"
+     We also want to use [[https://github.com/emacs-evil/evil-collection][`evil-collection`]] to set up things for "buffers evil mode doesn't think about by default"
 
      #+BEGIN_SRC emacs-lisp
        (use-package evil-collection
@@ -411,7 +409,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 **** Evil-surround
 
-     Want to surround strings or expressions with things? [[https://github.com/emacs-evil/evil-surround][This]] is how!
+     Want to surround strings or expressions with things? This is how!
 
      #+BEGIN_SRC emacs-lisp
        (use-package evil-surround
@@ -1390,17 +1388,19 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     I know that dired mode and dired-x are a thing, but I don't really make much use of them in my current workflow. I should change that and revisit this in the future.
 
     #+BEGIN_SRC emacs-lisp
-      (use-package dired
-	:custom
-	; I don't like having dotfiles in my output, so I have them hidden here. 
-	(dired-listing-switches "-l"))
+      (use-package dired)
     #+END_SRC
 
 
     I can probably omit the files using dired-x instead of doing that via the listing switches, but this is okay for now.
     #+BEGIN_SRC emacs-lisp
       (use-package dired-x
-	:after dired)
+	:after dired
+	:demand t 
+	:config
+	(setq dired-omit-files
+	      (concat dired-omit-files
+		      "\\|^.\\|")))
     #+END_SRC
 
     References for dired
