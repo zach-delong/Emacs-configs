@@ -1415,24 +1415,13 @@ package.el uses a priority system for picking what package archive to use locall
 	       (vue-mode . prettier-js-mode)))
     #+END_SRC
 
-    Unfortunately, most projects these days use a "local" copy of prettier installed in the node_modules folder. There is a plugin that purports to do that, but it has a bug in current versions of node. I have tried to fix that myself locally. I should try to submit that upstream.
-
-    #+BEGIN_SRC emacs-lisp
-      (use-package add-node-modules-path
-	:ensure t
-	:custom
-	(add-node-modules-path-command '("echo \"$(npm root)\"/.bin"))
-	:config
-	(add-hook 'javascript-mode-hook #'add-node-modules-path)
-	(add-hook 'typescript-mode-hook #'add-node-modules-path)
-	(add-hook 'vue-mode-hook #'add-node-modules-path))
-    #+END_SRC
-
     #+BEGIN_SRC emacs-lisp
       (use-package add-local-node-modules
 	:load-path "plugins/add-local-node-modules"
 	:config
-	(message "Attempted to load add-local-node-modules"))
+	(add-hook 'javascript-mode-hook #'add-local-node-modules)
+	(add-hook 'typescript-mode-hook #'add-local-node-modules)
+	(add-hook 'vue-mode-hook #'add-local-node-modules))
     #+END_SRC
 
 *** Diminish

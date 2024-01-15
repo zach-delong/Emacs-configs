@@ -2,6 +2,7 @@
 (require 'subr-x)
 
 (defun add-local-node-modules/trim-output-right (input)
+  "Trim whitespace from the right part of strings"
   (string-trim-right input))
 
 (defun add-local-node-modules/exec (command)
@@ -15,6 +16,7 @@ of node-modules"
   (concat input "/.bin/"))
 
 (defun add-local-node-modules/get-path-to-bin (input)
+  "Attempt to find the path to node_modules and append to that .bin/"
   (let
       ((path-to-root (add-local-node-modules/exec input)))
     (add-local-node-modules/add-bin-to-path path-to-root)))
@@ -24,8 +26,12 @@ of node-modules"
 can be found. Requires that you have NPM installed and available
 on your path."
   (interactive)
-  (let
-      ((path-to-bin (add-local-node-modules/get-path-to-bin add-local-node-modules/command-to-execute)))
-    (message path-to-bin)))
+  (let*
+      ((path-to-bin (add-local-node-modules/get-path-to-bin add-local-node-modules/command-to-execute))
+       (path-is-valid (file-directory-p path-to-bin)))
+    (if path-is-valid
+	(progn
+	  (make-local-variable 'exec-path)
+	  (add-to-list 'exec-path path-to-bin)))))
 
 (provide 'add-local-node-modules)
