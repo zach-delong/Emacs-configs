@@ -1,0 +1,10 @@
+(ert-deftest add-local-onde-modules/trim-output-right ()
+  (should (equal (add-local-node-modules/trim-output-right "stuff") "stuff"))
+  (should (equal (add-local-node-modules/trim-output-right "stuff\n") "stuff"))
+  (should (equal (add-local-node-modules/trim-output-right "stuff\t") "stuff"))
+  (should (equal (add-local-node-modules/trim-output-right "\tstuff\t") "\tstuff"))
+  (should (equal (add-local-node-modules/trim-output-right "\nstuff\n") "\nstuff")))
+
+(ert-deftest add-local-node-modules/add-bin-to-path ()
+  (should (equal (add-local-node-modules/add-bin-to-path "path") "path/.bin/"))
+  (should (equal (add-local-node-modules/add-bin-to-path "") "/.bin/")))
