@@ -1428,6 +1428,13 @@ package.el uses a priority system for picking what package archive to use locall
 	(add-hook 'vue-mode-hook #'add-node-modules-path))
     #+END_SRC
 
+    #+BEGIN_SRC emacs-lisp
+      (use-package add-local-node-modules
+	:load-path "plugins/add-local-node-modules"
+	:config
+	(message "Attempted to load add-local-node-modules"))
+    #+END_SRC
+
 *** Diminish
 
     #+BEGIN_SRC emacs-lisp
