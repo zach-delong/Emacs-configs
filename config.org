@@ -9,25 +9,54 @@
 
 ** package.el
 
-First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/emacs-lisp/package.el][package.el]] is configured. Package.el is a package manager that's built into GNU Emacs (apparently since Emacs24). I will be using ~use-package~ for the most part, which is a macro for installing packages if they aren't already installed. That said, if I want to install things, chances are pretty good that I want to install them from [[https://melpa.org/][MELPA]]. I would like to use [[http://elpa.gnu.org/][ELPA]], which is vetted by the FSF, but not everyone uploads there, so for now I use MELPA for most things.
-
-package.el uses a priority system for picking what package archive to use locally.  I am setting that priority to MELPA > Non-GNU ELPA > ELPA, for the best likelihood of not having conflicting versions of things installed. 
+First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/emacs-lisp/package.el][package.el]] is configured. Package.el is a package manager that's built into GNU Emacs (apparently since Emacs24). I will be using ~use-package~ for the most part, but I will have to bootstrap that somehow and for now package.el (which is built in anywhere I have needed it) fits fine.
 
    #+BEGIN_SRC emacs-lisp
-     (use-package package
-       :config
-       (add-to-list 'package-archives
-		    '("melpa" . "https://melpa.org/packages/") t)
-       (setq package-archive-priorities
-	     '(("gnu"    . 1)
-	       ("nongnu" . 2)
-	       ("melpa") . 2)))
+     (require 'package)
    #+END_SRC 
 
+*** Package repositories
+
+    By default my config uses [[https://melpa.org/][MELPA]]. I would love to rely on [[http://elpa.gnu.org/][ELPA]] more, but I have had issues with timely resolution of issues, so for now I am primarily using MELPA.
+
+    #+BEGIN_SRC emacs-lisp
+      (add-to-list 'package-archives
+		   '("melpa" . "https://melpa.org/packages/") t)
+    #+END_SRC
+
+    We also want to make sure we are pulling from sources in a way that keeps with our priorities. Since I have had issues with ELPA having up to date packages, I am giving MELPA highest priority, then nongnu ELPA, followed by ELPA. I would love to flip this around eventually, but right now this is working well.
+
+    #+BEGIN_SRC emacs-lisp
+      (setq package-archive-priorities
+	    '(("gnu"    . 1)
+	      ("nongnu" . 2)
+	      ("melpa") . 2))
+    #+END_SRC
+
+*** Initialization
+
+    To set up ~package.el~ I need to call ~package-initialize~.
+    
+    #+BEGIN_SRC emacs-lisp
+      (package-initialize)
+    #+END_SRC
 
 ** Use-package
 
-   [[https://github.com/jwiegley/use-package/tree/a7422fb8ab1baee19adb2717b5b47b9c3812a84c#use-package][Use-package]] is a crazy macro that does a lot of things but I am primarily using it to lazy-load things (using ~package.el~) and to consolidate the list of plugins I am using with their configuration. It used to be that I had to do some bootstrapping to get ~use-package~ installed property before I could refresh packages and try to start installing things, but thankfully, ~use-package~ now comes with Emacs as of Emacs 29, so we can just assume it's installed and use it! 
+   Now that package.el is set up, I can finally install and use ~use-package~! [[https://github.com/jwiegley/use-package/tree/a7422fb8ab1baee19adb2717b5b47b9c3812a84c#use-package][Use-package]] is a crazy macro that does a lot of things but I am primarily using it to lazy-load things (using ~package.el~) and to consolidate the list of plugins I am using with their configuration. I am also using the installation of ~use-package~ as an indicator that this is the first run. I don't want to refresh packages every time I start up Emacs, that would take forever, so I am refreshing them if use-package is not already installed. If it isn't, then clearly my config hasn't been run before, so we should refresh package contents before doing the initial setup.
+
+   #+BEGIN_SRC emacs-lisp
+     (unless (package-installed-p 'use-package)
+       (package-refresh-contents)
+       (package-install 'use-package))
+   #+END_SRC
+
+   Also, when we are compiling packages, we want to make sure that use-package has been loaded.
+
+   #+BEGIN_SRC emacs-lisp
+     (eval-when-compile
+       (require 'use-package))
+   #+END_SRC
 
 *** A brief introduction to use-package
 
@@ -52,7 +81,7 @@ package.el uses a priority system for picking what package archive to use locall
 	 (format "Hello, world this should only show up when evil is actually loaded"))
      #+END_SRC
 
-     You can also use the ~:init~ block if you want it to happen before the package is loaded.
+     You can also use the `:init` block if you want it to happen before the package is loaded.
 
 ** Customization file
 
@@ -65,7 +94,7 @@ package.el uses a priority system for picking what package archive to use locall
 
 * Configuration
 
-  This is where the meat-and-potatoes of my configuration will live.
+  This is where the meat-and-potatoes of my configuratoin will live.
 
 ** Utilities
 
