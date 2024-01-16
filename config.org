@@ -457,7 +457,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	<<company-variables-config>>
 	:config
 
-	<<company-config>>
+	<<company-config>>)
     #+END_SRC
 **** company variables
      :PROPERTIES:
@@ -502,7 +502,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 				company-clang
 				company-semantic
 				company-etags
-				company-files)))
+				company-files))
      #+END_SRC
 
 ***** TODO Random config
