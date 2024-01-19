@@ -286,7 +286,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
        There are also commands that can pipe the output of find to a buffer, for you to perform bulk operations on. [[https://www.masteringemacs.org/article/working-multiple-files-dired][See here for more info]]. The only real difference is that the ~lisp~ variant is written in emacs lisp and works in environments that might not have GNU Find installed. Below I've written a program that checks to see if you have ~find~ installed. If you do, it calls out to it interactively (so as though you had executed it interactively yourself via a keybinding or via calling ~execute-extended-comand~. If you don't, it falls back to the ~lisp~ implementation of ~find~, which might be significantly slower, but should work in any environment.
 
-       #+BEGIN_SRC emacs-lisp
+       #+BEGIN_SRC emacs-lisp :tangle no
 	 (defun find-name-dired-fallback ()
 	     "Runs the local executable 'find' CLI program (if it exists) and
 	 pipes the output to dired. If it does not exist, it will fallback
@@ -377,7 +377,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
       I really like running shell commands from inside of Emacs. ~shell-command~ will run whatever you ask for in your default shell, then pipe the output into a buffer for you to manipulate.
       
-      #+BEGIN_SRC emacs-lisp
+      #+BEGIN_SRC emacs-lisp :tangle no
 	(evil-global-set-key 'normal (kbd "<leader> !") 'shell-command)
       #+END_SRC
 
@@ -385,7 +385,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
       I often toggle between a few themes depending on if I'm working inside our outside. I use this hotkey to do that.
 
-      #+BEGIN_SRC emacs-lisp
+      #+BEGIN_SRC emacs-lisp :tangle no
 	(evil-global-set-key 'normal (kbd "<leader> c t") 'load-theme)
       #+END_SRC
 
