@@ -1461,7 +1461,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(setq dashboard-items '((recents  . 5)
 			      (bookmarks . 5)
 			      (projects . 5)
-			      (agenda . 5))))
+			      (agenda . 5)))
+	(evil-global-set-key 'normal (kbd "<leader> b D") 'dashboard-open))
     #+END_SRC
 ** Backups
 
