@@ -46,16 +46,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
    Now that package.el is set up, I can finally install and use ~use-package~! [[https://github.com/jwiegley/use-package/tree/a7422fb8ab1baee19adb2717b5b47b9c3812a84c#use-package][Use-package]] is a crazy macro that does a lot of things but I am primarily using it to lazy-load things (using ~package.el~) and to consolidate the list of plugins I am using with their configuration. I am also using the installation of ~use-package~ as an indicator that this is the first run. I don't want to refresh packages every time I start up Emacs, that would take forever, so I am refreshing them if use-package is not already installed. If it isn't, then clearly my config hasn't been run before, so we should refresh package contents before doing the initial setup.
 
    #+BEGIN_SRC emacs-lisp
-     (unless (package-installed-p 'use-package)
-       (package-refresh-contents)
-       (package-install 'use-package))
-   #+END_SRC
-
-   Also, when we are compiling packages, we want to make sure that use-package has been loaded.
-
-   #+BEGIN_SRC emacs-lisp
-     (eval-when-compile
-       (require 'use-package))
+     (unless (package-installed-p 'evil)
+       (package-refresh-contents))
    #+END_SRC
 
 *** A brief introduction to use-package
