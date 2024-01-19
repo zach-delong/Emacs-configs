@@ -162,13 +162,9 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       (use-package evil
 	:ensure t
 	:init
-
 	<<evil-init-config>>
-
 	:config
-
 	(evil-mode 1)
-
 	<<evil-keybindings>>)
     #+END_SRC
 
