@@ -16,4 +16,5 @@ before I moved into the ~early-init.el~ model.
      (menu-bar-mode -1) ; The File, Edit, etc. menues that I don't use
      (scroll-bar-mode -1) ; The scroll bars are just kind of bad looking
 			  ; in my opinion
+     (pixel-scroll-mode 1)
    #+END_SRC
