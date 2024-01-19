@@ -299,7 +299,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
        And I have bound my new utility function so I can use it easily.
 
-       #+BEGIN_SRC emacs-lisp
+       #+BEGIN_SRC emacs-lisp :tangle no
 	 (evil-global-set-key 'normal (kbd "<leader> f d f") 'find-name-dired-fallback)
        #+END_SRC
 
@@ -936,7 +936,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
       I use a lot of custom keybindings for org-mode. Most of them are entirely self explanatory, so I am not going to include much documentation of them.
 
-      #+BEGIN_SRC emacs-lisp
+      #+BEGIN_SRC emacs-lisp :tangle no
 	(evil-define-key 'normal org-mode-map (kbd "<localleader> d s") 'org-schedule)
 	(evil-define-key 'normal org-mode-map (kbd "<localleader> d d") 'org-deadline)
 
