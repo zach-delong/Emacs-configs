@@ -1140,7 +1140,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+BEGIN_SRC emacs-lisp
       (use-package vue-mode
 	:ensure t
-	:hook (vue-mode . (lambda () (visual-fill-column-mode -1)))
+	:hook ((vue-mode . (lambda () (visual-fill-column-mode -1)))
+	       (vue-mode . flyspell-prog-mode))
 	:mode "\\.vue\\'")
     #+END_SRC
 *** Tab bar mode
@@ -1211,7 +1212,14 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
        (evil-define-key 'normal lsp-mode-map (kbd "<localleader>") lsp-command-map)
      #+END_SRC
 
+     I have been having some performance issues with occasional lockups while I am writing code, and I suspect LSP-mode to be the culprit.  To debug that, I am setting the garbage collection to happen much more often.
 
+     I am also adjusting the amount of data emacs reads from processes to what the docs recommend. Hopefully these two should fix any performance issues.
+
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (setq gc-cons-threshold 100000000)
+       (setq read-process-output-max (* 1024 1024))
+     #+END_SRC
      
 **** hooks
      :PROPERTIES:
