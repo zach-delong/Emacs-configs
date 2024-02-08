@@ -157,6 +157,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	<<evil-init-config>>
 	:config
 	(evil-mode 1)
+	(setq evil-respect-visual-line-mode 1)
 	<<evil-keybindings>>)
     #+END_SRC
 
