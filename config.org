@@ -1496,6 +1496,20 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
      (setq auto-save-file-name-transforms
 	   `((".*" ,(concat user-emacs-directory "saves/") t)))
    #+END_SRC
+** Tweaks
+
+   This is a collection of minor random tweaks that I like that don't make sense anywhere else in my config. It's a junk drawer.
+
+*** UI
+
+    Some random UI tweaks.
+
+**** Y/N
+
+     I find Emacs' default tendency to ask you to type "yes" or "no" in prompts annoying. I prefer it to just be "y" or "n". Borrowed from [[https://sachachua.com/dotemacs/index.html#change-yes-or-no-to-y-or-n][here]].  
+     #+BEGIN_SRC emacs-lisp
+       (fset 'yes-or-no-p 'y-or-n-p)
+     #+END_SRC
 
 
 ** Visual changes
@@ -1526,7 +1540,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+BEGIN_SRC  emacs-lisp
       (set-frame-font "Source Code Pro 12" nil t)
     #+END_SRC
-
+    
 * Sources
 
   + [[https://masteringemacs.org/article/beginners-guide-to-emacs][Mastering Emacs Beginners Guide]]
