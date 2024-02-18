@@ -1482,7 +1482,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
    Emacs keeps backups of files that you have open in case something bad happens and they need to be recovered. They're stored in the same directory as the file you are working on by default, and end in a "~". I find all these extra files pretty bothersome, but I similar to what I do with undo-tree, I want to store them in a central location. Stolen from [[https://stackoverflow.com/questions/2680389/how-to-remove-all-files-ending-with-made-by-emacs][Stack Overflow]].
 
    #+BEGIN_SRC emacs-lisp
-     (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backup/")))
+     (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backup")))
 	   backup-by-copying t    ; Don't delink hardlinks
 	   version-control t      ; Use version numbers on backups
 	   delete-old-versions t  ; Automatically delete excess backups
@@ -1491,7 +1491,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	   )
    #+END_SRC
 
-   There is also an "autosave" functionality that saves files every few minutes in case of a crash. These files are usually dropped inline just like the backup files, but they are usually named #filename#. This is super useful, but also junks up git repos, etc, so lets store them in our .emacs.d as well.
+   There is also an "auto save" functionality that saves files every few minutes in case of a crash. These files are usually dropped inline just like the backup files, but they are usually named #filename#. This is super useful, but also junks up git repos, etc, so lets store them in our .emacs.d as well.
    
    #+BEGIN_SRC emacs-lisp
      (setq auto-save-file-name-transforms
