@@ -1483,12 +1483,11 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
    #+BEGIN_SRC emacs-lisp
      (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backup")))
-	   backup-by-copying t    ; Don't delink hardlinks
-	   version-control t      ; Use version numbers on backups
-	   delete-old-versions t  ; Automatically delete excess backups
-	   kept-new-versions 20   ; how many of the newest versions to keep
-	   kept-old-versions 5    ; and how many of the old
-	   )
+	   backup-by-copying t
+	   version-control t
+	   delete-old-versions t
+	   kept-new-versions 20
+	   kept-old-versions 5)
    #+END_SRC
 
    There is also an "auto save" functionality that saves files every few minutes in case of a crash. These files are usually dropped inline just like the backup files, but they are usually named #filename#. This is super useful, but also junks up git repos, etc, so lets store them in our .emacs.d as well.
