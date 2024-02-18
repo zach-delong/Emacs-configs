@@ -1497,6 +1497,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	   `((".*" ,(concat user-emacs-directory "saves/") t)))
    #+END_SRC
 
+
 ** Visual changes
 
    I like being able to see when I am looking at the first or last line in a buffer. This should show that in the margin around the buffer.
