@@ -489,7 +489,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 
      #+BEGIN_SRC emacs-lisp :tangle no
-       (setq company-backends '((company-capf :with company-yasnippet)
+       (setq company-backends '(company-yasnippet
+				company-capf
 				company-dabbrev-code
 				company-keywords
 				company-clang
