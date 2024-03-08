@@ -1478,6 +1478,17 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 			      (agenda . 5)))
 	(evil-global-set-key 'normal (kbd "<leader> b D") 'dashboard-open))
     #+END_SRC
+
+*** Bookmarks
+
+    Bookmarks are a built in feature of Emacs that allow you to remember certain locations in files for reference later. Other packages (like dashboard.el) display the output of this feature, though you can also just list them with the built-in UI. This isn't a package as much as it's just a built in feature of Emacs. As such, there's no package to use, but I want to set keybindings anyway.
+
+
+    #+BEGIN_SRC emacs-lisp
+      (evil-global-set-key 'normal (kbd "<leader> B m") 'bookmark-set)
+      (evil-global-set-key 'normal (kbd "<leader> B l") 'bookmark-bmenu-list)
+    #+END_SRC
+
 ** Backups
 
    Emacs keeps backups of files that you have open in case something bad happens and they need to be recovered. They're stored in the same directory as the file you are working on by default, and end in a "~". I find all these extra files pretty bothersome, but I similar to what I do with undo-tree, I want to store them in a central location. Stolen from [[https://stackoverflow.com/questions/2680389/how-to-remove-all-files-ending-with-made-by-emacs][Stack Overflow]].
