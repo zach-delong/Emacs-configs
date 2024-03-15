@@ -25,3 +25,4 @@ session.*
 /.last-package-update-day
 projectile.cache
 /recentf
+/tutorial/
