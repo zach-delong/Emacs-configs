@@ -387,6 +387,17 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       #+END_SRC
 
 
+***** Narrowing and widening
+
+      Emacs allows you to "narrow" a given buffer, meaning only display part of it. when a buffer is narrowed, actions you take like searching or replacing only impact the viewable buffer. To "undo" the narrowing, you just need to issue the command "widen"
+
+      #+BEGIN_SRC emacs-lisp
+	(evil-global-set-key 'visual (kbd "<leader> n n") 'narrow-to-region)
+	(evil-global-set-key 'normal (kbd "<leader> n n") 'narrow-to-region)
+	(evil-global-set-key 'normal (kbd "<leader> n w") 'widen)
+	(evil-global-set-key 'visual (kbd "<leader> n w") 'widen)
+      #+END_SRC
+
 **** Evil-collection
 
      We also want to use [[https://github.com/emacs-evil/evil-collection][`evil-collection`]] to set up things for "buffers evil mode doesn't think about by default"
