@@ -1608,7 +1608,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 ** Scratch ERT space
 
    I just discovered ERT so I added a simple example.
-   #+BEGIN_SRC emacs-lisp :tangle config.el
+   #+BEGIN_SRC emacs-lisp :tangle tests.el
      (ert-deftest testing-ert ()
        "This is a test"
        (should (equal 1 1)))

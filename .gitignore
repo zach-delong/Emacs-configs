@@ -26,3 +26,4 @@ session.*
 projectile.cache
 /recentf
 /tutorial/
+/tests.el
