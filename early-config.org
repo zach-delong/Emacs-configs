@@ -11,7 +11,7 @@ loaded. This can also help prevent the UI from "flickering" as things
 that I don't really need are disabled. That flickering was happening
 before I moved into the ~early-init.el~ model.
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle early-config.el
      (tool-bar-mode -1) ; There are "shortcut" tools I don't really use
      (menu-bar-mode -1) ; The File, Edit, etc. menues that I don't use
      (scroll-bar-mode -1) ; The scroll bars are just kind of bad looking

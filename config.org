@@ -11,7 +11,7 @@
 
 First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/emacs-lisp/package.el][package.el]] is configured. Package.el is a package manager that's built into GNU Emacs (apparently since Emacs24). I will be using ~use-package~ for the most part, but I will have to bootstrap that somehow and for now package.el (which is built in anywhere I have needed it) fits fine.
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle config.el
      (require 'package)
    #+END_SRC 
 
@@ -19,14 +19,14 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     By default my config uses [[https://melpa.org/][MELPA]]. I would love to rely on [[http://elpa.gnu.org/][ELPA]] more, but I have had issues with timely resolution of issues, so for now I am primarily using MELPA.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (add-to-list 'package-archives
 		   '("melpa" . "https://melpa.org/packages/") t)
     #+END_SRC
 
     We also want to make sure we are pulling from sources in a way that keeps with our priorities. Since I have had issues with ELPA having up to date packages, I am giving MELPA highest priority, then nongnu ELPA, followed by ELPA. I would love to flip this around eventually, but right now this is working well.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (setq package-archive-priorities
 	    '(("gnu"    . 1)
 	      ("nongnu" . 2)
@@ -37,7 +37,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     To set up ~package.el~ I need to call ~package-initialize~.
     
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (package-initialize t)
     #+END_SRC
 
@@ -45,7 +45,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
    Now that package.el is set up, I can finally install and use ~use-package~! [[https://github.com/jwiegley/use-package/tree/a7422fb8ab1baee19adb2717b5b47b9c3812a84c#use-package][Use-package]] is a crazy macro that does a lot of things but I am primarily using it to lazy-load things (using ~package.el~) and to consolidate the list of plugins I am using with their configuration. I am also using the installation of ~use-package~ as an indicator that this is the first run. I don't want to refresh packages every time I start up Emacs, that would take forever, so I am refreshing them if use-package is not already installed. If it isn't, then clearly my config hasn't been run before, so we should refresh package contents before doing the initial setup.
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle config.el
      (unless (package-installed-p 'evil)
        (package-refresh-contents))
    #+END_SRC
@@ -79,7 +79,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
    Emacs allows you to set certain customizations via its own UI. When you do that, it has to save it somewhere and by default it saves in the ~init.el~ file. I would like to keep that file as simple as possible, so I am going to put those customizations in a separate file.
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle config.el
      (setq custom-file "~/.emacs.d/custom.el")
      (load custom-file)
    #+END_SRC
@@ -93,7 +93,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 *** Insert file name
 
     Inserts the current file name.
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (defun insert-file-name ()
 	"Insert the file name into the current buffer (at point)."
 	(interactive)
@@ -107,7 +107,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     Pulls out the current file name
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (defun evil-yank-file-name ()
 	"yank the file name associated with the current buffer."
 	(interactive)
@@ -120,7 +120,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 *** Switch to the scratch buffer
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (defun switch-to-scratch ()
 	"Switches to the scratch buffer"
 	(interactive)
@@ -131,7 +131,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     In most modern editors, when a file changes on disk, the editor warns you or even automatically reads the file on disk! This is really useful if you, for example, run a git pull, or have a file system sync tool like Dropbox. This should enable just such a feature that is built into most modern Emacs.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (setq auto-revert-check-vc-info t)
       (global-auto-revert-mode)
     #+END_SRC 
@@ -139,7 +139,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
    This file is set up only so that you can set any local variables you might need.  For example, if you are loading on Windows you might need to set some file paths to your org files that are different from the defaults I have checked in. If this file exists (and it should be ignored in the Git repo) then Emacs will tangle and execute it just like this file. If not, it will ignore and continue. 
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle config.el
      (setq local-file-path "~/.emacs.d/local.org")
      (if (file-exists-p local-file-path)
 	 (org-babel-load-file local-file-path))
@@ -150,7 +150,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     [[https://github.com/emacs-evil/evil][Evil mode]] is the vim emulation layer.  I am using use-package to install and enable it. 
 
-    #+BEGIN_SRC emacs-lisp :noweb yes
+    #+BEGIN_SRC emacs-lisp :noweb yes :tangle config.el
       (use-package evil
 	:ensure t
 	:init
@@ -391,7 +391,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
       Emacs allows you to "narrow" a given buffer, meaning only display part of it. when a buffer is narrowed, actions you take like searching or replacing only impact the viewable buffer. To "undo" the narrowing, you just need to issue the command "widen"
 
-      #+BEGIN_SRC emacs-lisp
+      #+BEGIN_SRC emacs-lisp :tangle no
 	(evil-global-set-key 'visual (kbd "<leader> n n") 'narrow-to-region)
 	(evil-global-set-key 'normal (kbd "<leader> n n") 'narrow-to-region)
 	(evil-global-set-key 'normal (kbd "<leader> n w") 'widen)
@@ -402,7 +402,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
      We also want to use [[https://github.com/emacs-evil/evil-collection][`evil-collection`]] to set up things for "buffers evil mode doesn't think about by default"
 
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package evil-collection
 	 :after (:all evil magit)
 	 :diminish evil-collection-unimpaired-mode
@@ -415,7 +415,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
      Want to surround strings or expressions with things? This is how!
 
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package evil-surround
 	 :after evil
 	 :ensure t
@@ -426,7 +426,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
      [[https://github.com/luxbock/evil-cleverparens][This package]] is really helpful generally for writing Elisp. It has a bunch of features but it shold auto-close parens, and generally make evil mode actions aware of the syntax of lisp.
 
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package evil-cleverparens
 	 :after evil
 	 :ensure t
@@ -438,7 +438,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
      Undo tree is a huge plugin whose features I am probably not using properly. For now I am using it only because undo functionality in Emacs 27 w/ Evil seems to need it. I should spend some time investigating features. Also, once I switch to Emacs 28, I may be able to use a native option.
      
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package undo-tree
 	 :ensure t
 	 :after evil
@@ -452,7 +452,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     [[http://company-mode.github.io/][Company mode]] is an auto complete plugin (*comp*-lete *any*-thing). I am still exploring how it can be used. Note the hooks set up below. I am only enabling company mode in modes that inherit from ~prog-mode~ because I don't want it popping up constantly while I am typing in org mode or in markdown mode.
 
-    #+BEGIN_SRC emacs-lisp :noweb yes
+    #+BEGIN_SRC emacs-lisp :noweb yes :tangle config.el
       (use-package company
 	:ensure t
 	:diminish company-mode
@@ -523,7 +523,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     I like the Spacemacs theme quite a lot, so I'll use it. I have no idea why I have to defer loading to get things working correctly, but for some reason I get an error if I don't.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package spacemacs-theme
 	:ensure t
 	:defer t
@@ -534,7 +534,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     Which key is a pannel at the bottom that should display options when a key is pressed.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package which-key
 	:ensure t
 	:diminish which-key-mode
@@ -548,7 +548,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     First up, IDO mode is dependent on ~icomplete~ which is a built in package.
     
-    #+BEGIN_SRC emacs-lisp :noweb yes
+    #+BEGIN_SRC emacs-lisp :noweb yes :tangle config.el
       (use-package icomplete
 	:custom
 	<<completion-variables-config>>
@@ -601,7 +601,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     I love [[https://magit.vc/][Magit]]. Enough said.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package magit
 	:ensure t
 	:after evil
@@ -984,7 +984,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 **** Require package
 
      The actual org-mode package 
-     #+BEGIN_SRC emacs-lisp :noweb yes
+     #+BEGIN_SRC emacs-lisp :noweb yes :tangle config.el
        (use-package org
 	 :ensure t
 	 :custom
@@ -996,10 +996,10 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 <<org-variables-config>>
 	 <<org-keybindings>>)
      #+END_SRC
-
+     
 **** evil-org
 
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package evil-org
 	 :ensure t
 	 :after org
@@ -1013,7 +1013,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
      A really cool plugin that makes pretty bullets
 
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package org-bullets
 	 :after org
 	 :ensure t
@@ -1025,7 +1025,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
      [[https://github.com/alphapapa/org-ql][Org-ql]], similar to the older [[https://github.com/alphapapa/org-rifle][org-rifle]],is a plugin for searching your org headers/body. I primarily just use it to find tasks/notes in either my org-directory or in my agenda (a smaller list).
 
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package org-ql
 	 :ensure t
 	 :config
@@ -1039,7 +1039,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
      [[https://github.com/marcinkoziej/org-pomodoro][Org pomodoro]] is a tool for doing the [[https://en.wikipedia.org/wiki/Pomodoro_Technique][pomodoro technique]] in Emacs org mode.
 
 
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package org-pomodoro
 	 :ensure t
 	 :after org
@@ -1053,7 +1053,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     
     Editorconfig is a standard for keeping code editing settings in sync across tools and teams.  Someone can check in a .Editorconfig file at the root of a repo, and their editors should respect the settings. This should do that for me!
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package editorconfig
 	:ensure t
 	:diminish editorconfig-mode
@@ -1066,7 +1066,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     I am pinning this package specifically to MELPA for now because the version in ELPA is very out of date and throws warnings about deprecated packages.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package smartparens
 	:ensure t
 	:pin melpa
@@ -1076,7 +1076,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+END_SRC
 *** Web mode
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package web-mode
 	:ensure t
 	:config
@@ -1091,13 +1091,13 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 *** Zettelkasten
 
     This is a plugin that isn't in MELPA for now, and I can't seem to convince it to load by adding it to ~load-path~ so I am instead going to manually require it.
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (require 'zettelkasten-mode "~/.emacs.d/plugins/zettelkasten/zettelkasten.el")
     #+END_SRC
 
     To actually configure it, though, I still want to use ~use-package~, so now that it's loaded, I can use ~use-package~ to activate it and set up the basic keybindings. Yay, some consistency!
     
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package zettelkasten-mode
 	:diminish zettelkasten-mode
 	:config
@@ -1109,7 +1109,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     I use Markdown for quite a lot, so I need a markdown mode. This one could probably be configured more.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package markdown-mode
 	:ensure t
 	:custom
@@ -1146,7 +1146,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+END_SRC
 *** Python mode
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package python-mode
 	:ensure t)
     #+END_SRC
@@ -1154,7 +1154,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     I need a major mode for Vue files!
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package vue-mode
 	:ensure t
 	:hook ((vue-mode . (lambda () (visual-fill-column-mode -1)))
@@ -1165,7 +1165,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     This should enable a tab bar. This is built into emacs as of 27, I think. Each tab is a configuration of windows, so the splits and whatnot should be maintained?
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package tab-bar
 	:config
 	(evil-global-set-key 'normal (kbd "<leader> C-t") 'tab-new)
@@ -1176,31 +1176,31 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+END_SRC
 *** Powershell mode
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package powershell
 	:ensure t)
     #+END_SRC 
 *** Dockerfiles
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package dockerfile-mode
 	:ensure t)
     #+END_SRC
 *** Typescript mode
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package typescript-mode
 	:ensure t)
     #+END_SRC
 *** TODO Flycheck mode
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package flycheck
 	:ensure t)
     #+END_SRC
 *** LSP-mode
 
-    #+BEGIN_SRC emacs-lisp :noweb yes
+    #+BEGIN_SRC emacs-lisp :noweb yes :tangle config.el
 	    (use-package lsp-mode
 	      :after evil
 	      :ensure t
@@ -1264,7 +1264,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 *** Csharp mode
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package csharp-mode
 	:ensure t)
     #+END_SRC
@@ -1274,7 +1274,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     
 **** Treemacs itself
 
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package treemacs
 	 :ensure t
 	 :init
@@ -1320,13 +1320,13 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 *** project.el
 
     I need a convenient way to remember "the current project"
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (defun project-remember-current ()
 	(interactive)
 	(project-remember-project (project-current)))
     #+END_SRC
 
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package project
 	 :config
 	 (evil-global-set-key 'normal (kbd "<leader> p r") 'project-remember-current)
@@ -1339,7 +1339,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
      #+END_SRC
 *** Flyspell mode
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package flyspell
 	:ensure t
 	:hook
@@ -1355,7 +1355,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     This minor mode allows me to softly (without inserting a new line) wrap lines. I mostly use this when writing markdown notes so that they look decent on my mobile devices.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package visual-fill-column
 	:ensure t
 	:hook (visual-line-mode . visual-fill-column-mode))
@@ -1363,13 +1363,13 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     This uses visual line mode, which is built into emacs itself. That said I would like it to turn on in org-mode and in markdown-mode.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package visual-line-mode
 	:hook ((text-mode . visual-line-mode))
 	(visual-line-mode . (lambda () (diminish 'visual-line-mode))))
     #+END_SRC
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package adaptive-wrap
 	:ensure t
 	:hook (text-mode . adaptive-wrap-prefix-mode))
@@ -1377,7 +1377,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 *** Yaml mode
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package yaml-mode
 	:ensure t)
     #+END_SRC
@@ -1387,7 +1387,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     I like to have my packages periodically update since I tend to forget to do that on a regular basis.
 
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package auto-package-update
         :ensure t
 	:config
@@ -1400,13 +1400,13 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     I know that dired mode and dired-x are a thing, but I don't really make much use of them in my current workflow. I should change that and revisit this in the future.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package dired)
     #+END_SRC
 
 
     I can probably omit the files using dired-x instead of doing that via the listing switches, but this is okay for now.
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package dired-x
 	:after dired
 	:demand t 
@@ -1427,7 +1427,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     [[https://github.com/joaotavora/yasnippet][Yasnippet]] is a library for expanding snippets to autocomplete code. It has a ton of options, so I have just set it up in a basic way to test it out.
 
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package yasnippet
 	:ensure t
 	:diminish (yas-minor-mode . " Y") 
@@ -1440,7 +1440,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     Of course Yasnipets hasn't come with its own default snippets for a long time, so [[https://github.com/AndreaCrotti/yasnippet-snippets][here is a community maintained package]] that has a ton of useful ones!
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package yasnippet-snippets
 	:ensure t)
     #+END_SRC
@@ -1449,7 +1449,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     Prettier-js is a [[https://prettier.io/][project for formatting javascript and typescript code]]. It is really common in front end projects these days. I would like it to run whenever I save, which is exactly what this plugin does. I just have to make sure it gets active on the right modes.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package prettier-js
 	:ensure t
 	:hook ((typescript-mode . prettier-js-mode)
@@ -1457,7 +1457,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	       (vue-mode . prettier-js-mode)))
     #+END_SRC
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package add-local-node-modules
 	:load-path "plugins/add-local-node-modules"
 	:config
@@ -1468,7 +1468,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 *** Diminish
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package diminish
 	:ensure t)
     #+END_SRC
@@ -1477,7 +1477,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     [[https://github.com/emacs-dashboard/emacs-dashboard][Dashboard]] is a package to set up a cool opening screen. It really isn't all that practical, but it looks neat and I like it.
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package dashboard
 	:ensure t
 	:config
@@ -1495,7 +1495,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     Bookmarks are a built in feature of Emacs that allow you to remember certain locations in files for reference later. Other packages (like dashboard.el) display the output of this feature, though you can also just list them with the built-in UI. This isn't a package as much as it's just a built in feature of Emacs. As such, there's no package to use, but I want to set keybindings anyway.
 
 
-    #+BEGIN_SRC emacs-lisp
+    #+BEGIN_SRC emacs-lisp :tangle config.el
       (evil-global-set-key 'normal (kbd "<leader> B m") 'bookmark-set)
       (evil-global-set-key 'normal (kbd "<leader> B l") 'bookmark-bmenu-list)
     #+END_SRC
@@ -1504,7 +1504,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
    Emacs keeps backups of files that you have open in case something bad happens and they need to be recovered. They're stored in the same directory as the file you are working on by default, and end in a "~". I find all these extra files pretty bothersome, but I similar to what I do with undo-tree, I want to store them in a central location. Stolen from [[https://stackoverflow.com/questions/2680389/how-to-remove-all-files-ending-with-made-by-emacs][Stack Overflow]].
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle config.el
      (setq backup-directory-alist `(("." . ,(concat user-emacs-directory "backup")))
 	   backup-by-copying t
 	   version-control t
@@ -1515,7 +1515,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
    There is also an "auto save" functionality that saves files every few minutes in case of a crash. These files are usually dropped inline just like the backup files, but they are usually named #filename#. This is super useful, but also junks up git repos, etc, so lets store them in our .emacs.d as well.
    
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle config.el
      (setq auto-save-file-name-transforms
 	   `((".*" ,(concat user-emacs-directory "saves/") t)))
    #+END_SRC
@@ -1530,7 +1530,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 **** Y/N
 
      I find Emacs' default tendency to ask you to type "yes" or "no" in prompts annoying. I prefer it to just be "y" or "n". Borrowed from [[https://sachachua.com/dotemacs/index.html#change-yes-or-no-to-y-or-n][here]].  
-     #+BEGIN_SRC emacs-lisp
+     #+BEGIN_SRC emacs-lisp :tangle config.el
        (fset 'yes-or-no-p 'y-or-n-p)
      #+END_SRC
 
@@ -1539,19 +1539,19 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
    I like being able to see when I am looking at the first or last line in a buffer. This should show that in the margin around the buffer.
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle config.el
      (setq-default indicate-buffer-boundaries 'left)
    #+END_SRC
 
    I also don't like the cursor blinking like a terminal from the 60s
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle config.el
      (blink-cursor-mode -1)
    #+END_SRC
 
    I also like having the line the cursor is currently on hilighted a different color to make it easier to see. I have this turned on only for things that inherit ~prog-mode~ because it helps keep the line highlighting when writing prose.
 
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle config.el
      (let ((hl-line-hooks '(text-mode-hook prog-mode-hook)))
        (mapc (lambda (hook) (add-hook hook 'hl-line-mode)) hl-line-hooks))
    #+END_SRC
@@ -1560,7 +1560,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     Fonts are a complicated topic and I expect this section to change quite a lot.  I happen to really like the Spacemacs font (SourceCodePro) which is an adobe font.
 
-    #+BEGIN_SRC  emacs-lisp
+    #+BEGIN_SRC  emacs-lisp :tangle config.el
       (set-frame-font "Source Code Pro 12" nil t)
     #+END_SRC
     
@@ -1608,7 +1608,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 ** Scratch ERT space
 
    I just discovered ERT so I added a simple example.
-   #+BEGIN_SRC emacs-lisp
+   #+BEGIN_SRC emacs-lisp :tangle config.el
      (ert-deftest testing-ert ()
        "This is a test"
        (should (equal 1 1)))
