@@ -25,3 +25,6 @@ $(OUTPUT_EARLY_CONFIG_FILE):$(EARLY_CONFIG_FILE)
 # Clean rule to remove generated files
 clean:
 	rm $(OUTPUT_EARLY_CONFIG_FILE) $(OUTPUT_CONFIG_FILE) $(TEST_FILE)
+
+hard-clean:
+	git clean -dfx -e local.org
