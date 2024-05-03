@@ -1552,8 +1552,12 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
    I also like having the line the cursor is currently on hilighted a different color to make it easier to see. I have this turned on only for things that inherit ~prog-mode~ because it helps keep the line highlighting when writing prose.
 
    #+BEGIN_SRC emacs-lisp :tangle config.el
-     (let ((hl-line-hooks '(text-mode-hook prog-mode-hook)))
-       (mapc (lambda (hook) (add-hook hook 'hl-line-mode)) hl-line-hooks))
+     (let
+	 ((hl-line-hooks '(text-mode-hook prog-mode-hook)))
+       (mapc
+	(lambda (hook)
+	  (add-hook hook 'hl-line-mode))
+	hl-line-hooks))
    #+END_SRC
 
 *** Fonts
