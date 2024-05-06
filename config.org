@@ -1198,69 +1198,6 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       (use-package flycheck
 	:ensure t)
     #+END_SRC
-*** LSP-mode
-
-    #+BEGIN_SRC emacs-lisp :noweb yes :tangle config.el
-	    (use-package lsp-mode
-	      :after evil
-	      :ensure t
-	      :config
-	      <<lsp-mode-config>>
-	      :hook (
-		     <<lsp-mode-hooks>>)
-	      :commands lsp)
-    #+END_SRC
-
-    
-**** config
-     :PROPERTIES:
-     :header-args: :noweb-ref lsp-mode-config 
-     :END:
-
-     First up, something very strange. LSP-mode has a nasty habit of mucking around in your company-config if it can find one. I really, really don't want it doing that. I'd much prefer it to stay self contained. I do want it to use completion, but I don't want it to put itself at the top of the priority queue. This should prevent that from happening. See [[https://github.com/emacs-lsp/lsp-mode/issues/3173][here]] for more information.
-     #+BEGIN_SRC emacs-lisp :tangle no
-	(setq lsp-completion-provider :none)
-     #+END_SRC
-
-     Obviously I also need a hotkey for activating things. I have been trying to keep major-mode specific bindings into "local leader" but since LSP-mode basically replaces my major mode's bindings, I am going to swap it in in the cases where it's active.
-
-
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (evil-define-key 'normal lsp-mode-map (kbd "<localleader>") lsp-command-map)
-     #+END_SRC
-
-     I have been having some performance issues with occasional lockups while I am writing code, and I suspect LSP-mode to be the culprit.  To debug that, I am setting the garbage collection to happen much more often.
-
-     I am also adjusting the amount of data emacs reads from processes to what the docs recommend. Hopefully these two should fix any performance issues.
-
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (setq gc-cons-threshold 100000000)
-       (setq read-process-output-max (* 1024 1024))
-     #+END_SRC
-     
-**** hooks
-     :PROPERTIES:
-     :header-args: :noweb-ref lsp-mode-hooks 
-     :END:
-
-     LSP-mode uses hooks to activate itself in different circumstances, rather than associating itself with different file types. In that way, you have to explicitly whitelist new modes as you add them in.
-
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (csharp-mode . lsp-mode)
-     #+END_SRC
-
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (lsp-mode . lsp-enable-which-key-integration)
-     #+END_SRC
-
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (vue-mode . lsp-mode)
-     #+END_SRC
-
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (typescript-mode . lsp-mode)
-     #+END_SRC
-
 
 *** Csharp mode
 
@@ -1499,6 +1436,47 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       (evil-global-set-key 'normal (kbd "<leader> B m") 'bookmark-set)
       (evil-global-set-key 'normal (kbd "<leader> B l") 'bookmark-bmenu-list)
     #+END_SRC
+    
+*** Eglot mode
+
+    I have historically used LSP mode to get complex IDE-style stuff in Emacs, but I have been trying to make do with [[https://www.gnu.org/software/emacs/manual/html_node/eglot/index.html][Eglot]] instead. It's a much simpler interface and it overloads built-in functionality in Emacs instead of lsp-mode's approach of providing its own interface.
+
+    #+BEGIN_SRC emacs-lisp :tangle config.el :noweb yes
+      (use-package eglot
+	:hook ((csharp-mode . eglot-ensure)
+	       (typescript-mode . eglot-ensure)
+	       (vue-mode . eglot-ensure))
+	:config
+	<<eglot-vue-config>>)
+    #+END_SRC
+**** vue-config
+     :PROPERTIES:
+     :header-args: :noweb-ref eglot-vue-config
+     :END:
+
+     #+BEGIN_SRC emacs-lisp :tangle no
+       (defun vue-eglot-init-options ()
+	 (let ((tsdk-path (expand-file-name
+			   "lib"
+			   (string-trim-right (shell-command-to-string "npm list --global --parseable typescript | head -n1")))))
+	   `(:typescript (:tsdk ,tsdk-path
+				:languageFeatures (:completion
+						   (:defaultTagNameCase "both"
+									:defaultAttrNameCase "kebabCase"
+									:getDocumentNameCasesRequest nil
+									:getDocumentSelectionRequest nil)
+						   :diagnostics
+						   (:getDocumentVersionRequest nil))
+				:documentFeatures (:documentFormatting
+						   (:defaultPrintWidth 100
+								       :getDocumentPrintWidthRequest nil)
+						   :documentSymbol t
+						   :documentColor t)))))
+
+       (add-to-list 'eglot-server-programs
+		    `(vue-mode . ("vue-language-server" "--stdio" :initializationOptions ,(vue-eglot-init-options))))
+     #+END_SRC
+
 
 ** Backups
 
