@@ -1295,7 +1295,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package visual-fill-column
 	:ensure t
-	:hook (visual-line-mode . visual-fill-column-mode))
+	:hook (markdown-mode . visual-fill-column-mode))
     #+END_SRC
 
     This uses visual line mode, which is built into emacs itself. That said I would like it to turn on in org-mode and in markdown-mode.
