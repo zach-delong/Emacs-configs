@@ -1507,9 +1507,9 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 **** Y/N
 
-     I find Emacs' default tendency to ask you to type "yes" or "no" in prompts annoying. I prefer it to just be "y" or "n". Borrowed from [[https://sachachua.com/dotemacs/index.html#change-yes-or-no-to-y-or-n][here]].  
+     I find Emacs' default tendency to ask you to type "yes" or "no" in prompts annoying. I prefer it to just be "y" or "n". Borrowed from [[https://www.masteringemacs.org/article/disabling-prompts-emacs][mastering Emacs]].  
      #+BEGIN_SRC emacs-lisp :tangle config.el
-       (fset 'yes-or-no-p 'y-or-n-p)
+       (setq use-short-answers t)
      #+END_SRC
 
 
