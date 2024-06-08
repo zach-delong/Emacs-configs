@@ -1443,41 +1443,22 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     #+BEGIN_SRC emacs-lisp :tangle config.el :noweb yes
       (use-package eglot
-	:hook ((csharp-mode . eglot-ensure)
-	       (typescript-mode . eglot-ensure)
-	       (vue-mode . eglot-ensure))
-	:config
-	<<eglot-vue-config>>)
+	:hook ((csharp-mode . eglot-ensure)))
     #+END_SRC
-**** vue-config
-     :PROPERTIES:
-     :header-args: :noweb-ref eglot-vue-config
-     :END:
 
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (defun vue-eglot-init-options ()
-	 (let ((tsdk-path (expand-file-name
-			   "lib"
-			   (string-trim-right (shell-command-to-string "npm list --global --parseable typescript | head -n1")))))
-	   `(:typescript (:tsdk ,tsdk-path
-				:languageFeatures (:completion
-						   (:defaultTagNameCase "both"
-									:defaultAttrNameCase "kebabCase"
-									:getDocumentNameCasesRequest nil
-									:getDocumentSelectionRequest nil)
-						   :diagnostics
-						   (:getDocumentVersionRequest nil))
-				:documentFeatures (:documentFormatting
-						   (:defaultPrintWidth 100
-								       :getDocumentPrintWidthRequest nil)
-						   :documentSymbol t
-						   :documentColor t)))))
+*** LSP-mode
 
-       (add-to-list 'eglot-server-programs
-		    `(vue-mode . ("vue-language-server" "--stdio" :initializationOptions ,(vue-eglot-init-options))))
-     #+END_SRC
+    For some languages, eglot mode doesn't work well (namely, Vue). LSP mode works better.
 
+    #+BEGIN_SRC emacs-lisp :tangle config.el
+      (use-package lsp-mode
+	:ensure t
+	:config
+	(evil-define-key 'normal lsp-mode-map (kbd "<localleader>") lsp-command-map))
 
+      (use-package lsp-treemacs
+	:ensure t)
+    #+END_SRC
 ** Backups
 
    Emacs keeps backups of files that you have open in case something bad happens and they need to be recovered. They're stored in the same directory as the file you are working on by default, and end in a "~". I find all these extra files pretty bothersome, but I similar to what I do with undo-tree, I want to store them in a central location. Stolen from [[https://stackoverflow.com/questions/2680389/how-to-remove-all-files-ending-with-made-by-emacs][Stack Overflow]].

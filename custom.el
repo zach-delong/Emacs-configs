@@ -8,7 +8,7 @@
  '(eglot-connect-timeout 120)
  '(lsp-log-io t)
  '(package-selected-packages
-   '(dashboard treemacs flycheck markdown-mode magit yasnippet diminish add-node-modules-path prettier-js yasnippet-snippets yaml-mode which-key web-mode vue-mode visual-fill-column use-package undo-tree typescript-mode treemacs-tab-bar treemacs-magit treemacs-icons-dired treemacs-evil tide spacemacs-theme python-mode projectile powershell org-ql org-pomodoro org-bullets lsp-mode ido-vertical-mode ido-completing-read+ evil-surround evil-org evil-collection evil-cleverparens editorconfig dockerfile-mode csharp-mode company auto-package-update adaptive-wrap))
+   '(lsp-treemacs lsp-moe dashboard treemacs flycheck markdown-mode magit yasnippet diminish add-node-modules-path prettier-js yasnippet-snippets yaml-mode which-key web-mode vue-mode visual-fill-column use-package undo-tree typescript-mode treemacs-tab-bar treemacs-magit treemacs-icons-dired treemacs-evil tide spacemacs-theme python-mode projectile powershell org-ql org-pomodoro org-bullets lsp-mode ido-vertical-mode ido-completing-read+ evil-surround evil-org evil-collection evil-cleverparens editorconfig dockerfile-mode csharp-mode company auto-package-update adaptive-wrap))
  '(safe-local-variable-values
    '((projectile-project-test-cmd . "dotnet test")
      (projectile-project-compilation-cmd . "dotnet build"))))
