@@ -1454,7 +1454,9 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       (use-package lsp-mode
 	:ensure t
 	:config
-	(evil-define-key 'normal lsp-mode-map (kbd "<localleader>") lsp-command-map))
+	(evil-define-key 'normal lsp-mode-map (kbd "<localleader>") lsp-command-map)
+	:hook ((vue-mode . lsp)
+	       (typescript-mode . lsp)))
 
       (use-package lsp-treemacs
 	:ensure t)
