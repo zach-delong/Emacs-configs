@@ -202,8 +202,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       On top of using the evil methods for defining keymaps, I am also using Evil mode's built [[https://evil.readthedocs.io/en/latest/keymaps.html#leader-keys][support for leader and local leader keys]]. I am using this basically to support Spacemacs style leader keybindings where all my keybindings are "hidden" behind the space key in normal and other similar modes (visual, motion, etc). I am also using local leader to hide "major mode specific bindings." So ~SPC M~ should always trigger hotkeys for the current major mode.
 
       #+BEGIN_SRC emacs-lisp :tangle no
-	(evil-set-leader '(motion normal visual) (kbd "SPC"))
-	(evil-set-leader '(motion normal visual) (kbd "<leader> m") t)
+	(evil-set-leader '(motion normal visual replace operator emacs) (kbd "SPC"))
+	(evil-set-leader '(motion normal visual replace operator emacs) (kbd "<leader> m") t)
       #+END_SRC
 
 ***** Misc unsorted hotkeys
@@ -980,7 +980,6 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(evil-global-set-key 'normal (kbd "<leader> a o c") 'org-capture)
       #+END_SRC
 
-
 **** Require package
 
      The actual org-mode package 
@@ -1048,7 +1047,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 (evil-define-key 'motion org-agenda-mode-map (kbd "c p") 'org-pomodoro))
 
      #+END_SRC
-
+     
 *** Editorconfig
     
     Editorconfig is a standard for keeping code editing settings in sync across tools and teams.  Someone can check in a .Editorconfig file at the root of a repo, and their editors should respect the settings. This should do that for me!
