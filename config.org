@@ -1324,10 +1324,12 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package auto-package-update
-        :ensure t
+	:ensure t
+	:custom
+	(auto-package-update-delete-old-versions t)
+	(auto-package-update-prompt-before-update t)
+	(auto-package-update-hide-results t)
 	:config
-	(setq auto-package-update-delete-old-versions t)
-	(setq auto-package-update-hide-results t)
 	(auto-package-update-maybe))
     #+END_SRC
 
@@ -1502,6 +1504,15 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
      #+END_SRC
 
 
+*** Server start
+
+    I am experimenting with using [[https://www.emacswiki.org/emacs/EmacsClient][emacs-client]]. this is a way to launch Emacs in the background and connect to it whenever you need an editor, instead of spinning up a new instance every time. To do this, I first have to start a server, then I need to launch an Emacs client using the separate shortcut.
+
+    #+BEGIN_SRC emacs-lisp :tangle config.el
+      (server-start)
+    #+END_SRC
+
+
 ** Visual changes
 
    I like being able to see when I am looking at the first or last line in a buffer. This should show that in the margin around the buffer.
@@ -1530,9 +1541,9 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 *** Fonts
 
     Fonts are a complicated topic and I expect this section to change quite a lot.  I happen to really like the Spacemacs font (SourceCodePro) which is an adobe font.
-
+    
     #+BEGIN_SRC  emacs-lisp :tangle config.el
-      (set-frame-font "Source Code Pro 12" nil t)
+      (set-frame-font "Source Code Pro" nil t)
     #+END_SRC
     
 * Sources
