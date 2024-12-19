@@ -526,7 +526,9 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package spacemacs-theme
 	:ensure t
-	:defer t)
+	:defer t
+	:init
+	(load-theme 'spacemacs-dark t))
     #+END_SRC
 
 *** Which key mode
@@ -1463,10 +1465,9 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+END_SRC
 *** Solarized theme
    I have used variants of Solarized themes for years. [[https://github.com/bbatsov/solarized-emacs][This one seems pretty reputable for Emacs]].
-    #+BEGIN_SRC emacs-lisp :tangle config.el
+    #+BEGIN_SRC emacs-lisp :tangle no
       (use-package solarized-theme
-	:ensure t
-	:init (load-theme 'solarized-dark t))
+	:ensure t)
     #+END_SRC
 
 ** Backups
@@ -1541,9 +1542,10 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 *** Fonts
 
     Fonts are a complicated topic and I expect this section to change quite a lot.  I happen to really like the Spacemacs font (SourceCodePro) which is an adobe font.
+https://emacs.stackexchange.com/questions/35820/opening-emacsclient-n-c-opens-a-small-frame-with-small-fonts
     
     #+BEGIN_SRC  emacs-lisp :tangle config.el
-      (set-frame-font "Source Code Pro" nil t)
+      (setq default-frame-alist '((font . "Source Code Pro")))
     #+END_SRC
     
 * Sources
