@@ -1463,13 +1463,6 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       (use-package lsp-treemacs
 	:ensure t)
     #+END_SRC
-*** Solarized theme
-   I have used variants of Solarized themes for years. [[https://github.com/bbatsov/solarized-emacs][This one seems pretty reputable for Emacs]].
-    #+BEGIN_SRC emacs-lisp :tangle no
-      (use-package solarized-theme
-	:ensure t)
-    #+END_SRC
-
 ** Backups
 
    Emacs keeps backups of files that you have open in case something bad happens and they need to be recovered. They're stored in the same directory as the file you are working on by default, and end in a "~". I find all these extra files pretty bothersome, but I similar to what I do with undo-tree, I want to store them in a central location. Stolen from [[https://stackoverflow.com/questions/2680389/how-to-remove-all-files-ending-with-made-by-emacs][Stack Overflow]].
