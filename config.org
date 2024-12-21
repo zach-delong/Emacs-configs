@@ -1542,7 +1542,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 *** Fonts
 
     Fonts are a complicated topic and I expect this section to change quite a lot.  I happen to really like the Spacemacs font (SourceCodePro) which is an adobe font.
-https://emacs.stackexchange.com/questions/35820/opening-emacsclient-n-c-opens-a-small-frame-with-small-fonts
+
+    Originally, I was using ~set-frame-font~ to set the font, but that caused problems when I switched to using EmacsClient to attach to a background Emacs instance (the new window would appear with a miniscule font size that was unintelligible on my laptop). I have switched to ~default-frame-alist~, [[https://emacs.stackexchange.com/questions/35820/opening-emacsclient-n-c-opens-a-small-frame-with-small-fonts][based on this post]], and that seems to have fixed the issue.
     
     #+BEGIN_SRC  emacs-lisp :tangle config.el
       (setq default-frame-alist '((font . "Source Code Pro")))
