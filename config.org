@@ -448,6 +448,18 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 	 (global-undo-tree-mode 1))
      #+END_SRC
+
+*** vim tab bar
+
+
+    #+BEGIN_SRC emacs-lisp :tangle config.el
+      (use-package vim-tab-bar
+	:ensure t
+	:commands vim-tab-bar-mode
+	:hook
+	(after-init . vim-tab-bar-mode))
+    #+END_SRC
+
 *** Company-mode
 
     [[http://company-mode.github.io/][Company mode]] is an auto complete plugin (*comp*-lete *any*-thing). I am still exploring how it can be used. Note the hooks set up below. I am only enabling company mode in modes that inherit from ~prog-mode~ because I don't want it popping up constantly while I am typing in org mode or in markdown mode.
