@@ -1003,8 +1003,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 (org-agenda-span 14)
 	 (org-adapt-indentation t)
 	 :config
-	 (add-hook 'org-mode-hook (lambda () (setq mode-name "✔")))
-	 (add-hook 'org-agenda-mode-hook (lambda () (setq mode-name "✔ Agenda")))
+	 (add-hook 'org-mode-hook (lambda () (setq mode-name "O")))
+	 (add-hook 'org-agenda-mode-hook (lambda () (setq mode-name "OA")))
 	 <<org-variables-config>>
 	 <<org-keybindings>>)
      #+END_SRC
