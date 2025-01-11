@@ -455,6 +455,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package vim-tab-bar
 	:ensure t
+	:diminish 
 	:commands vim-tab-bar-mode
 	:hook
 	(after-init . vim-tab-bar-mode))
