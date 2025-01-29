@@ -991,6 +991,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	(evil-define-key 'edit 'org-mode-map (kbd "<M-return>") 'org-insert-item)
 
 	(evil-global-set-key 'normal (kbd "<leader> a o a") 'org-agenda)
+	(evil-global-set-key 'normal (kbd "<leader> a o C j") 'org-agenda-clock-goto)
 	(evil-global-set-key 'normal (kbd "<leader> a o c") 'org-capture)
       #+END_SRC
 
