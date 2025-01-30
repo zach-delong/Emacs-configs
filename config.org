@@ -177,7 +177,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 ***** Scrolling keybindings
 
-      There are some keybindings where Emacs native and Evil-mode keybindings clash. Control + U is one of them. In Emacs, C-u is a prefix binding that lets you provide parameters to other commands, but in normal mode in Vim, C-u is page down. I prefer that it behave like Vim, which this should do
+      There are some keybindings where Emacs native and Evil-mode keybindings clash. Control + U is one of them. In Emacs, C-u is a prefix binding that lets you provide parameters to other commands, but in normal mode in Vim, C-u is page up. I prefer that it behave like Vim, which this should do
 
       #+BEGIN_SRC emacs-lisp :tangle no
 	(setq evil-want-C-u-scroll t)
