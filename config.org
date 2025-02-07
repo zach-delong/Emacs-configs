@@ -202,8 +202,10 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       On top of using the evil methods for defining keymaps, I am also using Evil mode's built [[https://evil.readthedocs.io/en/latest/keymaps.html#leader-keys][support for leader and local leader keys]]. I am using this basically to support Spacemacs style leader keybindings where all my keybindings are "hidden" behind the space key in normal and other similar modes (visual, motion, etc). I am also using local leader to hide "major mode specific bindings." So ~SPC M~ should always trigger hotkeys for the current major mode.
 
       #+BEGIN_SRC emacs-lisp :tangle no
-	(evil-set-leader '(normal visual replace operator emacs) (kbd "SPC"))
-	(evil-set-leader '(normal visual replace operator emacs) (kbd "<leader> m") t)
+	(evil-set-leader '(normal motion visual emacs) (kbd "SPC"))
+	(evil-set-leader '(motion) (kbd "M-SPC"))
+	;; In progress, this doesn't seem to be doing anything
+	(evil-set-leader '(normal motion visual emacs) (kbd "<leader> m") t)
       #+END_SRC
 
 ***** Misc unsorted hotkeys
@@ -1007,9 +1009,6 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 :config
 	 (add-hook 'org-mode-hook (lambda () (setq mode-name "O")))
 	 (add-hook 'org-agenda-mode-hook (lambda () (setq mode-name "OA")))
-	 ; Trying this out here: It sort of works (leader starts working) but
-	 ; now I lose the hotkeys that are motion-state specific https://emacs.stackexchange.com/questions/71629/evil-normal-state-seems-to-have-no-effect-as-part-of-org-agenda-mode-hook
-	 ; (evil-set-initial-state 'org-agenda-mode 'normal)
 	 <<org-variables-config>>
 	 <<org-keybindings>>)
      #+END_SRC
