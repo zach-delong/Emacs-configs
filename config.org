@@ -503,6 +503,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
      #+BEGIN_SRC emacs-lisp :tangle no
        (company-selection-wrap-around t)
      #+END_SRC
+     
 **** company config
      :PROPERTIES:
      :header-args: :noweb-ref company-config
