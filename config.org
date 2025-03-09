@@ -2,6 +2,8 @@
 * What is this?
 
   This literate file rep literate programming to make it easier to document the strange and arcane things that I sometimes have to do while learning more about Emacs. Hopefully this makes it easier to maintain and change in the future.
+
+  It is worth noting that the vast majority of this config is intended to be used with Evil Mode. I am starting to move back into vanilla Emacs style keybindings, though. I try to explain what is what as I go.
   
 * Pre-configuration
 
