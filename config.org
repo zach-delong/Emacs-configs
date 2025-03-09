@@ -1022,7 +1022,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 :hook (org-mode . (lambda () evil-org-mode))
 	 :config
 	 (require 'evil-org-agenda)
-	 (evil-org-agenda-set-keys))
+	 (evil-org-agenda-set-keys)
+	 (define-key global-map "\C-ca" 'org-agenda))
      #+END_SRC
 
 **** Org bullets
