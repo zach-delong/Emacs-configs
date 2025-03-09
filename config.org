@@ -455,7 +455,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 *** vim tab bar
 
-
+    I just like the way the Vim-style tab bar looks. I don't think this package adds any actual functionality; it just looks neat. I do have to manually add a hook to ensure that it's always started when Emacs launches.
+    
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package vim-tab-bar
 	:ensure t
