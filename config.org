@@ -468,17 +468,17 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 *** Company-mode
 
-    [[http://company-mode.github.io/][Company mode]] is an auto complete plugin (*comp*-lete *any*-thing). I am still exploring how it can be used. Note the hooks set up below. I am only enabling company mode in modes that inherit from ~prog-mode~ because I don't want it popping up constantly while I am typing in org mode or in markdown mode.
+    [[http://company-mode.github.io/][Company mode]] is an auto complete plugin (*comp*-lete *any*-thing). I am still exploring how it can be used. Note the hooks set up below. I am only enabling company mode in modes that inherit from ~prog-mode~ because I don't want it popping up constantly while I am typing in org mode or in markdown mode. Notice the reference to "company-tng-mode." This is a way to use tab to cycle through options, then just continue typing to accept that selection.
 
     #+BEGIN_SRC emacs-lisp :noweb yes :tangle config.el
       (use-package company
 	:ensure t
 	:diminish company-mode
-	:hook (prog-mode . company-mode)
+	:hook ((prog-mode . company-mode)
+	       (company-mode . company-tng-mode))
 	:custom
 	<<company-variables-config>>
 	:config
-
 	<<company-config>>)
     #+END_SRC
 **** company variables
@@ -529,14 +529,6 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 				company-files))
      #+END_SRC
 
-***** TODO Random config
-
-      I am not really sure what this does, but I have been using it for a while.
-      
-
-      #+BEGIN_SRC emacs-lisp :tangle no
-	(company-tng-configure-default)
-      #+END_SRC
 
 *** Spacemacs theme
 
