@@ -1006,7 +1006,9 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 (add-hook 'org-mode-hook (lambda () (setq mode-name "O")))
 	 (add-hook 'org-agenda-mode-hook (lambda () (setq mode-name "OA")))
 	 <<org-variables-config>>
-	 <<org-keybindings>>)
+	 <<org-keybindings>>
+	 (define-key global-map "\C-ca" 'org-agenda)
+	 (define-key global-map "\C-cc" 'org-capture))
      #+END_SRC
      
 **** evil-org
@@ -1018,8 +1020,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 	 :hook (org-mode . (lambda () evil-org-mode))
 	 :config
 	 (require 'evil-org-agenda)
-	 (evil-org-agenda-set-keys)
-	 (define-key global-map "\C-ca" 'org-agenda))
+	 (evil-org-agenda-set-keys))
      #+END_SRC
 
 **** Org bullets
