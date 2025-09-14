@@ -1,0 +1,14 @@
+* tepmo-export
+
+  This is a place for me to experiment with a plugin to export to tempo
+
+  Todo:
+  - [ ] Parse weekly clocktable buffer into one list where each entry is the date
+  - [ ] Parse all rows into sub-lists
+  - [ ] Filter out duplicate rows
+  - [ ] Search rows for a Jira ticket
+  - [ ] Format a dotted pair list under each day with (TICKET . time)
+  - [ ] Provide the list to the user somehow to correct/add missing tickets
+  - [ ] Upload to Tempo
+  - [ ] Should my data structure be an array instead of a list?
+

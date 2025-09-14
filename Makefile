@@ -4,7 +4,7 @@ OUTPUT_CONFIG_FILE = config.el
 EARLY_CONFIG_FILE = early-config.org
 OUTPUT_EARLY_CONFIG_FILE = early-config.el
 TEST_FILE = tests.el
-
+TEMPO_TEST_FILE = plugins/tempo-export/test/lib/parse-date.el
 MATCH ?=
 
 # Default target
@@ -28,3 +28,6 @@ clean:
 
 hard-clean:
 	git clean -dfx -e local.org
+
+test-tempo:
+	emacs --batch -L . -l $(TEMPO_TEST_FILE) --eval '(ert-run-tests-batch-and-exit "$(MATCH)")'
