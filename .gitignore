@@ -27,3 +27,5 @@ projectile.cache
 /recentf
 /tutorial/
 /tests.el
+/tempo-export-tests.el
+/tempo-export.el

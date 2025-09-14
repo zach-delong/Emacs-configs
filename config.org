@@ -137,6 +137,50 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
       (setq auto-revert-check-vc-info t)
       (global-auto-revert-mode)
     #+END_SRC 
+
+*** Upload timesheet
+
+    This is an area where I am actively experimenting. I need to track my time using org mode and upload my timesheet automatically to Tempo.
+
+    Todo:
+    - [ ] Parse weekly clocktable buffer into one list where each entry is the date
+    - [ ] Parse all rows into sub-lists
+    - [ ] Filter out duplicate rows
+    - [ ] Search rows for a Jira ticket
+    - [ ] Format a dotted pair list under each day with (TICKET . time)
+    - [ ] Provide the list to the user somehow to correct/add missing tickets
+    - [ ] Upload to Tempo
+    - [ ] Should my data structure be an array instead of a list?
+
+    #+BEGIN_SRC emacs-lisp :tangle tempo-export.el
+      (defun get-start-and-end (a b)
+        "Given two numbers, returns an alist (something of the form ((attribute . value) (attribute . value) ...) of the form ((:start . [number]) (:end . [number]))"
+        (let* ((a-is-first (< a b))
+      	 (start (if a-is-first a b))
+      	 (end (if a-is-first b a)))
+          (list (cons :start start) (cons :end end))))
+
+      (provide 'parse-date-table)
+
+      ; (get-start-and-end 2 4)
+      ; (message "%s" (alist-get :start (get-start-and-end 2 4)))
+    #+END_SRC
+
+    #+RESULTS:
+    : parse-date-table
+
+    #+BEGIN_SRC emacs-lisp :tangle tempo-export-tests.el
+      (load-file "tempo-export.el")
+
+      (ert-deftest a-lt-b ()
+          (should (= (alist-get :start (get-start-and-end 1 2)) 1)))
+
+      (provide 'parse-date-table-tests)
+    #+END_SRC
+
+    #+RESULTS:
+    : parse-date-table-tests
+
 ** Local configuration
 
    This file is set up only so that you can set any local variables you might need.  For example, if you are loading on Windows you might need to set some file paths to your org files that are different from the defaults I have checked in. If this file exists (and it should be ignored in the Git repo) then Emacs will tangle and execute it just like this file. If not, it will ignore and continue. 
