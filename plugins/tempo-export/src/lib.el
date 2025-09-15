@@ -6,6 +6,3 @@
     (list (cons :start start) (cons :end end))))
 
 (provide 'parse-date-table)
-
-;; (get-start-and-end 2 4)
-;; (message "%s" (alist-get :start (get-start-and-end 2 4)))
