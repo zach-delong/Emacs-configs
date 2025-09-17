@@ -15,4 +15,3 @@
 
 (provide 'parse-date-table)
 
-(string-match "[\[]?[A-Za-z]+\]" "[asdf]")
