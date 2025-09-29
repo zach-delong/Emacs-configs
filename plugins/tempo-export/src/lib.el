@@ -23,12 +23,12 @@
       (while (< (point) (alist-get :end range))
 	(let ((line (buffer-substring (point) (progn
 						(forward-line 1)
-						(point))))
-	      (timesheet '()))
+						(point)))))
 	  (message "%s" line)
 	  (message "is-date-p: %s" (or (is-date-p line) ""))
 	  (if (is-date-p line)
-	      (setq timesheet (cons line timesheet))))))))
+	      (setq timesheet (cons line timesheet)))))
+      timesheet)))
 
 (provide 'parse-date-table)
 
