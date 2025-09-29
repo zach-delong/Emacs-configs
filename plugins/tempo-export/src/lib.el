@@ -13,5 +13,22 @@
       nil
     (string-match "[\[]?[0-9]+-[0-9]+-[0-9]+ [A-Za-z]+[\]]?" date)))
 
+(defun process-org-timesheet-buffer ()
+  "Loop over the body of a buffer, line by line"
+  (interactive)
+  (save-excursion
+    (let ((range (get-start-and-end (point) (mark)))
+	  (timesheet '()))
+      (goto-char (alist-get :start range))
+      (while (< (point) (alist-get :end range))
+	(let ((line (buffer-substring (point) (progn
+						(forward-line 1)
+						(point))))
+	      (timesheet '()))
+	  (message "%s" line)
+	  (message "is-date-p: %s" (or (is-date-p line) ""))
+	  (if (is-date-p line)
+	      (setq timesheet (cons line timesheet))))))))
+
 (provide 'parse-date-table)
 
