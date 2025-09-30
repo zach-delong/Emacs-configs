@@ -5,13 +5,20 @@
          (end (if a-is-first b a)))
     (list (cons :start start) (cons :end end))))
 
-(defun is-date-p (date)
+(defun get-date-location (date)
   "Is the provided item a date?"
   (if (or
        (not (stringp date))
        (equal date ""))
       nil
-    (string-match "[\[]?[0-9]+-[0-9]+-[0-9]+ [A-Za-z]+[\]]?" date)))
+    (let
+	((start (string-match "[\[]?[0-9]+-[0-9]+-[0-9]+ [A-Za-z]+[\]]?" date))
+	 (end (match-end 0)))
+      (if (and
+	   (not (equal start nil))
+	   (not (equal end nil)))
+	  (list (cons :start start) (cons :end end))
+	nil))))
 
 (defun tempo-build-table-list ()
   "Loop over the body of a buffer, line by line"
@@ -28,7 +35,7 @@
 	       (progn
 		 (forward-line 1)
 		 (point))))
-	(if (is-date-p line)
+	(if (get-date-location line)
 	    (setq timesheet (cons line timesheet))))
       (reverse timesheet))))
 
