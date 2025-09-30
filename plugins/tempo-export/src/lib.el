@@ -18,14 +18,17 @@
   (interactive)
   (save-excursion
     (let ((range (get-start-and-end (point) (mark)))
-	  (timesheet '()))
+	  (timesheet '())
+	  (line nil))
       (goto-char (alist-get :start range))
       (while (< (point) (alist-get :end range))
-	(let ((line (buffer-substring (point) (progn
-						(forward-line 1)
-						(point)))))
-	  (if (is-date-p line)
-	      (setq timesheet (cons line timesheet)))))
+	(setq line
+	      (buffer-substring (point)
+				     (progn
+				       (forward-line 1)
+				       (point))))
+	(if (is-date-p line)
+	    (setq timesheet (cons line timesheet))))
       timesheet)))
 
 (provide 'parse-date-table)
