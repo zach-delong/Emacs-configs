@@ -13,7 +13,7 @@
       nil
     (string-match "[\[]?[0-9]+-[0-9]+-[0-9]+ [A-Za-z]+[\]]?" date)))
 
-(defun process-org-timesheet-buffer ()
+(defun tempo-build-table-list ()
   "Loop over the body of a buffer, line by line"
   (interactive)
   (save-excursion
@@ -24,8 +24,6 @@
 	(let ((line (buffer-substring (point) (progn
 						(forward-line 1)
 						(point)))))
-	  (message "%s" line)
-	  (message "is-date-p: %s" (or (is-date-p line) ""))
 	  (if (is-date-p line)
 	      (setq timesheet (cons line timesheet)))))
       timesheet)))

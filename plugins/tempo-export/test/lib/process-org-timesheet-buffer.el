@@ -6,4 +6,4 @@
       (insert "#+BEGIN: clocktable :block thisweek :scope agenda :maxlevel 10 :step day\n" "\n" "Daily report: [2025-08-25 Mon]\n" "| File | Headline         | Time   ")
       (set-mark (point-min))
       (goto-char (point-max))
-      (should (equal "Daily report: [2025-08-25 Mon]\n" (car (process-org-timesheet-buffer)))))))
+      (should (equal "Daily report: [2025-08-25 Mon]\n" (car (tempo-build-table-list)))))))
