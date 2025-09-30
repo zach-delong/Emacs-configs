@@ -22,8 +22,8 @@
       (goto-char (point-max))
       (should
        (equal
-	"Daily report: [2025-08-26 Tue]\n"
+	"Daily report: [2025-08-25 Mon]\n"
 	(car (tempo-build-table-list))))
       (should
-       (equal "Daily report: [2025-08-25 Mon]\n"
+       (equal "Daily report: [2025-08-26 Tue]\n"
 	      (nth 1 (tempo-build-table-list)))))))

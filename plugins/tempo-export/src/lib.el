@@ -23,13 +23,14 @@
       (goto-char (alist-get :start range))
       (while (< (point) (alist-get :end range))
 	(setq line
-	      (buffer-substring (point)
-				     (progn
-				       (forward-line 1)
-				       (point))))
+	      (buffer-substring
+	       (point)
+	       (progn
+		 (forward-line 1)
+		 (point))))
 	(if (is-date-p line)
 	    (setq timesheet (cons line timesheet))))
-      timesheet)))
+      (reverse timesheet))))
 
 (provide 'parse-date-table)
 
