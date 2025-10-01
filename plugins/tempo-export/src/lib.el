@@ -12,12 +12,12 @@
        (equal date ""))
       nil
     (let
-	((start (string-match "[\[]?[0-9]+-[0-9]+-[0-9]+ [A-Za-z]+[\]]?" date))
+	((start (string-match "[\[]?\\([0-9]+-[0-9]+-[0-9]+\\) [A-Za-z]+[\]]?" date))
 	 (end (match-end 0)))
       (if (and
 	   (not (equal start nil))
 	   (not (equal end nil)))
-	  (list (cons :start start) (cons :end end))
+	  (match-string 1 date)
 	nil))))
 
 (defun tempo-build-table-list ()
@@ -36,7 +36,7 @@
 		 (forward-line 1)
 		 (point))))
 	(if (get-date-location line)
-	    (setq timesheet (cons line timesheet))))
+	    (setq timesheet (cons (get-date-location line) timesheet))))
       (reverse timesheet))))
 
 (provide 'parse-date-table)

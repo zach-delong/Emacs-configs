@@ -9,7 +9,7 @@
   (should (not (equal (get-date-location "2025-08-25 Mon") nil)))
   (should (equal
 	   (get-date-location "Daily report: [2025-08-25 Mon]")
-	   (list (cons :start 14) (cons :end 30)))))
+	   "2025-08-25")))
 
 (ert-deftest is-date-nonstring-date ()
   (should (equal (get-date-location "") nil))
