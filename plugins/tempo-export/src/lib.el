@@ -35,8 +35,9 @@
 	       (progn
 		 (forward-line 1)
 		 (point))))
-	(if (get-date-location line)
-	    (setq timesheet (cons (get-date-location line) timesheet))))
+	(cond
+	 ((get-date-location line) (setq timesheet (cons (get-date-location line) timesheet)))
+	 (t nil)))
       (reverse timesheet))))
 
 (provide 'parse-date-table)
