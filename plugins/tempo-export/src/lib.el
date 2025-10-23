@@ -40,5 +40,10 @@
 	 (t nil)))
       (reverse timesheet))))
 
+(defun get-entry-row (line)
+  (let ((split-row (string-split line "[|]")))
+    ; Need to strip empty rows and trim whitespace around entries
+    (message "car: %S" split-row)))
+
 (provide 'parse-date-table)
 
