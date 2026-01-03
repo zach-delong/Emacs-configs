@@ -11,16 +11,16 @@ MATCH ?=
 all: $(OUTPUT_CONFIG_FILE) $(OUTPUT_EARLY_CONFIG_FILE)
 
 test: all
-	emacs --batch -L . -l $(TEST_FILE) --eval '(ert-run-tests-batch-and-exit "$(MATCH)")'
+	flatpak run org.gnu.emacs --batch -L . -l $(TEST_FILE) --eval '(ert-run-tests-batch-and-exit "$(MATCH)")'
 
 # Rule to tangle config.org
 $(OUTPUT_CONFIG_FILE):$(CONFIG_FILE)
 	echo "Tangling $<"
-	emacs --batch -L . -l org --eval "(org-babel-tangle-file \"$<\")"
+	flatpak run org.gnu.emacs --batch -L . -l org --eval "(org-babel-tangle-file \"$<\")"
 
 $(OUTPUT_EARLY_CONFIG_FILE):$(EARLY_CONFIG_FILE)
 	echo "Tangling $<"
-	emacs --batch  -L . -l org --eval "(org-babel-tangle-file \"$<\")"
+	flatpak run org.gnu.emacs --batch  -L . -l org --eval "(org-babel-tangle-file \"$<\")"
 
 # Clean rule to remove generated files
 clean:
@@ -30,4 +30,4 @@ hard-clean:
 	git clean -dfx -e local.org
 
 test-tempo:
-	emacs --batch -L . -l $(TEMPO_TEST_FILE) --eval '(ert-run-tests-batch-and-exit "$(MATCH)")'
+	flatpak run org.gnu.emacs --batch -L . -l $(TEMPO_TEST_FILE) --eval '(ert-run-tests-batch-and-exit "$(MATCH)")'
