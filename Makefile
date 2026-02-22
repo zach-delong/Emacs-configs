@@ -1,5 +1,7 @@
 include defaults.mk
 
+.PHONY: test
+
 help:
 	$(info valid make commands:)
 	$(info - all -- tangle both $(CONFIG_FILE) and $(OUTPUT_EARLY_CONFIG_FILE))
@@ -31,4 +33,4 @@ hard-clean:
 	git clean -dfx -e local.org
 
 test-tempo:
-	$(emacs-cmd) --batch -L . -l $(TEMPO_TEST_FILE) --eval '(ert-run-tests-batch-and-exit "$(MATCH)")'
+	@$(MAKE) -C plugins/tempo-export test
