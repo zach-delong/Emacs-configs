@@ -7,6 +7,14 @@ TEST_FILE = tests.el
 TEMPO_TEST_FILE = plugins/tempo-export/test/init.el
 MATCH ?=
 
+help:
+	$(info valid make commands:)
+	$(info - all -- tangle both $(CONFIG_FILE) and $(OUTPUT_EARLY_CONFIG_FILE))
+	$(info - test -- run tests within $(TEST_FILE))
+	$(info - clean -- remove all cached .el files)
+	$(info - hard-clean -- use Git to clean *everything*)
+	$(info - test-tempo -- run tempo-specific tests in isolation)
+
 # Default target
 all: $(OUTPUT_CONFIG_FILE) $(OUTPUT_EARLY_CONFIG_FILE)
 
