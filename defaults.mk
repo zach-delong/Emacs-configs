@@ -7,3 +7,4 @@ EARLY_CONFIG_FILE = early-config.org
 OUTPUT_EARLY_CONFIG_FILE = early-config.el
 TEST_FILE = tests.el
 MATCH ?=
+SEPARATOR = =====

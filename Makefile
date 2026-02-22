@@ -18,12 +18,17 @@ test: all
 
 # Rule to tangle config.org
 $(OUTPUT_CONFIG_FILE):$(CONFIG_FILE)
-	echo "Tangling $<"
+	$(info )
+	$(info Tangling $<)
+	$(info $(SEPARATOR))
 	$(emacs-cmd) --batch -L . -l org --eval "(org-babel-tangle-file \"$<\")"
 
 $(OUTPUT_EARLY_CONFIG_FILE):$(EARLY_CONFIG_FILE)
-	echo "Tangling $<"
+	$(info )
+	$(info Tangling $<)
+	$(info $(SEPARATOR))
 	$(emacs-cmd) --batch  -L . -l org --eval "(org-babel-tangle-file \"$<\")"
+
 
 # Clean rule to remove generated files
 clean:
