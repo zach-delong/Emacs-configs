@@ -40,10 +40,10 @@
 	 (t nil)))
       (reverse timesheet))))
 
+;; TODO: This isn't a useful method name
 (defun get-entry-row (line)
-  (let ((split-row (string-split line "[|]")))
-    ; Need to strip empty rows and trim whitespace around entries
-    (message "car: %S" split-row)))
+  "a method to grab an entry if it exists."
+  (string-split line "|" t "\s*"))
 
 (provide 'parse-date-table)
 
