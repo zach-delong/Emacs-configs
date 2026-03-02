@@ -22,10 +22,11 @@
   (arrange-test
    (insert "#+BEGIN: clocktable :block thisweek :scope agenda :maxlevel 10 :step day\n"
 	   "\n"
-	   "Daily report: [2025-08-25 Mon]\n" "| File | Headline         | Time   "
-	   "#+BEGIN: clocktable :block thisweek :scope agenda :maxlevel 10 :step day\n"
+	   "Daily report: [2025-08-25 Mon]\n"
+	   "| File | Headline         | Time   "
 	   "\n"
-	   "Daily report: [2025-08-26 Tue]\n" "| File | Headline         | Time   ")
+	   "Daily report: [2025-08-26 Tue]\n"
+	   "| File | Headline         | Time   ")
    (set-mark (point-min))
    (goto-char (point-max))
    (should
@@ -72,5 +73,5 @@
     "| todo.org         | *File time*                 | *0:00* |      |      |      |\n")
    (set-mark (point-min))
    (goto-char (point-max))
-   (should (equal 1
+   (should (equal 2
 		  (length (tempo-build-table-list))))))

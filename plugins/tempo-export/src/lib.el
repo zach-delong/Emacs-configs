@@ -36,7 +36,13 @@
 		 (forward-line 1)
 		 (point))))
 	(cond
-	 ((get-date-location line) (setq timesheet (cons (get-date-location line) timesheet)))
+	 ((string-prefix-p "#+BEGIN" line) nil) ; skip clocktable headers
+	 ((string-prefix-p "| File " line) nil) ; skip individual table headers
+	 ((string-prefix-p "|-" line) nil) ; skip row separators
+	 ((get-date-location line) 
+	  (setq timesheet (cons (get-date-location line) timesheet)))
+	 ((get-entry-row line)
+	  (setq timesheet (cons (get-entry-row line) timesheet)))
 	 (t nil)))
       (reverse timesheet))))
 
