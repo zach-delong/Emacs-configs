@@ -40,10 +40,17 @@
 	 (t nil)))
       (reverse timesheet))))
 
-;; TODO: This isn't a useful method name
 (defun get-entry-row (line)
-  "a method to grab an entry if it exists."
-  (string-split line "|" t "\s*"))
+  "If the provided line contains a log, return a list containing the
+columns. Otherwise, return nil."
+  (let
+      ((line-list (string-split line "|" nil "\s*")))
+    (message "Second to last entry in list: %s\nstring-blank-p of that: %s"
+	     (car (last line-list 2))
+	     (string-blank-p (car (last line-list 2))))
+    (if (not (string-blank-p (car (last line-list 2))))
+	(string-split line "|" t "\s*")
+      nil)))
 
 (provide 'parse-date-table)
 
