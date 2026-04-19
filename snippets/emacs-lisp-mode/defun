@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: Emacs Lisp Function 
+# key: defun
+# --
+
+(defun $1 ($2)
+  "$3"
+  ${4:(interactive)}
+  $0)
