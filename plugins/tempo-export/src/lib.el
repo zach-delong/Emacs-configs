@@ -36,13 +36,13 @@
 		 (forward-line 1)
 		 (point))))
 	(cond
-	 ((is-throwaway-row line) nil)
+	 ((throwaway-row-p line) nil)
 	 ((get-entry-row line)
 	  (setq timesheet (cons (get-entry-row line) timesheet)))
 	 (t nil)))
       (reverse timesheet))))
 
-(defun is-throwaway-row (row)
+(defun throwaway-row-p (row)
     "Given a row's contents, returns true if the row is something we should ignore in the main loop of the program"
     (cond
      ((string-prefix-p "#+BEGIN" row) t)
