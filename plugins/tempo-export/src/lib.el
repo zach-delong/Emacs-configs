@@ -36,18 +36,14 @@
 		 (forward-line 1)
 		 (point))))
 	(cond
-	 ((string-prefix-p "#+BEGIN" line) nil) ; skip clocktable headers
-	 ((string-prefix-p "| File " line) nil) ; skip individual table headers
-	 ((string-prefix-p "|-" line) nil) ; skip row separators
-	 ((get-date-location line) 
-	  (setq timesheet (cons (get-date-location line) timesheet)))
+	 ((is-throwaway-row line) nil)
 	 ((get-entry-row line)
 	  (setq timesheet (cons (get-entry-row line) timesheet)))
 	 (t nil)))
       (reverse timesheet))))
 
 (defun is-throwaway-row (row)
-    "given a row's contents, returns true if the row is something we should ignore in the main loop of the program"
+    "Given a row's contents, returns true if the row is something we should ignore in the main loop of the program"
     (cond
      ((string-prefix-p "#+BEGIN" row) t)
      ((string-prefix-p "| File " row) t)
