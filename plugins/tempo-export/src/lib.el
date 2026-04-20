@@ -42,6 +42,18 @@
 	 (t nil)))
       (reverse timesheet))))
 
+(defun iterate-over-buffer (start end fn)
+  "Given the start and end points, perform commands on each line in the current buffer between start and end"
+  (save-excursion
+    (goto-char start)
+    (while (< (point) end)
+      (funcall fn (buffer-substring
+		   (point)
+		   (progn
+		     (forward-line 1)
+		     (point)))))))
+
+
 (defun throwaway-row-p (row)
     "Given a row's contents, returns true if the row is something we should ignore in the main loop of the program"
     (cond
