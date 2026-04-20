@@ -1,0 +1,9 @@
+# -*- mode: snippet -*-
+# name: defmacro
+# key: defmacro
+# --
+
+(defmacro ${1:new-macro} ($2)
+  "${3:Comment explaining macro...}"
+  $0)
+
