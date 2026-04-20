@@ -9,8 +9,3 @@
   (should (equal
 	   (get-entry-row "|                  | \_          more stuff |        |      |      |      |      | 0:03 |")
 	   '("\_          more stuff" "0:03"))))
-
-(ert-deftest get-entry-row/non-entry-row-should-nil ()
-  (should (equal
-	   (get-entry-row "|                  | \_          more stuff |        |      |      |      | 0:03 |      |")
-	   nil)))

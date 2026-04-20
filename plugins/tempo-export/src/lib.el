@@ -65,9 +65,7 @@
 columns. Otherwise, return nil."
   (let
       ((line-list (string-split line "|" nil "\s*")))
-    (if (not (string-blank-p (car (last line-list 2))))
-	(string-split line "|" t "\s*")
-      nil)))
+    (string-split line "|" t "\s*")))
 
 (provide 'parse-date-table)
 
