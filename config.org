@@ -70,9 +70,9 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
      #+BEGIN_SRC emacs-lisp :tangle no
        (use-package evil
-	 :ensure t
-	 :config
-	 (format "Hello, world this should only show up when evil is actually loaded"))
+         :ensure t
+         :config
+         (format "Hello, world this should only show up when evil is actually loaded"))
      #+END_SRC
 
      You can also use the `:init` block if you want it to happen before the package is loaded.
