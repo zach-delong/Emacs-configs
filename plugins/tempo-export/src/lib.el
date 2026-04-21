@@ -59,7 +59,9 @@
     (cond
      ((string-prefix-p "#+BEGIN" row) t)
      ((string-prefix-p "| File " row) t)
-     ((string-prefix-p "|-" row) t)))
+     ((string-prefix-p "|-" row) t)
+     ((string-prefix-p "\n" row) t)))
+
 (defun get-entry-row (line)
   "If the provided line contains a log, return a list containing the
 columns. Otherwise, return nil."

@@ -11,4 +11,6 @@
 (ert-deftest throwaway-row-p/should-throw-away-row-separators ()
   (should (equal (throwaway-row-p "|-") t)))
 
-
+(ert-deftest throwaway-row-p/should-throw-away-empty-lines ()
+  (should (equal (throwaway-row-p "\n") t))
+  (should (not (equal (throwaway-row-p "| stuff | things |\n") t))))
