@@ -60,7 +60,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
      #+BEGIN_SRC emacs-lisp :tangle no
        (use-package evil
-	 :ensure t)
+         :ensure t)
      #+END_SRC
      When you include a package via ~use-package~ you simply specify the name of the package. That will look at your load-path and try to find a package that matches the name you've listed. This doesn't actually install anything! It just looks at what is already installed and set up on your load path. If you would like ~use-package~ to actually load packages from your package archive(s) for you, you can provide the ~:ensure~ option. By default this will cause it to load using ~package.el~, but I have heard that you can also use straight.el as well.
 
