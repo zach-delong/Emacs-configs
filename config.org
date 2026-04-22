@@ -49,14 +49,14 @@
       (package-initialize t)
     #+END_SRC
 
-** Use-package
-
-   Before getting to setting up ~use-package~, I need to make sure we have a reasonably up to date package archive to use. To make sure that we can actually connect to things and install them, I'll start by checking to see if we have packages in our archive. If we do, then we can skip refreshing contents (until something else later on does that for us). [fn:3]
+    Before getting to setting up ~use-package~, I need to make sure we have a reasonably up to date package archive to use. To make sure that we can actually connect to things and install them, I'll start by checking to see if we have packages in our archive. If we do, then we can skip refreshing contents (until something else later on does that for us). [fn:3]
    
-   #+BEGIN_SRC emacs-lisp :tangle config.el
-     (unless package-archive-contents
-       (package-refresh-contents))
-   #+END_SRC
+    #+BEGIN_SRC emacs-lisp :tangle config.el
+      (unless package-archive-contents
+        (package-refresh-contents))
+    #+END_SRC
+
+** Use-package
 
 *** A brief introduction to use-package
 
