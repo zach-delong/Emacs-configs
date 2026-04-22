@@ -13,11 +13,11 @@
     
 * Pre-configuration
 
-  Before I actually configure anything interesting, I need to do  certain things (like install use-package). In this section, do not  assume that anything has been installed, but configure things that  are generic (at least in theory) to any configuration of Emacs.
+  Before I actually configure anything interesting, I need to do  certain bootstrapping tasks (like install use-package). In this section, I do not  assume that anything has been installed, but configure things that  are generic (at least in theory) to any configuration of Emacs.
 
 ** package.el
 
-First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/emacs-lisp/package.el][package.el]] is configured. Package.el is a package manager that's built into GNU Emacs (apparently since Emacs24). I will be using ~use-package~ for the most part, but I will have to bootstrap that somehow and for now package.el (which is built in anywhere I have needed it) fits fine.
+   First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/HEAD:/lisp/emacs-lisp/package.el][package.el]] is configured. Package.el is a package manager that's built into GNU Emacs (apparently since Emacs24). I will be using ~use-package~ for the most part, but I will have to bootstrap that somehow and for now package.el (which is built in anywhere I have needed it) fits fine.
 
    #+BEGIN_SRC emacs-lisp :tangle config.el
      (require 'package)
@@ -51,10 +51,10 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
 
 ** Use-package
 
-   Now that package.el is set up, I can finally install and use ~use-package~! [[https://github.com/jwiegley/use-package/tree/a7422fb8ab1baee19adb2717b5b47b9c3812a84c#use-package][Use-package]] is a crazy macro that does a lot of things but I am primarily using it to lazy-load things (using ~package.el~) and to consolidate the list of plugins I am using with their configuration. I am also using the installation of ~use-package~ as an indicator that this is the first run. I don't want to refresh packages every time I start up Emacs, that would take forever, so I am refreshing them if use-package is not already installed. If it isn't, then clearly my config hasn't been run before, so we should refresh package contents before doing the initial setup.
-
+   Before getting to setting up ~use-package~, I need to make sure we have a reasonably up to date package archive to use. To make sure that we can actually connect to things and install them, I'll start by checking to see if we have packages in our archive. If we do, then we can skip refreshing contents (until something else later on does that for us). [fn:3]
+   
    #+BEGIN_SRC emacs-lisp :tangle config.el
-     (unless (package-installed-p 'evil)
+     (unless package-archive-contents
        (package-refresh-contents))
    #+END_SRC
 
@@ -1266,6 +1266,7 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
    #+END_SRC
 
 * Footnotes
-[fn:2] [[https://zachdelong.com/topics/software-engineering-principles/literate-programming-org-babel-noweb.html][my blog on org-mode and literate programming]] 
 
+[fn:3] [[https://chrismaiorana.com/emacs-guides/installing-packages/][Chris maiorana on installing packages/setting up use-package]]
+[fn:2] [[https://zachdelong.com/topics/software-engineering-principles/literate-programming-org-babel-noweb.html][my blog on org-mode and literate programming]] 
 [fn:1] [[https://en.wikipedia.org/wiki/Literate_programming][Literate programming in Wikipedia]] 
