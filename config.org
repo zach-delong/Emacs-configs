@@ -1268,5 +1268,7 @@
 * Footnotes
 
 [fn:3] [[https://chrismaiorana.com/emacs-guides/installing-packages/][Chris maiorana on installing packages/setting up use-package]]
+
 [fn:2] [[https://zachdelong.com/topics/software-engineering-principles/literate-programming-org-babel-noweb.html][my blog on org-mode and literate programming]] 
+
 [fn:1] [[https://en.wikipedia.org/wiki/Literate_programming][Literate programming in Wikipedia]] 
