@@ -1,10 +1,10 @@
 #+TITLE: Emacs Configuration
+#+AUTHOR: Zach DeLong
+
 * What is this?
 
-  This literate file rep literate programming to make it easier to document the strange and arcane things that I sometimes have to do while learning more about Emacs. Hopefully this makes it easier to maintain and change in the future.
-
-  It is worth noting that the vast majority of this config is intended to be used with Evil Mode. I am starting to move back into vanilla Emacs style keybindings, though. I try to explain what is what as I go.
-  
+  This file is my attempt at literate programming Literate programming is a technique of writing documentation that explains why software should work a certain way, interspersed with examples that are the actual executable code. [fn:1] I have actually written about the practice before. [fn:2]
+    
 * Pre-configuration
 
   Before I actually configure anything interesting, I need to do  certain things (like install use-package). In this section, do not  assume that anything has been installed, but configure things that  are generic (at least in theory) to any configuration of Emacs.
@@ -1258,3 +1258,8 @@ First up, I have to make sure that [[https://repo.or.cz/w/emacs.git/blob_plain/H
        "This is a test"
        (should (equal 1 1)))
    #+END_SRC
+
+* Footnotes
+[fn:2] [[https://zachdelong.com/topics/software-engineering-principles/literate-programming-org-babel-noweb.html][my blog on org-mode and literate programming]] 
+
+[fn:1] [[https://en.wikipedia.org/wiki/Literate_programming][Literate programming in Wikipedia]] 
