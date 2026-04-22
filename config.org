@@ -1,9 +1,15 @@
 #+TITLE: Emacs Configuration
 #+AUTHOR: Zach DeLong
-
 * What is this?
 
   This file is my attempt at literate programming Literate programming is a technique of writing documentation that explains why software should work a certain way, interspersed with examples that are the actual executable code. [fn:1] I have actually written about the practice before. [fn:2]
+
+  Broadly, I have broken this file into several sections:
+  1. [[*What is this?][What is this]] (you are here)
+  2. [[*Pre-configuration][Pre-configuration]] (bootstrapping and shared config)
+  3. [[*Sources][Sources]] (good books to read and inspiration)
+  4. [[*Notes][Notes]] (misc things I wanted to note for future work)
+  5. [[*Footnotes][Footnotes]] (who doesn't love footnotes?)
     
 * Pre-configuration
 
