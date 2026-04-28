@@ -56,6 +56,18 @@
         (package-refresh-contents))
     #+END_SRC
 
+    ~package.el~ exposes methods for doing a lot of things. Here's a quick reference:
+    - ~package-refresh-contents~ :: query the package archives set up in ~package-archives~ to get an updated list of packages available for installation
+    - ~package-installed-p~ :: check to see if the name provided is installed currently, accepts a minimum version
+    - ~package-install~ :: install the provided package
+
+    There are a few things that I don't love about ~package.el~.
+    - It doesn't expose any way to install a specific version only
+    - There isn't any kind of an npm lockfile equivalent
+    - It's very, very manual
+
+    Luckily, some (not all) of those problems are solved by ~use-package~!
+    
 ** Use-package
 
 *** A brief introduction to use-package
