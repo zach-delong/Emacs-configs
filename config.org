@@ -66,13 +66,13 @@
     - There isn't any kind of an npm lockfile equivalent
     - It's very, very manual
 
-    Luckily, some (not all) of those problems are solved by ~use-package~!
+    Luckily, some (not all) of those problems are solved by ~use-package~! The specific problem of installing specific versions and controlling updates is not something that anything (as far as I can tell) actually solves with ~package.el~. Supposedly ~straight.el~ does solve that, but I have yet to try it.
     
 ** Use-package
 
 *** A brief introduction to use-package
 
-    Use package has a ton of options that I frequently forget how to use, so I want to explain a few of them here for future reference. One of the big benefits is that nothing is loaded by `use-package` until a provided feature is actually requested. This means that you can defer configuration easily!
+    ~use-package~ has a ton of options, but it's fundamentally a macro for installing packages and adding them to your ~load-path~ automatically. Use package has a ton of options that I frequently forget how to use, so I want to explain a few of them here for future reference. One of the big benefits is that nothing is loaded by `use-package` until a provided feature is actually requested. This means that you can defer configuration easily!
 
 **** Basic use-package and ensure
 
