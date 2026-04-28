@@ -173,11 +173,12 @@
     
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package vim-tab-bar
-	:ensure t
-	:diminish 
-	:commands vim-tab-bar-mode
-	:hook
-	(after-init . vim-tab-bar-mode))
+        :ensure t
+        :defer t
+        :diminish 
+        :commands vim-tab-bar-mode
+        :hook
+        (after-init . vim-tab-bar-mode))
     #+END_SRC
 
 *** Company-mode
@@ -186,14 +187,15 @@
 
     #+BEGIN_SRC emacs-lisp :noweb yes :tangle config.el
       (use-package company
-	:ensure t
-	:diminish company-mode
-	:hook ((prog-mode . company-mode)
-	       (company-mode . company-tng-mode))
-	:custom
-	<<company-variables-config>>
-	:config
-	<<company-config>>)
+        :ensure t
+        :defer t
+        :diminish company-mode
+        :hook ((prog-mode . company-mode)
+      	 (company-mode . company-tng-mode))
+        :custom
+        <<company-variables-config>>
+        :config
+        <<company-config>>)
     #+END_SRC
 **** company variables
      :PROPERTIES:
@@ -262,10 +264,11 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package which-key
-	:ensure t
-	:diminish which-key-mode
-	:config
-	(which-key-mode))
+        :ensure t
+        :defer t
+        :diminish which-key-mode
+        :config
+        (which-key-mode))
     #+END_SRC
 *** Completion 
 
@@ -276,10 +279,10 @@
     
     #+BEGIN_SRC emacs-lisp :noweb yes :tangle config.el
       (use-package icomplete
-	:custom
-	<<completion-variables-config>>
-	:config
-	<<completion-fido-config>>)
+        :custom
+        <<completion-variables-config>>
+        :config
+        <<completion-fido-config>>)
     #+END_SRC
 
     
@@ -329,10 +332,11 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package magit
-	:ensure t
-	:after evil
-	:config
-	(evil-global-set-key 'normal (kbd "<leader> g s") 'magit-status))
+        :ensure t
+        :defer t
+        :after evil
+        :config
+        (evil-global-set-key 'normal (kbd "<leader> g s") 'magit-status))
     #+END_SRC
 *** Org mode
 **** Various org mode configuration
@@ -669,17 +673,18 @@
      The actual org-mode package 
      #+BEGIN_SRC emacs-lisp :noweb yes :tangle config.el
        (use-package org
-	 :ensure t
-	 :bind(("C-c a" . org-agenda)
-	       ("C-c c" . org-capture))
-	 :custom
-	 (org-agenda-span 14)
-	 (org-adapt-indentation t)
-	 :config
-	 (add-hook 'org-mode-hook (lambda () (setq mode-name "O")))
-	 (add-hook 'org-agenda-mode-hook (lambda () (setq mode-name "OA")))
-	 <<org-variables-config>>
-	 )
+         :ensure t
+         :defer t 
+         :bind(("C-c a" . org-agenda)
+       	("C-c c" . org-capture))
+         :custom
+         (org-agenda-span 14)
+         (org-adapt-indentation t)
+         :config
+         (add-hook 'org-mode-hook (lambda () (setq mode-name "O")))
+         (add-hook 'org-agenda-mode-hook (lambda () (setq mode-name "OA")))
+         <<org-variables-config>>
+         )
      #+END_SRC
      
 **** evil-org
@@ -740,10 +745,11 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package editorconfig
-	:ensure t
-	:diminish editorconfig-mode
-	:config
-	(editorconfig-mode 1))
+        :ensure t
+        :defer t
+        :diminish editorconfig-mode
+        :config
+        (editorconfig-mode 1))
     #+END_SRC
 *** Smartparens
 
@@ -753,25 +759,27 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package smartparens
-	:ensure t
-	:pin melpa
-	:hook ((emacs-lisp-mode . smartparens-mode)
-	       (vue-mode . smartparens-mode)
-	       (typescript-mode . smartparens-mode)))
+        :ensure t
+        :defer t
+        :pin melpa
+        :hook ((emacs-lisp-mode . smartparens-mode)
+      	 (vue-mode . smartparens-mode)
+      	 (typescript-mode . smartparens-mode)))
     #+END_SRC
 *** Web mode
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package web-mode
-	:ensure t
-	:config
-	(add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-	(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-	(evil-define-key 'normal web-mode-map (kbd "<localleader> <tab>") 'web-mode-fold-or-unfold)
-	(evil-define-key 'normal web-mode-map (kbd "<localleader> i l") 'web-mode-file-link)
-	(evil-define-key 'normal web-mode-map (kbd "<localleader> g t") 'web-mode-navigate)
-	(evil-define-key 'normal web-mode-map (kbd "<localleader> g j") 'web-mode-tag-next)
-	(evil-define-key 'normal web-mode-map (kbd "<localleader> g k") 'web-mode-tag-previous))
+        :ensure t
+        :defer t
+        :config
+        (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
+        (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+        (evil-define-key 'normal web-mode-map (kbd "<localleader> <tab>") 'web-mode-fold-or-unfold)
+        (evil-define-key 'normal web-mode-map (kbd "<localleader> i l") 'web-mode-file-link)
+        (evil-define-key 'normal web-mode-map (kbd "<localleader> g t") 'web-mode-navigate)
+        (evil-define-key 'normal web-mode-map (kbd "<localleader> g j") 'web-mode-tag-next)
+        (evil-define-key 'normal web-mode-map (kbd "<localleader> g k") 'web-mode-tag-previous))
 	#+END_SRC
 *** Zettelkasten
 
@@ -796,44 +804,46 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package markdown-mode
-	:ensure t
-	:custom
-	(markdown-hide-markup 1)
-	(markdown-hide-urls 1)
-	:config
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> <return>") 'markdown-do)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> g f") 'markdown-outline-next-same-level)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> g b") 'markdown-outline-previous-same-level)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> g n") 'markdown-outline-next)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> g p") 'markdown-outline-previous)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> g u") 'markdown-outline-up)
+        :ensure t
+        :defer t
+        :custom
+        (markdown-hide-markup 1)
+        (markdown-hide-urls 1)
+        :config
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> <return>") 'markdown-do)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> g f") 'markdown-outline-next-same-level)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> g b") 'markdown-outline-previous-same-level)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> g n") 'markdown-outline-next)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> g p") 'markdown-outline-previous)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> g u") 'markdown-outline-up)
 
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i f") 'markdown-insert-footnote)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i w") 'markdown-insert-wiki-link)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i i") 'markdown-insert-image)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i l") 'markdown-insert-link)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i H") 'markdown-insert-hr)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 1") 'markdown-insert-header-atx-1)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 2") 'markdown-insert-header-atx-2)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 3") 'markdown-insert-header-atx-3)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t t") 'markdown-insert-table)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t r") 'markdown-table-insert-row)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t c") 'markdown-table-insert-column)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i f") 'markdown-insert-footnote)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i w") 'markdown-insert-wiki-link)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i i") 'markdown-insert-image)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i l") 'markdown-insert-link)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i H") 'markdown-insert-hr)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 1") 'markdown-insert-header-atx-1)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 2") 'markdown-insert-header-atx-2)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 3") 'markdown-insert-header-atx-3)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t t") 'markdown-insert-table)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t r") 'markdown-table-insert-row)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t c") 'markdown-table-insert-column)
 
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> s h") 'markdown-promote)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> s l") 'markdown-demote)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> S h") 'markdown-toggle-markup-hiding)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> s h") 'markdown-promote)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> s l") 'markdown-demote)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> S h") 'markdown-toggle-markup-hiding)
 
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> p") 'markdown-live-preview-mode)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> p") 'markdown-live-preview-mode)
 
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> e e") 'markdown-export)
-	(evil-define-key 'normal markdown-mode-map (kbd "<localleader> e p") 'markdown-export-and-preview))
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> e e") 'markdown-export)
+        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> e p") 'markdown-export-and-preview))
     #+END_SRC
 *** Python mode
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package python-mode
-	:ensure t)
+        :ensure t
+        :defer t)
     #+END_SRC
 *** Vue mode
 
@@ -841,10 +851,11 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package vue-mode
-	:ensure t
-	:hook ((vue-mode . (lambda () (visual-fill-column-mode -1)))
-	       (vue-mode . flyspell-prog-mode))
-	:mode "\\.vue\\'")
+        :ensure t
+        :defer t
+        :hook ((vue-mode . (lambda () (visual-fill-column-mode -1)))
+      	 (vue-mode . flyspell-prog-mode))
+        :mode "\\.vue\\'")
     #+END_SRC
 *** Tab bar mode
 
@@ -863,32 +874,37 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package powershell
-	:ensure t)
+        :defer t
+        :ensure t)
     #+END_SRC 
 *** Dockerfiles
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package dockerfile-mode
-	:ensure t)
+        :ensure t
+        :defer t)
     #+END_SRC
 *** Typescript mode
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package typescript-mode
-	:ensure t)
+        :ensure t
+        :defer t)
     #+END_SRC
 *** TODO Flycheck mode
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package flycheck
-	:ensure t)
+        :ensure t
+        :defer t)
     #+END_SRC
 
 *** Csharp mode
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package csharp-mode
-	:ensure t)
+        :defer t
+        :ensure t)
     #+END_SRC
 
 *** Treemacs
@@ -898,45 +914,50 @@
 
      #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package treemacs
-	 :ensure t
-	 :init
-	 (evil-global-set-key 'normal (kbd "<leader> p t") 'treemacs)
-	 :config
-	 ;; The default width and height of the icons is 22 pixels. If you are
-	 ;; using a Hi-DPI display, uncomment this to double the icon size.
-	 ;; (treemacs-resize-icons 44)
+         :ensure t
+         :defer t
+         :init
+         (evil-global-set-key 'normal (kbd "<leader> p t") 'treemacs)
+         :config
+         ;; The default width and height of the icons is 22 pixels. If you are
+         ;; using a Hi-DPI display, uncomment this to double the icon size.
+         ;; (treemacs-resize-icons 44)
 
-	 (treemacs-follow-mode t)
-	 (treemacs-filewatch-mode t)
-	 (treemacs-fringe-indicator-mode 'always)
+         (treemacs-follow-mode t)
+         (treemacs-filewatch-mode t)
+         (treemacs-fringe-indicator-mode 'always)
 
-	 (pcase (cons (not (null (executable-find "git")))
-		      (not (null treemacs-python-executable)))
-	   (`(t . t)
-	    (treemacs-git-mode 'deferred))
-	   (`(t . _)
-	    (treemacs-git-mode 'simple)))
+         (pcase (cons (not (null (executable-find "git")))
+       	       (not (null treemacs-python-executable)))
+           (`(t . t)
+            (treemacs-git-mode 'deferred))
+           (`(t . _)
+            (treemacs-git-mode 'simple)))
 
-	 (treemacs-hide-gitignored-files-mode nil)
-	 (treemacs-project-follow-mode)
-	 (evil-global-set-key 'normal (kbd "<leader> f t") 'treemacs))
+         (treemacs-hide-gitignored-files-mode nil)
+         (treemacs-project-follow-mode)
+         (evil-global-set-key 'normal (kbd "<leader> f t") 'treemacs))
 
        (use-package treemacs-evil
-	 :after (treemacs evil)
-	 :ensure t)
+         :after (treemacs evil)
+         :defer t
+         :ensure t)
 
        (use-package treemacs-icons-dired
-	 :hook (dired-mode . treemacs-icons-dired-enable-once)
-	 :ensure t)
+         :hook (dired-mode . treemacs-icons-dired-enable-once)
+         :defer t
+         :ensure t)
 
        (use-package treemacs-magit
-	 :after (treemacs magit)
-	 :ensure t)
+         :after (treemacs magit)
+         :defer t
+         :ensure t)
 
        (use-package treemacs-tab-bar ;;treemacs-tab-bar if you use tab-bar-mode
-	 :after (treemacs)
-	 :ensure t
-	 :config (treemacs-set-scope-type 'Tabs))
+         :after (treemacs)
+         :ensure t
+         :defer t
+         :config (treemacs-set-scope-type 'Tabs))
      #+END_SRC
 
 *** project.el
@@ -950,27 +971,29 @@
 
      #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package project
-	 :config
-	 (evil-global-set-key 'normal (kbd "<leader> p r") 'project-remember-current)
-	 (evil-global-set-key 'normal (kbd "<leader> p s") 'project-switch-project)
-	 (evil-global-set-key 'normal (kbd "<leader> p b") 'project-switch-to-buffer)
-	 (evil-global-set-key 'normal (kbd "<leader> p f") 'project-find-file)
-	 (evil-global-set-key 'normal (kbd "<leader> p d") 'project-dired)
-	 (evil-global-set-key 'normal (kbd "<leader> p !") 'project-shell-command)
-	 (evil-global-set-key 'normal (kbd "<leader> p c") 'project-compile))
+         :defer t
+         :config
+         (evil-global-set-key 'normal (kbd "<leader> p r") 'project-remember-current)
+         (evil-global-set-key 'normal (kbd "<leader> p s") 'project-switch-project)
+         (evil-global-set-key 'normal (kbd "<leader> p b") 'project-switch-to-buffer)
+         (evil-global-set-key 'normal (kbd "<leader> p f") 'project-find-file)
+         (evil-global-set-key 'normal (kbd "<leader> p d") 'project-dired)
+         (evil-global-set-key 'normal (kbd "<leader> p !") 'project-shell-command)
+         (evil-global-set-key 'normal (kbd "<leader> p c") 'project-compile))
      #+END_SRC
 *** Flyspell mode
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package flyspell
-	:ensure t
-	:hook
-	((prog-mode . flyspell-prog-mode)
-	 (vue-mode . flyspell-prog-mode)
-	 (text-mode . flyspell-mode))
-	:config
-	(evil-global-set-key 'normal (kbd "<leader> s c") 'flyspell-correct-word-before-point)
-	(evil-global-set-key 'normal (kbd "<leader> s b") 'flyspell-buffer))
+        :ensure t
+        :defer t
+        :hook
+        ((prog-mode . flyspell-prog-mode)
+         (vue-mode . flyspell-prog-mode)
+         (text-mode . flyspell-mode))
+        :config
+        (evil-global-set-key 'normal (kbd "<leader> s c") 'flyspell-correct-word-before-point)
+        (evil-global-set-key 'normal (kbd "<leader> s b") 'flyspell-buffer))
     #+END_SRC
 
 *** Visual fill column 
@@ -1001,7 +1024,8 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package yaml-mode
-	:ensure t)
+        :defer t
+        :ensure t)
     #+END_SRC
 
 *** Auto updates
@@ -1011,13 +1035,14 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package auto-package-update
-	:ensure t
-	:custom
-	(auto-package-update-delete-old-versions t)
-	(auto-package-update-prompt-before-update t)
-	(auto-package-update-hide-results t)
-	:config
-	(auto-package-update-maybe))
+        :ensure t
+        :defer t
+        :custom
+        (auto-package-update-delete-old-versions t)
+        (auto-package-update-prompt-before-update t)
+        (auto-package-update-hide-results t)
+        :config
+        (auto-package-update-maybe))
     #+END_SRC
 
 *** TODO dired
@@ -1053,20 +1078,22 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package yasnippet
-	:ensure t
-	:diminish (yas-minor-mode . " Y") 
-	:hook
-	(prog-mode . yas-minor-mode)
-	(vue-mode . yas-minor-mode)
-	:config
-	(evil-global-set-key 'insert (kbd "<C-tab>") 'yas-expand))
+        :ensure t
+        :defer t
+        :diminish (yas-minor-mode . " Y") 
+        :hook
+        (prog-mode . yas-minor-mode)
+        (vue-mode . yas-minor-mode)
+        :config
+        (evil-global-set-key 'insert (kbd "<C-tab>") 'yas-expand))
     #+END_SRC
 
     Of course Yasnipets hasn't come with its own default snippets for a long time, so [[https://github.com/AndreaCrotti/yasnippet-snippets][here is a community maintained package]] that has a ton of useful ones!
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package yasnippet-snippets
-	:ensure t)
+        :defer t
+        :ensure t)
     #+END_SRC
 
 *** prettier-js mode
@@ -1075,26 +1102,28 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package prettier-js
-	:ensure t
-	:hook ((typescript-mode . prettier-js-mode)
-	       (javascript-mode . prettier-js-mode)
-	       (vue-mode . prettier-js-mode)))
+        :ensure t
+        :defer t
+        :hook ((typescript-mode . prettier-js-mode)
+      	 (javascript-mode . prettier-js-mode)
+      	 (vue-mode . prettier-js-mode)))
     #+END_SRC
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package add-local-node-modules
-	:load-path "plugins/add-local-node-modules"
-	:config
-	(add-hook 'javascript-mode-hook #'add-local-node-modules)
-	(add-hook 'typescript-mode-hook #'add-local-node-modules)
-	(add-hook 'vue-mode-hook #'add-local-node-modules))
+      	:load-path "plugins/add-local-node-modules"
+      	:config
+      	(add-hook 'javascript-mode-hook #'add-local-node-modules)
+      	(add-hook 'typescript-mode-hook #'add-local-node-modules)
+      	(add-hook 'vue-mode-hook #'add-local-node-modules))
     #+END_SRC
 
 *** Diminish
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package diminish
-	:ensure t)
+        :ensure t
+        :defer t)
     #+END_SRC
 
 *** dashboard
@@ -1130,7 +1159,8 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el :noweb yes
       (use-package eglot
-	:hook ((csharp-mode . eglot-ensure)))
+        :defer t
+        :hook ((csharp-mode . eglot-ensure)))
     #+END_SRC
 
 *** LSP-mode
@@ -1139,14 +1169,16 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package lsp-mode
-	:ensure t
-	:config
-	(evil-define-key 'normal lsp-mode-map (kbd "<localleader>") lsp-command-map)
-	:hook ((vue-mode . lsp-mode)
-	       (typescript-mode . lsp-mode)))
+        :ensure t
+        :defer t
+        :config
+        (evil-define-key 'normal lsp-mode-map (kbd "<localleader>") lsp-command-map)
+        :hook ((vue-mode . lsp-mode)
+      	 (typescript-mode . lsp-mode)))
 
       (use-package lsp-treemacs
-	:ensure t)
+        :defer t
+        :ensure t)
     #+END_SRC
 ** Backups
 
