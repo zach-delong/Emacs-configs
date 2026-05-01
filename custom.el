@@ -15,16 +15,16 @@
  '(lsp-log-io t)
  '(max-lisp-eval-depth 16000)
  '(package-selected-packages
-   '(solarized-theme yasnippet-snippets yaml-mode which-key web-mode
-		     vue-mode visual-fill-column undo-tree
-		     typescript-mode treemacs-tab-bar treemacs-magit
-		     treemacs-icons-dired treemacs-evil
-		     spacemacs-theme python-mode prettier-js
-		     powershell org-ql org-pomodoro org-bullets
-		     lsp-treemacs flycheck evil-surround evil-org
-		     evil-collection evil-cleverparens editorconfig
-		     dockerfile-mode diminish dashboard company
-		     auto-package-update adaptive-wrap))
+   '(adaptive-wrap auto-package-update company dashboard diminish
+		   dockerfile-mode editorconfig evil-cleverparens
+		   evil-collection evil-org evil-surround flycheck
+		   lsp-treemacs org-bullets org-pomodoro org-ql
+		   powershell prettier-js python-mode solarized-theme
+		   spacemacs-theme tetris-60 treemacs-evil
+		   treemacs-icons-dired treemacs-magit
+		   treemacs-tab-bar typescript-mode undo-tree
+		   visual-fill-column vue-mode web-mode which-key
+		   yaml-mode yasnippet-snippets))
  '(safe-local-variable-values
    '((projectile-project-test-cmd . "dotnet test")
      (projectile-project-compilation-cmd . "dotnet build"))))
