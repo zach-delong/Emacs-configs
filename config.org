@@ -334,7 +334,6 @@
       (use-package magit
         :ensure t
         :defer t
-        :after evil
         :config
         (evil-global-set-key 'normal (kbd "<leader> g s") 'magit-status))
     #+END_SRC
