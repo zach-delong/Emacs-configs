@@ -782,20 +782,20 @@
 	#+END_SRC
 *** Zettelkasten
 
-    This is a plugin that isn't in MELPA for now, and I can't seem to convince it to load by adding it to ~load-path~ so I am instead going to manually require it.
-    #+BEGIN_SRC emacs-lisp :tangle config.el
-      (require 'zettelkasten-mode "~/.emacs.d/plugins/zettelkasten/zettelkasten.el")
-    #+END_SRC
+    This is a plugin that isn't in MELPA for now, and I can't seem to convince it to load by adding it to ~load-path~ so I am instead going to manually require it in the preface so that happens before doing anything in ~use-package~.
 
     To actually configure it, though, I still want to use ~use-package~, so now that it's loaded, I can use ~use-package~ to activate it and set up the basic keybindings. Yay, some consistency!
     
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package zettelkasten-mode
-	:diminish zettelkasten-mode
-	:config
-	(evil-global-set-key 'normal (kbd "<leader> a z c") 'zettel-create-new)
-	(evil-global-set-key 'normal (kbd "<leader> a z i") 'zettel-insert-and-create-new)
-	(zettelkasten-mode 1))
+        :preface
+        (require 'zettelkasten-mode "~/.emacs.d/plugins/zettelkasten/zettelkasten.el")
+        :load-path "plugins/zettelkasten"
+        :diminish zettelkasten-mode
+        :config
+        (evil-global-set-key 'normal (kbd "<leader> a z c") 'zettel-create-new)
+        (evil-global-set-key 'normal (kbd "<leader> a z i") 'zettel-insert-and-create-new)
+        (zettelkasten-mode 1))
     #+END_SRC
 *** Markdown-mode
 
