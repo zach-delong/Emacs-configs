@@ -183,20 +183,20 @@
 
 *** Company-mode
 
-    [[http://company-mode.github.io/][Company mode]] is an auto complete plugin (*comp*-lete *any*-thing). I am still exploring how it can be used. Note the hooks set up below. I am only enabling company mode in modes that inherit from ~prog-mode~ because I don't want it popping up constantly while I am typing in org mode or in markdown mode. Notice the reference to "company-tng-mode." This is a way to use tab to cycle through options, then just continue typing to accept that selection.
+    [[http://company-mode.github.io/][Company mode]] is an auto complete plugin (*comp*-lete *any*-thing). [[https://elpa.gnu.org/devel/doc/company.html][You can learn more about Company mode here]]. I am still exploring how it can be used. Note the hooks set up below. I am only enabling company mode in modes that inherit from ~prog-mode~ because I don't want it popping up constantly while I am typing in org mode or in markdown mode.
 
     #+BEGIN_SRC emacs-lisp :noweb yes :tangle config.el
       (use-package company
         :ensure t
         :defer t
         :diminish company-mode
-        :hook ((prog-mode . company-mode)
-      	 (company-mode . company-tng-mode))
+        :hook ((prog-mode . company-mode))
         :custom
         <<company-variables-config>>
         :config
         <<company-config>>)
     #+END_SRC
+
 **** company variables
      :PROPERTIES:
      :header-args: :noweb-ref company-variables-config
