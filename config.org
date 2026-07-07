@@ -680,12 +680,10 @@
          (org-agenda-span 14)
          (org-adapt-indentation t)
          :config
-         (add-hook 'org-mode-hook (lambda () (setq mode-name "O")))
-         (add-hook 'org-agenda-mode-hook (lambda () (setq mode-name "OA")))
          <<org-variables-config>>
          )
      #+END_SRC
-     
+
 **** evil-org
 
      #+BEGIN_SRC emacs-lisp :tangle config.el
