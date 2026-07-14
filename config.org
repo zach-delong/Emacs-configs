@@ -167,20 +167,6 @@
    #+END_SRC
 
 ** Packages
-*** vim tab bar
-
-    I just like the way the Vim-style tab bar looks. I don't think this package adds any actual functionality; it just looks neat. I do have to manually add a hook to ensure that it's always started when Emacs launches.
-    
-    #+BEGIN_SRC emacs-lisp :tangle config.el
-      (use-package vim-tab-bar
-        :ensure t
-        :defer t
-        :diminish 
-        :commands vim-tab-bar-mode
-        :hook
-        (after-init . vim-tab-bar-mode))
-    #+END_SRC
-
 *** Company-mode
 
     [[http://company-mode.github.io/][Company mode]] is an auto complete plugin (*comp*-lete *any*-thing). [[https://elpa.gnu.org/devel/doc/company.html][You can learn more about Company mode here]]. I am still exploring how it can be used. Note the hooks set up below. I am only enabling company mode in modes that inherit from ~prog-mode~ because I don't want it popping up constantly while I am typing in org mode or in markdown mode.
