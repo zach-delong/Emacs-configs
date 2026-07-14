@@ -645,18 +645,6 @@
          )
      #+END_SRC
 
-**** evil-org
-
-     #+BEGIN_SRC emacs-lisp :tangle config.el
-       (use-package evil-org
-	 :ensure t
-	 :after org
-	 :hook (org-mode . (lambda () evil-org-mode))
-	 :config
-	 (require 'evil-org-agenda)
-	 (evil-org-agenda-set-keys))
-     #+END_SRC
-
 **** Org bullets
 
      A really cool plugin that makes pretty bullets
@@ -675,11 +663,10 @@
 
      #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package org-ql
-	 :ensure t
-	 :config
-	 (evil-global-set-key 'normal (kbd "<leader> a o s d") 'org-ql-find-in-org-directory)
-	 (evil-global-set-key 'normal (kbd "<leader> a o s a") 'org-ql-find-in-agenda)
-	 (evil-global-set-key 'normal (kbd "<leader> a o s f") 'org-ql-find))
+         :ensure t
+         :bind (("C-c m o q d" . org-ql-find-in-org-directory)
+       	 ("C-c m o q a" . org-ql-find-in-agenda)
+       	 ("C-c m o q f" . org-ql-find)))
      #+END_SRC
 
 **** org-pomodoro
@@ -689,11 +676,8 @@
 
      #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package org-pomodoro
-	 :ensure t
-	 :after org
-	 :config
-	 (evil-define-key 'normal org-mode-map (kbd "<localleader> C p") 'org-pomodoro)
-	 (evil-define-key 'motion org-agenda-mode-map (kbd "c p") 'org-pomodoro))
+       	 :ensure t
+       	 :after org)
 
      #+END_SRC
      
@@ -752,8 +736,6 @@
         :load-path "plugins/zettelkasten"
         :diminish zettelkasten-mode
         :config
-        (evil-global-set-key 'normal (kbd "<leader> a z c") 'zettel-create-new)
-        (evil-global-set-key 'normal (kbd "<leader> a z i") 'zettel-insert-and-create-new)
         (zettelkasten-mode 1))
     #+END_SRC
 *** Markdown-mode
@@ -820,13 +802,7 @@
     This should enable a tab bar. This is built into emacs as of 27, I think. Each tab is a configuration of windows, so the splits and whatnot should be maintained?
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
-      (use-package tab-bar
-	:config
-	(evil-global-set-key 'normal (kbd "<leader> C-t") 'tab-new)
-	(evil-global-set-key 'normal (kbd "<leader> <C-tab>") 'tab-next)
-	(evil-global-set-key 'normal (kbd "<leader> <C-S-tab>") 'tab-previous)
-	(evil-global-set-key 'normal (kbd "<leader> <C-backtab>") 'tab-previous)
-	(evil-global-set-key 'normal (kbd "<leader> C-w") 'tab-close))
+      (use-package tab-bar)
     #+END_SRC
 *** Powershell mode
 
@@ -874,8 +850,6 @@
        (use-package treemacs
          :ensure t
          :defer t
-         :init
-         (evil-global-set-key 'normal (kbd "<leader> p t") 'treemacs)
          :config
          ;; The default width and height of the icons is 22 pixels. If you are
          ;; using a Hi-DPI display, uncomment this to double the icon size.
@@ -893,8 +867,7 @@
             (treemacs-git-mode 'simple)))
 
          (treemacs-hide-gitignored-files-mode nil)
-         (treemacs-project-follow-mode)
-         (evil-global-set-key 'normal (kbd "<leader> f t") 'treemacs))
+         (treemacs-project-follow-mode))
 
        (use-package treemacs-evil
          :after (treemacs evil)
@@ -941,10 +914,7 @@
         :hook
         ((prog-mode . flyspell-prog-mode)
          (vue-mode . flyspell-prog-mode)
-         (text-mode . flyspell-mode))
-        :config
-        (evil-global-set-key 'normal (kbd "<leader> s c") 'flyspell-correct-word-before-point)
-        (evil-global-set-key 'normal (kbd "<leader> s b") 'flyspell-buffer))
+         (text-mode . flyspell-mode)))
     #+END_SRC
 
 *** Visual fill column 
@@ -1034,9 +1004,7 @@
         :diminish (yas-minor-mode . " Y") 
         :hook
         (prog-mode . yas-minor-mode)
-        (vue-mode . yas-minor-mode)
-        :config
-        (evil-global-set-key 'insert (kbd "<C-tab>") 'yas-expand))
+        (vue-mode . yas-minor-mode))
     #+END_SRC
 
     Of course Yasnipets hasn't come with its own default snippets for a long time, so [[https://github.com/AndreaCrotti/yasnippet-snippets][here is a community maintained package]] that has a ton of useful ones!
@@ -1083,27 +1051,16 @@
 
     #+BEGIN_SRC emacs-lisp :tangle config.el
       (use-package dashboard
-	:ensure t
-	:config
-	(dashboard-setup-startup-hook)
-	(setq dashboard-projects-backend 'project-el)
-	(setq dashboard-items '((recents  . 5)
-			      (bookmarks . 5)
-			      (projects . 5)
-			      (agenda . 5)))
-	(evil-global-set-key 'normal (kbd "<leader> b D") 'dashboard-open))
+      	:ensure t
+      	:config
+      	(dashboard-setup-startup-hook)
+      	(setq dashboard-projects-backend 'project-el)
+      	(setq dashboard-items '((recents  . 5)
+      			      (bookmarks . 5)
+      			      (projects . 5)
+      			      (agenda . 5))))
     #+END_SRC
 
-*** Bookmarks
-
-    Bookmarks are a built in feature of Emacs that allow you to remember certain locations in files for reference later. Other packages (like dashboard.el) display the output of this feature, though you can also just list them with the built-in UI. This isn't a package as much as it's just a built in feature of Emacs. As such, there's no package to use, but I want to set keybindings anyway.
-
-
-    #+BEGIN_SRC emacs-lisp :tangle config.el
-      (evil-global-set-key 'normal (kbd "<leader> B m") 'bookmark-set)
-      (evil-global-set-key 'normal (kbd "<leader> B l") 'bookmark-bmenu-list)
-    #+END_SRC
-    
 *** Eglot mode
 
     I have historically used LSP mode to get complex IDE-style stuff in Emacs, but I have been trying to make do with [[https://www.gnu.org/software/emacs/manual/html_node/eglot/index.html][Eglot]] instead. It's a much simpler interface and it overloads built-in functionality in Emacs instead of lsp-mode's approach of providing its own interface.
