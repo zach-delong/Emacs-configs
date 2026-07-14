@@ -296,8 +296,7 @@
       (use-package magit
         :ensure t
         :defer t
-        :config
-        (evil-global-set-key 'normal (kbd "<leader> g s") 'magit-status))
+        :bind (("C-x g" . magit-status)))
     #+END_SRC
 *** Org mode
 **** Various org mode configuration
