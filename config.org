@@ -969,14 +969,7 @@
      #+BEGIN_SRC emacs-lisp :tangle config.el
        (use-package project
          :defer t
-         :config
-         (evil-global-set-key 'normal (kbd "<leader> p r") 'project-remember-current)
-         (evil-global-set-key 'normal (kbd "<leader> p s") 'project-switch-project)
-         (evil-global-set-key 'normal (kbd "<leader> p b") 'project-switch-to-buffer)
-         (evil-global-set-key 'normal (kbd "<leader> p f") 'project-find-file)
-         (evil-global-set-key 'normal (kbd "<leader> p d") 'project-dired)
-         (evil-global-set-key 'normal (kbd "<leader> p !") 'project-shell-command)
-         (evil-global-set-key 'normal (kbd "<leader> p c") 'project-compile))
+         :bind (("C-x p R" . project-remember-current)))
      #+END_SRC
 *** Flyspell mode
 
