@@ -266,8 +266,8 @@
       (use-package icomplete
         :custom
         <<completion-variables-config>>
-        :config
-        <<completion-fido-config>>)
+        :hook ((after-init . icomplete-mode)
+      	 (fido-mode . fido-vertical-mode)))
     #+END_SRC
 
     
@@ -286,29 +286,6 @@
 
      #+BEGIN_SRC emacs-lisp :tangle no
        (read-buffer-completion-ignore-case 1)
-     #+END_SRC
-
-**** Enable fido-mode
-     :PROPERTIES:
-     :header-args: :noweb-ref completion-fido-config
-     :END:
-
-     Now that we have loaded ~icomplete~ we can enable it:
-
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (icomplete-mode 1)
-     #+END_SRC
-
-     ~fido-mode~ itself is a customization of ~icomplete~, so we can enable that here:
-
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (fido-mode 1)
-     #+END_SRC
-
-     And I don't like that ~icomplete~ and ~fido-mode~ show their completion horizontally across the screen. I much prefer it to be done vertically, so I can enable that:
-
-     #+BEGIN_SRC emacs-lisp :tangle no
-       (fido-vertical-mode)
      #+END_SRC
 
 *** Magit
