@@ -716,12 +716,7 @@
         :defer t
         :config
         (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
-        (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
-        (evil-define-key 'normal web-mode-map (kbd "<localleader> <tab>") 'web-mode-fold-or-unfold)
-        (evil-define-key 'normal web-mode-map (kbd "<localleader> i l") 'web-mode-file-link)
-        (evil-define-key 'normal web-mode-map (kbd "<localleader> g t") 'web-mode-navigate)
-        (evil-define-key 'normal web-mode-map (kbd "<localleader> g j") 'web-mode-tag-next)
-        (evil-define-key 'normal web-mode-map (kbd "<localleader> g k") 'web-mode-tag-previous))
+        (add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode)))
 	#+END_SRC
 *** Zettelkasten
 
@@ -748,35 +743,7 @@
         :defer t
         :custom
         (markdown-hide-markup 1)
-        (markdown-hide-urls 1)
-        :config
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> <return>") 'markdown-do)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> g f") 'markdown-outline-next-same-level)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> g b") 'markdown-outline-previous-same-level)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> g n") 'markdown-outline-next)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> g p") 'markdown-outline-previous)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> g u") 'markdown-outline-up)
-
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i f") 'markdown-insert-footnote)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i w") 'markdown-insert-wiki-link)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i i") 'markdown-insert-image)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i l") 'markdown-insert-link)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i H") 'markdown-insert-hr)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 1") 'markdown-insert-header-atx-1)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 2") 'markdown-insert-header-atx-2)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i h 3") 'markdown-insert-header-atx-3)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t t") 'markdown-insert-table)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t r") 'markdown-table-insert-row)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> i t c") 'markdown-table-insert-column)
-
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> s h") 'markdown-promote)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> s l") 'markdown-demote)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> S h") 'markdown-toggle-markup-hiding)
-
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> p") 'markdown-live-preview-mode)
-
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> e e") 'markdown-export)
-        (evil-define-key 'normal markdown-mode-map (kbd "<localleader> e p") 'markdown-export-and-preview))
+        (markdown-hide-urls 1))
     #+END_SRC
 *** Python mode
 
@@ -868,11 +835,6 @@
 
          (treemacs-hide-gitignored-files-mode nil)
          (treemacs-project-follow-mode))
-
-       (use-package treemacs-evil
-         :after (treemacs evil)
-         :defer t
-         :ensure t)
 
        (use-package treemacs-icons-dired
          :hook (dired-mode . treemacs-icons-dired-enable-once)
@@ -1082,7 +1044,8 @@
         :config
         (evil-define-key 'normal lsp-mode-map (kbd "<localleader>") lsp-command-map)
         :hook ((vue-mode . lsp-mode)
-      	 (typescript-mode . lsp-mode)))
+      	 (typescript-mode . lsp-mode))
+        :commands lsp)
 
       (use-package lsp-treemacs
         :defer t
