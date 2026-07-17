@@ -175,12 +175,11 @@
       (use-package company
         :ensure t
         :defer t
+        :commands company-mode
         :diminish company-mode
         :hook ((prog-mode . company-mode))
         :custom
-        <<company-variables-config>>
-        :config
-        <<company-config>>)
+        <<company-variables-config>>)
     #+END_SRC
 
 **** company variables
@@ -205,30 +204,21 @@
      #+BEGIN_SRC emacs-lisp :tangle no
        (company-selection-wrap-around t)
      #+END_SRC
-     
-**** company config
-     :PROPERTIES:
-     :header-args: :noweb-ref company-config
-     :END:
 
-     These are things that I need to execute whenever company mode loads.
-
-***** Backends
-
-     Company and Yasnipppet have some rather odd interactions, since they both make heavy use of the tab key by default. I have tried below to make them play nicely together.
+          Company and Yasnipppet have some rather odd interactions, since they both make heavy use of the tab key by default. I have tried below to make them play nicely together.
 
      First, I need to select what backends I would like to use. This is essentially the original list, except I have added in Yasnippet at a high level of priority as well so that it works.
 
-
      #+BEGIN_SRC emacs-lisp :tangle no
-       (setq company-backends '(company-yasnippet
-				company-capf
-				company-dabbrev-code
-				company-keywords
-				company-clang
-				company-semantic
-				company-etags
-				company-files))
+       (company-backends '(company-ya snippet
+       			       company-capf
+       			       company-dabbrev-code
+       			       company-keywords
+       			       company-clang
+       			       company-semantic
+       			       company-etags
+       			       company-files))
+
      #+END_SRC
 
 *** Spacemacs theme
