@@ -14,17 +14,7 @@
  '(eglot-connect-timeout 120)
  '(lsp-log-io t)
  '(max-lisp-eval-depth 16000)
- '(package-selected-packages
-   '(adaptive-wrap auto-package-update company dashboard diminish
-		   dockerfile-mode editorconfig evil-cleverparens
-		   evil-collection evil-org evil-surround flycheck
-		   lsp-treemacs org-bullets org-pomodoro org-ql
-		   powershell prettier-js python-mode solarized-theme
-		   spacemacs-theme tetris-60 treemacs-evil
-		   treemacs-icons-dired treemacs-magit
-		   treemacs-tab-bar typescript-mode undo-tree
-		   visual-fill-column vue-mode web-mode which-key
-		   yaml-mode yasnippet-snippets))
+ '(package-selected-packages nil)
  '(safe-local-variable-values
    '((projectile-project-test-cmd . "dotnet test")
      (projectile-project-compilation-cmd . "dotnet build"))))
