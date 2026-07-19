@@ -109,7 +109,7 @@
    It bothers me, but if I launch Emacs from the GUI (as I almost always do) it's not getting the correct ~exec-path~ for me. So I have to write some stuff to make sure that it's going to get my LSPs and whatnot.
 
    #+BEGIN_SRC emacs-lisp :tangle config.el
-     (add-to-list 'exec-path "~/.local/bin")
+     (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
    #+END_SRC
 
 
