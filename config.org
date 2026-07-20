@@ -1031,8 +1031,10 @@
     #+BEGIN_SRC emacs-lisp :tangle config.el :noweb yes
       (use-package eglot
         :defer t
+        :custom
+        (eglot-connect-timeout 120)
         :hook ((csharp-mode . eglot-ensure)
-      	 (python-mode . eglot-ensure )))
+          	 (python-mode . eglot-ensure )))
     #+END_SRC
 
 *** LSP-mode
