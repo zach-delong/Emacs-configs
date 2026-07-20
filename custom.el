@@ -11,13 +11,9 @@
      "bffa9739ce0752a37d9b1eee78fc00ba159748f50dc328af4be661484848e476"
      "fa2b58bb98b62c3b8cf3b6f02f058ef7827a8e497125de0254f56e373abee088"
      default))
- '(eglot-connect-timeout 120)
  '(lsp-log-io t)
  '(max-lisp-eval-depth 16000)
- '(package-selected-packages nil)
- '(safe-local-variable-values
-   '((projectile-project-test-cmd . "dotnet test")
-     (projectile-project-compilation-cmd . "dotnet build"))))
+ '(package-selected-packages nil))
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
