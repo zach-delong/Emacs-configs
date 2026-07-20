@@ -635,7 +635,9 @@
          :ensure t
          :defer t 
          :bind(("C-c a" . org-agenda)
-       	("C-c c" . org-capture))
+       	("C-c c" . org-capture)
+       	(:map org-mode-map
+       	      ("C-c m o i s" . org-insert-src-block)))
          :custom
          (org-agenda-span 14)
          (org-adapt-indentation t)
