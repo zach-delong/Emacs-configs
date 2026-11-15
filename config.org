@@ -295,6 +295,8 @@
       (use-package magit
         :ensure t
         :defer t
+        :custom
+        (vc-handled-backends '(Git))
         :bind (("C-x g" . magit-status)))
     #+END_SRC
 *** Org mode
